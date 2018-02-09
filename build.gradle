@@ -35,7 +35,7 @@ dependencies {
     //友好的HTML规范 搭配spring.thymeleaf.mode=LEGACYHTML5
     compile('net.sourceforge.nekohtml:nekohtml:1.9.22')
     //热部署 搭配spring.thymeleaf.cache=false
-    compile ('org.springframework.boot:spring-boot-devtools:1.5.10.RELEASE')
+    compile ('org.springframework.boot:spring-boot-devtools')
     //内置tomcat 仅开发测试用
 	runtime('org.springframework.boot:spring-boot-starter-tomcat')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
