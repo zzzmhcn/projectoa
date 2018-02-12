@@ -377,7 +377,7 @@ ul.tpl-dropdown-content .tpl-dropdown-menu-messages-item .menu-messages-content 
 .tpl-content-wrapper {
   transition: all 0.4s ease-in-out;
   position: relative;
-  margin-left: 240px;
+  margin-left: 120px;
   z-index: 1101;
   min-height: 922px;
   border-bottom-left-radius: 3px;
