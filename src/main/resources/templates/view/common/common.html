@@ -153,8 +153,8 @@
 
                     <!-- 主题 -->
                     <li class="am-text-sm">
-                        <a href="javascript:;">
-                            <i class="am-icon-toggle-off"></i> 护眼
+                        <a href="javascript:;" id="eyeshield">
+                            <i class="am-icon-toggle-off" id="eyesI"></i> 护眼
                         </a>
                     </li>
 
@@ -246,5 +246,24 @@
 <script src="assets/js/amazeui.datatables.min.js"></script>
 <script src="assets/js/dataTables.responsive.min.js"></script>
 <script src="assets/js/app.js"></script>
+<script>
+    $(document).ready(function() {
+        /**
+         * 护眼模式
+         */
+        $('#eyeshield').on('click', function() {
+            //这里toggleClass的意思是如果 有就删掉 没有就加上
+            //按钮切换
+            $('#eyesI').toggleClass('am-icon-toggle-off');
+            $('#eyesI').toggleClass('am-icon-toggle-on');
+            //主题切换
+            $('body').toggleClass('theme-white');
+            $('body').toggleClass('theme-black');
+
+            //保存到浏览器缓存 这个暂时不需要 先注着
+            //storageSave(saveSelectColor);
+        })
+    });
+</script>
 </body>
 </html>
