@@ -21,4 +21,8 @@ public class IndexController {
     public String form(){
         return "form";
     }
+    @RequestMapping(value = "/404")
+    public String error404(){
+        return "404";
+    }
 }
