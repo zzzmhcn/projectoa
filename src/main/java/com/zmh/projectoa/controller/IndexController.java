@@ -42,15 +42,15 @@ public class IndexController {
     }
 
     /**
-     * 站内信箱
+     * 通知公告
      */
-    @RequestMapping(value = "/mail")
-    public String mail(){
-        return "mail";
+    @RequestMapping(value = "/notice")
+    public String notice(){
+        return "notice";
     }
 
     /**
-     * 通知公告
+     * 站内信箱
      */
     @RequestMapping(value = "/message")
     public String message(){
