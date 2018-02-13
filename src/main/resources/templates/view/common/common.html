@@ -160,7 +160,7 @@
 
                     <!-- 退出 -->
                     <li class="am-text-sm">
-                        <a href="javascript:;">
+                        <a href="javascript:;" id="exit">
                             <span class="am-icon-sign-out"></span> 退出
                         </a>
                     </li>
@@ -259,9 +259,13 @@
             //主题切换
             $('body').toggleClass('theme-white');
             $('body').toggleClass('theme-black');
-
             //保存到浏览器缓存 这个暂时不需要 先注着
-            //storageSave(saveSelectColor);
+            saveSelectColor.Color = $('body').attr('class');
+            storageSave(saveSelectColor);
+        })
+        $('#exit').on('click',function () {
+            sessionStorage.clear();
+            window.location.href = '/login';
         })
     });
 </script>

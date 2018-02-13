@@ -21,11 +21,7 @@ $(function() {
         console.log($(window).width())
     });
 
-    //    if(storageLoad('SelcetColor')){
-
-    //     }else{
-    //       storageSave(saveSelectColor);
-    //     }
+    
 })
 
 

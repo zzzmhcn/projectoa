@@ -7,21 +7,26 @@ var saveSelectColor = {
 
 // 判断用户是否已有自己选择的模板风格
 if (storageLoad('SelcetColor')) {
-    $('body').attr('class', storageLoad('SelcetColor').Color)
+    saveSelectColor = storageLoad('SelcetColor');
+    $('body').attr('class', saveSelectColor.Color)
+    if(saveSelectColor.Color == 'theme-white'){
+        $('#eyesI').attr('class','am-icon-toggle-off');
+    }else{
+        $('#eyesI').attr('class','am-icon-toggle-on');
+    }
 } else {
     storageSave(saveSelectColor);
     $('body').attr('class', 'theme-white')
 }
 
-
-// 本地缓存
+// session缓存
 function storageSave(objectData) {
-    localStorage.setItem(objectData.Name, JSON.stringify(objectData));
+    sessionStorage.setItem(objectData.Name, JSON.stringify(objectData));
 }
 
 function storageLoad(objectName) {
-    if (localStorage.getItem(objectName)) {
-        return JSON.parse(localStorage.getItem(objectName))
+    if (sessionStorage.getItem(objectName)) {
+        return JSON.parse(sessionStorage.getItem(objectName))
     } else {
         return false
     }
