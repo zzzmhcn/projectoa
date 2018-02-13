@@ -28,9 +28,9 @@ public class IndexController {
     /**
      * 人员信息
      */
-    @RequestMapping(value = "/userinfos")
-    public String userinfos(){
-        return "tables";
+    @RequestMapping(value = "/userinfo")
+    public String userinfo(){
+        return "userinfo";
     }
 
     /**
@@ -38,7 +38,7 @@ public class IndexController {
      */
     @RequestMapping(value = "/user")
     public String user(){
-        return "form";
+        return "user";
     }
 
     /**
@@ -46,15 +46,15 @@ public class IndexController {
      */
     @RequestMapping(value = "/mail")
     public String mail(){
-        return "table-list";
+        return "mail";
     }
 
     /**
      * 通知公告
      */
-    @RequestMapping(value = "/messages")
-    public String messages(){
-        return "table-list";
+    @RequestMapping(value = "/message")
+    public String message(){
+        return "message";
     }
 
     /**
