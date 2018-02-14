@@ -296,4 +296,8 @@
       update_time = #{updateTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  
+  <select id="queryUserByUsername" resultType="com.zmh.projectoa.model.Users">
+    select * from users where username = #{username}
+  </select>
 </mapper>
