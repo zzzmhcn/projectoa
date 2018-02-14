@@ -31,9 +31,8 @@
         <!-- 右侧内容 -->
         <div class="tpl-header-fluid">
             <!-- 侧边切换 -->
-            <div class="am-fl tpl-header-switch-button am-icon-list">
-                    <span>
-
+                <div class="am-fl tpl-header-switch-button am-icon-list" id="listSwitchButton">
+                <span>
                 </span>
             </div>
             <!-- 其它功能-->
@@ -169,23 +168,8 @@
         </div>
 
     </header>
-    <!-- 风格切换
-    <div class="tpl-skiner">
-        <div class="tpl-skiner-toggle am-icon-cog">
-        </div>
-        <div class="tpl-skiner-content">
-            <div class="tpl-skiner-content-title">
-                选择主题
-            </div>
-            <div class="tpl-skiner-content-bar">
-                <span class="skiner-color skiner-white" data-color="theme-white"></span>
-                <span class="skiner-color skiner-black" data-color="theme-black"></span>
-            </div>
-        </div>
-    </div>
-    -->
     <!-- 侧边导航栏 -->
-    <div class="left-sidebar">
+    <div class="left-sidebar" id="leftSidebarDiv">
         <!-- 用户信息 -->
         <div class="tpl-sidebar-user-panel">
             <div class="tpl-user-panel-slide-toggleable">
@@ -237,7 +221,7 @@
         </ul>
     </div>
     <!-- 内容区域 -->
-    <div class="tpl-content-wrapper">
+    <div class="tpl-content-wrapper" id="tplContentWrapperDiv">
         <div th:include="this :: content"></div>
     </div>
 </div>
@@ -247,11 +231,11 @@
 <script src="assets/js/dataTables.responsive.min.js"></script>
 <script src="assets/js/app.js"></script>
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
         /**
          * 护眼模式
          */
-        $('#eyeshield').on('click', function() {
+        $('#eyeshield').on('click', function () {
             //这里toggleClass的意思是如果 有就删掉 没有就加上
             //按钮切换
             $('#eyesI').toggleClass('am-icon-toggle-off');
@@ -263,11 +247,19 @@
             saveSelectColor.Color = $('body').attr('class');
             storageSave(saveSelectColor);
         })
-        $('#exit').on('click',function () {
+        $('#exit').on('click', function () {
             sessionStorage.clear();
             window.location.href = '/login';
         })
     });
+    /**
+     * 左边栏的隐藏按钮
+     */
+    $('#listSwitchButton').on('click', function () {
+        $('#leftSidebarDiv').toggleClass('active');
+        $('#tplContentWrapperDiv').toggleClass('active');
+    });
+
 </script>
 </body>
 </html>
