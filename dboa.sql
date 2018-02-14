@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50717
 File Encoding         : 65001
 
-Date: 2018-02-13 22:43:56
+Date: 2018-02-14 10:15:12
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -65,7 +65,6 @@ CREATE TABLE `messages` (
   `message` text,
   `send_id` int(11) NOT NULL,
   `receive_id` int(11) NOT NULL,
-  `is_read` varchar(1) NOT NULL,
   `is_del` varchar(1) DEFAULT NULL,
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `update_time` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
