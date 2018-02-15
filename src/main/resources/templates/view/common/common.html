@@ -16,8 +16,11 @@
     <script src="/assets/js/echarts.min.js"></script>
     <link rel="stylesheet" href="/assets/css/amazeui.min.css"/>
     <link rel="stylesheet" href="/assets/css/amazeui.datatables.min.css"/>
+    <link rel="stylesheet" href="/assets/css/fullcalendar.min.css"/>
+    <link rel="stylesheet" href="/assets/css/fullcalendar.print.css" media='print'/>
     <link rel="stylesheet" href="/assets/css/app.css">
     <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/vue.js"></script>
 </head>
 <body data-type="index">
 <script src="/assets/js/theme.js"></script>
@@ -31,7 +34,7 @@
         <!-- 右侧内容 -->
         <div class="tpl-header-fluid">
             <!-- 侧边切换 -->
-                <div class="am-fl tpl-header-switch-button am-icon-list" id="listSwitchButton">
+            <div class="am-fl tpl-header-switch-button am-icon-list" id="listSwitchButton">
                 <span>
                 </span>
             </div>
@@ -169,7 +172,7 @@
 
     </header>
     <!-- 侧边导航栏 -->
-    <div class="left-sidebar" id="leftSidebarDiv">
+    <div class="left-sidebar">
         <!-- 用户信息 -->
         <div class="tpl-sidebar-user-panel">
             <div class="tpl-user-panel-slide-toggleable">
@@ -193,12 +196,12 @@
                 </a>
             </li>
             <li class="sidebar-nav-link">
-                <a href="/userinfo" id="userA">
+                <a href="/user" id="userA">
                     <i class="am-icon-table sidebar-nav-link-logo"></i> 个人信息
                 </a>
             </li>
             <li class="sidebar-nav-link">
-                <a href="/user" id="userinfoA">
+                <a href="/userinfo" id="userinfoA">
                     <i class="am-icon-wpforms sidebar-nav-link-logo"></i> 人员信息
                 </a>
             </li>
@@ -221,7 +224,8 @@
         </ul>
     </div>
     <!-- 内容区域 -->
-    <div class="tpl-content-wrapper" id="tplContentWrapperDiv">
+    <div class="tpl-content-wrapper">
+        <!-- 引入独立部分 -->
         <div th:include="this :: content"></div>
     </div>
 </div>
@@ -230,12 +234,11 @@
 <script src="/assets/js/amazeui.datatables.min.js"></script>
 <script src="/assets/js/dataTables.responsive.min.js"></script>
 <script src="/assets/js/app.js"></script>
-
+<script src="/assets/js/moment.js"></script>
+<script src="/assets/js/fullcalendar.min.js"></script>
 <script>
     $(document).ready(function () {
-        /**
-         * 护眼模式
-         */
+        // 护眼模式
         $('#eyeshield').on('click', function () {
             //这里toggleClass的意思是如果 有就删掉 没有就加上
             //按钮切换
@@ -248,19 +251,23 @@
             saveSelectColor.Color = $('body').attr('class');
             storageSave(saveSelectColor);
         })
+        // 退出按钮
         $('#exit').on('click', function () {
             sessionStorage.clear();
             window.location.href = '/login';
         })
+        // 左边栏的隐藏按钮
+        $('#listSwitchButton').on('click', function () {
+            if ($('.left-sidebar').attr('class').indexOf('active') > 0
+                && $('.tpl-content-wrapper').attr('class').indexOf('active') > 0) {
+                $('.left-sidebar').addClass('active');
+                $('.tpl-content-wrapper').addClass('active');
+            } else {
+                $('.left-sidebar').removeClass('active');
+                $('.tpl-content-wrapper').removeClass('active');
+            }
+        });
     });
-    /**
-     * 左边栏的隐藏按钮
-     */
-    $('#listSwitchButton').on('click', function () {
-        $('#leftSidebarDiv').toggleClass('active');
-        $('#tplContentWrapperDiv').toggleClass('active');
-    });
-
 </script>
 </body>
 </html>

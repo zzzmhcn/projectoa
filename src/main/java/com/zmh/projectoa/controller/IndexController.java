@@ -57,11 +57,4 @@ public class IndexController {
         return "message";
     }
 
-    /**
-     * 通用错误页面
-     */
-    @RequestMapping(value = "/404")
-    public String error(){
-        return "404";
-    }
 }
