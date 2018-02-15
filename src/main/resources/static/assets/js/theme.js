@@ -3,20 +3,20 @@ var saveSelectColor = {
     'Color': 'theme-white'
 }
 
-
-
+function getThemeToggle() {
 // 判断用户是否已有自己选择的模板风格
-if (storageLoad('SelcetColor')) {
-    saveSelectColor = storageLoad('SelcetColor');
-    $('body').attr('class', saveSelectColor.Color)
-    if(saveSelectColor.Color == 'theme-white'){
-        $('#eyesI').attr('class','am-icon-toggle-off');
-    }else{
-        $('#eyesI').attr('class','am-icon-toggle-on');
+    if (storageLoad('SelcetColor')) {
+        saveSelectColor = storageLoad('SelcetColor');
+        $('body').attr('class', saveSelectColor.Color)
+        if (saveSelectColor.Color == 'theme-white') {
+            $('#eyesI').attr('class', 'am-icon-toggle-off');
+        } else {
+            $('#eyesI').attr('class', 'am-icon-toggle-on');
+        }
+    } else {
+        storageSave(saveSelectColor);
+        $('body').attr('class', 'theme-white')
     }
-} else {
-    storageSave(saveSelectColor);
-    $('body').attr('class', 'theme-white')
 }
 
 // session缓存

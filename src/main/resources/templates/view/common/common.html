@@ -262,6 +262,8 @@
 <script src="/js/common.js"></script>
 <script>
     $(document).ready(function () {
+        //获取护眼模式开关状态
+        getThemeToggle();
         // 护眼模式
         $('#eyeshield').on('click', function () {
             changeTheme();
