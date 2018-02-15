@@ -20,7 +20,7 @@ function getInit() {
 
 //查询职位
 function getPosition() {
-    jQuery.ajax({
+    $.ajax({
         type: "POST",
         url: "/position/query",
         //data: {username:$("#username").val(), content:$("#content").val()},
@@ -33,7 +33,7 @@ function getPosition() {
 
 //查询部门
 function getDepartment() {
-    jQuery.ajax({
+    $.ajax({
         type: "POST",
         url: "/department/query",
         //data: {username:$("#username").val(), content:$("#content").val()},
@@ -59,5 +59,28 @@ function createUser() {
         showAlert('请输入员工姓名');
     }else{
         //发送创建用户请求
+        var data = {};
+        data.username = username;
+        data.realname = realname;
+        data.departmentId = department_id;
+        data.positionId = position_id;
+
+        $.ajax({
+            type: "POST",
+            url: "/user/userCreate",
+            data: data,
+            dataType: "json",
+            success: function(result){
+                if (result.code == 000){
+                    //成功
+                    showAlert('创建成功');
+                }else {
+                    //失败
+                    showAlert(result.message);
+                }
+
+            }
+        });
     }
+
 }
