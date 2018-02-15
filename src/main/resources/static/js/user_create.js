@@ -51,19 +51,13 @@ function createUser() {
     var department_id = $('#department').val();
     var position_id = $('#position').val();
     var usernameSize = username.length;
-    if (username == '' || username == null){
-        alert('请输入用户名');
-    }else if (usernameSize < 6 || usernameSize>20){
-        alert('用户名长度为6-20字符之间，请重新输入');
-    }
-    // else if (){
-    //     //缺用户名正则判断
-    // }
-    else if (realname == '' || realname == null){
-        alert('请输入员工姓名');
+    //用户名正则，4到16位（字母，数字，下划线，减号）
+    var uPattern = /^[a-zA-Z0-9_-]{6,20}$/;
+    if (!uPattern.test(username)){
+        showAlert('用户名必须是数字或者字母,长度为6-20字符之间,请重新输入','您输入的用户名不正确');
+    }else if (realname == '' || realname == null){
+        showAlert('请输入员工姓名');
     }else{
         //发送创建用户请求
-
     }
-    
 }
