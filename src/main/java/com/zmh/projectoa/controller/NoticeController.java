@@ -11,5 +11,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/notice")
 public class NoticeController {
-
+    /**
+     * 新建公告
+     */
+    @RequestMapping(value = "/notice_create")
+    public String createNotice(){
+        return "notice_create";
+    }
 }
