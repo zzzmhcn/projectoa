@@ -36,7 +36,9 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-thymeleaf')
     compile('net.sourceforge.nekohtml:nekohtml:1.9.22')
     //热部署 搭配spring.thymeleaf.cache=false
-    compile ('org.springframework.boot:spring-boot-devtools')
+    compile('org.springframework.boot:spring-boot-devtools')
+    //SpringBoot内置的Redis
+    compile('org.springframework.boot:spring-boot-starter-data-redis')
     //内置tomcat 仅开发测试用
 	//runtime('org.springframework.boot:spring-boot-starter-tomcat')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
