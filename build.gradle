@@ -38,8 +38,13 @@ dependencies {
     //热部署 搭配spring.thymeleaf.cache=false
     compile('org.springframework.boot:spring-boot-devtools')
     //SpringBoot内置的Redis
-    compile('org.springframework.boot:spring-boot-starter-data-redis')
+    //compile('org.springframework.boot:spring-boot-starter-data-redis')
     //内置tomcat 仅开发测试用
 	//runtime('org.springframework.boot:spring-boot-starter-tomcat')
-	testCompile('org.springframework.boot:spring-boot-starter-test')
+    //spring-boot-admin 图形化管理页面
+    compile('de.codecentric:spring-boot-admin-server:1.5.7')
+    compile('de.codecentric:spring-boot-admin-server-ui:1.5.7')
+    compile('de.codecentric:spring-boot-admin-starter-client:1.5.7')
+    //测试
+    testCompile('org.springframework.boot:spring-boot-starter-test')
 }

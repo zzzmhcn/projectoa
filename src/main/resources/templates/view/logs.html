@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="common/common">
+
+<div class="centerView" data-type="index" th:fragment="content">
+    <!-- 内容区域 -->
+    <div class="tpl-content-wrapper">
+        <div class="row-content am-cf">
+            <div class="row">
+                <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+                    <div class="widget am-cf">
+                        <div class="widget-head am-cf">
+                            <div class="widget-title  am-cf">系统日志</div>
+                        </div>
+
+                        <div class="am-g error-log">
+                            <div class="am-u-sm-12 am-u-sm-centered" style="margin: 10px">
+                                <select data-am-selected="{searchBox: 1,btnWidth: '300px'}" style="display: none;">
+                                    <option value="projectoa.20180212.log">projectoa.20180212.log</option>
+                                    <option value="projectoa.20180213.log">projectoa.20180213.log</option>
+                                    <option value="projectoa.20180214.log">projectoa.20180214.log</option>
+                                    <option value="projectoa.20180215.log">projectoa.20180215.log</option>
+                                    <option value="projectoa.20180216.log">projectoa.20180216.log</option>
+                                    <option value="projectoa.20180217.log">projectoa.20180217.log</option>
+                                    <option value="projectoa.20180218.log" selected>projectoa.20180218.log</option>
+                                </select>
+                                <pre class="am-pre-scrollable" id="logView"></pre>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function () {
+            $('#logView').load('logs/projectoa.20180218.log');
+            $('#logs').attr('class', 'active');
+        });
+    </script>
+</div>
+</html>

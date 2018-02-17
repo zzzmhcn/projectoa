@@ -1,7 +1,7 @@
-个人主页 欢迎留言
+个人主页，欢迎留言
     http://zhangminghui.iok.la/
 
-说明
+笔记
     DB具体设计笔记地址
     http://leanote.com/blog/post/5a82b593ab644140d2000fdf
     开发日志地址
@@ -16,6 +16,9 @@
     http://www.cnblogs.com/ityouknow/p/7089177.html
     springboot(二十)：使用spring-boot-admin对spring-boot服务进行监控
     http://www.cnblogs.com/ityouknow/p/8440455.html
+    使用spring-boot-admin对spring-boot服务进行监控
+    http://blog.csdn.net/clementad/article/details/70613209
 
 另外
+    本项目是我与云朵同学共同合作完成！！！
     特别要感谢云朵同学的鼎力相助！！！

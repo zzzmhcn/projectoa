@@ -57,4 +57,12 @@ public class IndexController {
         return "message";
     }
 
+    /**
+     * 站内信箱
+     */
+    @RequestMapping(value = "/logs")
+    public String logs(){
+        return "logs";
+    }
+
 }

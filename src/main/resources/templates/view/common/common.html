@@ -10,26 +10,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="renderer" content="webkit">
     <meta http-equiv="Cache-Control" content="no-siteapp"/>
-    <link rel="icon" type="image/png" href="/assets/i/favicon.png">
-    <link rel="apple-touch-icon-precomposed" href="/assets/i/app-icon72x72@2x.png">
+    <link rel="icon" type="image/png" href="assets/i/favicon.png">
+    <link rel="apple-touch-icon-precomposed" href="assets/i/app-icon72x72@2x.png">
     <meta name="apple-mobile-web-app-title" content="Amaze UI"/>
-    <script src="/assets/js/echarts.min.js"></script>
-    <link rel="stylesheet" href="/assets/css/amazeui.min.css"/>
-    <link rel="stylesheet" href="/assets/css/amazeui.datatables.min.css"/>
-    <link rel="stylesheet" href="/assets/css/fullcalendar.min.css"/>
-    <link rel="stylesheet" href="/assets/css/fullcalendar.print.css" media='print'/>
-    <link rel="stylesheet" href="/assets/css/app.css">
-    <script src="/assets/js/jquery.min.js"></script>
-    <script src="/assets/js/vue.js"></script>
+    <script src="assets/js/echarts.min.js"></script>
+    <link rel="stylesheet" href="assets/css/amazeui.min.css"/>
+    <link rel="stylesheet" href="assets/css/amazeui.datatables.min.css"/>
+    <link rel="stylesheet" href="assets/css/fullcalendar.min.css"/>
+    <link rel="stylesheet" href="assets/css/fullcalendar.print.css" media='print'/>
+    <link rel="stylesheet" href="assets/css/app.css">
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/vue.js"></script>
 </head>
 <body data-type="index">
-<script src="/assets/js/theme.js"></script>
+<script src="assets/js/theme.js"></script>
 <div class="am-g tpl-g">
     <!-- 头部 -->
     <header>
         <!-- logo -->
         <div class="am-fl tpl-header-logo">
-            <a href="javascript:;"><img src="/assets/img/logo.png" alt=""></a>
+            <a href="javascript:;"><img src="assets/img/logo.png" alt=""></a>
         </div>
         <!-- 右侧内容 -->
         <div class="tpl-header-fluid">
@@ -57,7 +57,7 @@
                             <li class="tpl-dropdown-menu-messages">
                                 <a href="javascript:;" class="tpl-dropdown-menu-messages-item am-cf">
                                     <div class="menu-messages-ico">
-                                        <img src="/assets/img/user04.png" alt="">
+                                        <img src="assets/img/user04.png" alt="">
                                     </div>
                                     <div class="menu-messages-time">
                                         3小时前
@@ -78,7 +78,7 @@
                             <li class="tpl-dropdown-menu-messages">
                                 <a href="javascript:;" class="tpl-dropdown-menu-messages-item am-cf">
                                     <div class="menu-messages-ico">
-                                        <img src="/assets/img/user02.png" alt="">
+                                        <img src="assets/img/user02.png" alt="">
                                     </div>
                                     <div class="menu-messages-time">
                                         5天前
@@ -94,7 +94,7 @@
                                 </a>
                             </li>
                             <li class="tpl-dropdown-menu-messages">
-                                <a href="/message" class="tpl-dropdown-menu-messages-item am-cf">
+                                <a href="message" class="tpl-dropdown-menu-messages-item am-cf">
                                     <i class="am-icon-circle-o"></i> 进入列表…
                                 </a>
                             </li>
@@ -146,7 +146,7 @@
 
 
                             <li class="tpl-dropdown-menu-notifications">
-                                <a href="/notice" class="tpl-dropdown-menu-notifications-item am-cf">
+                                <a href="notice" class="tpl-dropdown-menu-notifications-item am-cf">
                                     <i class="am-icon-bell"></i> 进入列表…
                                 </a>
                             </li>
@@ -177,7 +177,7 @@
         <div class="tpl-sidebar-user-panel">
             <div class="tpl-user-panel-slide-toggleable">
                 <div class="tpl-user-panel-profile-picture">
-                    <img src="/assets/img/user04.png" alt="">
+                    <img src="assets/img/user04.png" alt="">
                 </div>
                 <span class="user-panel-logged-in-text">
               <i class="am-icon-circle-o am-text-success tpl-user-panel-status-icon"></i>
@@ -191,32 +191,42 @@
         <!-- 菜单 -->
         <ul class="sidebar-nav">
             <li class="sidebar-nav-link">
-                <a href="/index" id="indexA">
+                <a href="index" id="indexA">
                     <i class="am-icon-home sidebar-nav-link-logo"></i> 首页
                 </a>
             </li>
             <li class="sidebar-nav-link">
-                <a href="/user" id="userA">
+                <a href="user" id="userA">
                     <i class="am-icon-table sidebar-nav-link-logo"></i> 人员信息
                 </a>
             </li>
             <li class="sidebar-nav-link">
-                <a href="/userinfo" id="userinfoA">
+                <a href="userinfo" id="userinfoA">
                     <i class="am-icon-wpforms sidebar-nav-link-logo"></i> 个人信息
                 </a>
             </li>
             <li class="sidebar-nav-link">
-                <a href="/calendar" id="calendarA">
+                <a href="calendar" id="calendarA">
                     <i class="am-icon-calendar sidebar-nav-link-logo"></i> 日历
                 </a>
             </li>
             <li class="sidebar-nav-link">
-                <a href="/message" id="messageA">
+                <a href="admin" id="admin" target="_blank">
+                    <i class="am-icon-heartbeat sidebar-nav-link-logo"></i> SpringBootAdmin
+                </a>
+            </li>
+            <li class="sidebar-nav-link">
+                <a href="logs" id="logs">
+                    <i class="am-icon-list-alt sidebar-nav-link-logo"></i> 系统日志
+                </a>
+            </li>
+            <li class="sidebar-nav-link">
+                <a href="message" id="messageA">
                     <i class="am-icon-envelope sidebar-nav-link-logo"></i> 站内信箱
                 </a>
             </li>
             <li class="sidebar-nav-link">
-                <a href="/notice" id="noticeA">
+                <a href="notice" id="noticeA">
                     <i class="am-icon-bell sidebar-nav-link-logo"></i> 通知公告
                 </a>
             </li>
@@ -253,13 +263,13 @@
     </div>
 </div>
 </div>
-<script src="/assets/js/amazeui.min.js"></script>
-<script src="/assets/js/amazeui.datatables.min.js"></script>
-<script src="/assets/js/dataTables.responsive.min.js"></script>
-<script src="/assets/js/app.js"></script>
-<script src="/assets/js/moment.js"></script>
-<script src="/assets/js/fullcalendar.min.js"></script>
-<script src="/js/common.js"></script>
+<script src="assets/js/amazeui.min.js"></script>
+<script src="assets/js/amazeui.datatables.min.js"></script>
+<script src="assets/js/dataTables.responsive.min.js"></script>
+<script src="assets/js/app.js"></script>
+<script src="assets/js/moment.js"></script>
+<script src="assets/js/fullcalendar.min.js"></script>
+<script src="js/common.js"></script>
 <script>
     $(document).ready(function () {
         //获取护眼模式开关状态
