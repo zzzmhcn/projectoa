@@ -1,6 +1,7 @@
 个人主页 欢迎留言
     http://zhangminghui.iok.la/
-说明 2018-2-13 11:44:28 V0.0.1
+
+说明
     DB具体设计笔记地址
     http://leanote.com/blog/post/5a82b593ab644140d2000fdf
     开发日志地址
@@ -17,4 +18,4 @@
     http://www.cnblogs.com/ityouknow/p/8440455.html
 
 另外
-    特别要感谢程同学的鼎力相助！！！
+    特别要感谢云朵同学的鼎力相助！！！
