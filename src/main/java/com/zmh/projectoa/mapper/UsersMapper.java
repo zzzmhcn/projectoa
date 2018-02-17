@@ -32,4 +32,6 @@ public interface UsersMapper {
     int updateByPrimaryKey(Users record);
 
     Users queryUserByUsername (@Param("username") String username);
+
+    List<Users> queryBySelective(Users users);
 }

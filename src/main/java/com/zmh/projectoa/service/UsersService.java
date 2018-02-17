@@ -1,13 +1,20 @@
 package com.zmh.projectoa.service;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.zmh.projectoa.mapper.UserinfoMapper;
 import com.zmh.projectoa.mapper.UsersMapper;
 import com.zmh.projectoa.model.Userinfo;
 import com.zmh.projectoa.model.Users;
 import com.zmh.projectoa.model.UsersExample;
 import com.zmh.projectoa.util.MD5Util;
+import org.omg.CORBA.UserException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+
 
 /**
  * Created by ChengShanyunduo
@@ -56,6 +63,16 @@ public class UsersService {
      */
     public Users queryUserByUsername(Users users){
         return usersMapper.queryUserByUsername(users.getUsername());
+    }
+
+    public PageInfo userList(Users userDto){
+        userDto.setIsDel("0");
+
+        PageHelper.startPage(1, 10);
+        List<Users> list = usersMapper.queryBySelective(userDto);
+        PageInfo page = new PageInfo(list);
+
+        return page;
 
     }
 

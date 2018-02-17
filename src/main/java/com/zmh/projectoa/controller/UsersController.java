@@ -1,5 +1,6 @@
 package com.zmh.projectoa.controller;
 
+import com.github.pagehelper.PageInfo;
 import com.zmh.projectoa.dto.ReturnDto;
 import com.zmh.projectoa.model.Users;
 import com.zmh.projectoa.service.UsersService;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -63,8 +65,13 @@ public class UsersController {
         }else {
             return ReturnDto.buildFailedReturnDto("创建失败");
         }
-
     }
 
+    @RequestMapping(value = "/userList")
+    @ResponseBody
+    public ReturnDto userList(Users users){
+        PageInfo list = usersService.userList(users);
+        return ReturnDto.buildSuccessReturnDto(list);
+    }
 
 }

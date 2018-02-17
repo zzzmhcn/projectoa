@@ -300,4 +300,36 @@
   <select id="queryUserByUsername" resultType="com.zmh.projectoa.model.Users">
     select * from users where username = #{username}
   </select>
+
+  <select id="queryBySelective" parameterType="com.zmh.projectoa.model.Users" resultType="com.zmh.projectoa.model.Users">
+    select * from users where 1=1
+      <if test="username != null">
+        and username = #{username,jdbcType=VARCHAR}
+      </if>
+      <if test="password != null">
+        and password = #{password,jdbcType=VARCHAR}
+      </if>
+      <if test="realname != null">
+        and realname = #{realname,jdbcType=VARCHAR}
+      </if>
+      <if test="departmentId != null">
+        and department_id = #{departmentId,jdbcType=INTEGER}
+      </if>
+      <if test="positionId != null">
+        and position_id = #{positionId,jdbcType=INTEGER}
+      </if>
+      <if test="isDel != null">
+        and is_del = #{isDel,jdbcType=VARCHAR}
+      </if>
+      <if test="lastLoginTime != null">
+        and last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="createTime != null">
+        and create_time = #{createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="updateTime != null">
+        and update_time = #{updateTime,jdbcType=TIMESTAMP}
+      </if>
+    order by create_time desc
+  </select>
 </mapper>
