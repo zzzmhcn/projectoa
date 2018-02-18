@@ -65,6 +65,11 @@ public class UsersService {
         return usersMapper.queryUserByUsername(users.getUsername());
     }
 
+    /**
+     * 分页查询
+     * @param userDto
+     * @return
+     */
     public PageInfo userList(Users userDto){
         userDto.setIsDel("0");
 
