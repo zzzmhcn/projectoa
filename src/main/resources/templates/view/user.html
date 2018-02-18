@@ -21,7 +21,8 @@
                                 <div class="am-form-group">
                                     <div class="am-btn-toolbar">
                                         <div class="am-btn-group am-btn-group-xs">
-                                            <a type="button" class="am-btn am-btn-default am-btn-success" href="/projectoa/user/user_create"><span
+                                            <a type="button" class="am-btn am-btn-default am-btn-success"
+                                               href="/projectoa/user/user_create"><span
                                                     class="am-icon-plus"></span> 新增
                                             </a>
                                         </div>
@@ -33,7 +34,9 @@
                                 <div class="am-form-group tpl-table-list-select" style="width: 200px">
                                     <select data-am-selected="{btnSize: 'sm'}" id="department">
                                         <option value="0">部门</option>
-                                        <option v-for="department in departments" v-bind:value="department.id">{{department.department}}</option>
+                                        <option v-for="department in departments" v-bind:value="department.id">
+                                            {{department.department}}
+                                        </option>
                                     </select>
                                 </div>
                             </div>
@@ -41,12 +44,15 @@
                                 <div class="am-form-group tpl-table-list-select" style="width: 200px">
                                     <select data-am-selected="{btnSize: 'sm'}" id="position">
                                         <option value="0">职位</option>
-                                        <option v-for="position in positions" v-bind:value="position.id">{{position.position}}</option>
+                                        <option v-for="position in positions" v-bind:value="position.id">
+                                            {{position.position}}
+                                        </option>
                                     </select>
                                 </div>
                             </div>
                             <div class="am-u-sm-12 am-u-md-12 am-u-lg-3">
-                                <div class="am-input-group am-input-group-sm tpl-form-border-form cl-p" style="width: 200px">
+                                <div class="am-input-group am-input-group-sm tpl-form-border-form cl-p"
+                                     style="width: 200px">
                                     <input type="text" class="am-form-field " placeholder="姓名">
                                 </div>
                             </div>
@@ -54,7 +60,8 @@
                             <div class="am-u-sm-12 am-u-md-12 am-u-lg-1">
                                 <div class="am-input-group am-input-group-sm tpl-form-border-form cl-p">
                                 <span class="am-input-group-btn">
-                                    <button class="am-btn  am-btn-default am-btn-success tpl-table-list-field " type="button">查询</button>
+                                    <button class="am-btn  am-btn-default am-btn-success tpl-table-list-field "
+                                            type="button">查询</button>
                                 </span>
                                 </div>
                             </div>
@@ -138,10 +145,10 @@
             </div>
         </div>
     </div>
-    <script src="/js/user.js"></script>
+    <script th:src="@{/js/user.js(path=${contextPath})}"></script>
     <script>
-        $(document).ready(function() {
-            $('#userA').attr('class','active');
+        $(document).ready(function () {
+            $('#userA').attr('class', 'active');
         });
     </script>
 </div>

@@ -18,6 +18,8 @@
     http://www.cnblogs.com/ityouknow/p/8440455.html
     使用spring-boot-admin对spring-boot服务进行监控
     http://blog.csdn.net/clementad/article/details/70613209
+    详解html和thymeleaf中的相对路径，解决springboot前台页面的相对路径问题
+    http://blog.csdn.net/qq_35603331/article/details/76255125
 
 另外
     本项目是我与云朵同学共同合作完成！！！

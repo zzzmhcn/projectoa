@@ -45,8 +45,7 @@ dependencies {
     compile('de.codecentric:spring-boot-admin-server:1.5.7')
     compile('de.codecentric:spring-boot-admin-server-ui:1.5.7')
     compile('de.codecentric:spring-boot-admin-starter-client:1.5.7')
-	// https://mvnrepository.com/artifact/com.github.pagehelper/pagehelper
-	compile group: 'com.github.pagehelper', name: 'pagehelper', version: '5.1.2'
+	compile('com.github.pagehelper:pagehelper:5.1.2')
 
 	//测试
     testCompile('org.springframework.boot:spring-boot-starter-test')
