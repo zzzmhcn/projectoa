@@ -78,7 +78,11 @@ public class UsersService {
         PageInfo page = new PageInfo(list);
 
         return page;
+    }
 
+    public Users detailUser(Integer id){
+        Users user = usersMapper.selectByPrimaryKey(id);
+        return user;
     }
 
 

@@ -4,11 +4,14 @@ import com.github.pagehelper.PageInfo;
 import com.zmh.projectoa.dto.ReturnDto;
 import com.zmh.projectoa.model.Users;
 import com.zmh.projectoa.service.UsersService;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.websocket.server.PathParam;
 import java.util.List;
 import java.util.Objects;
 
@@ -77,6 +80,24 @@ public class UsersController {
     public ReturnDto userList(Users users){
         PageInfo list = usersService.userList(users);
         return ReturnDto.buildSuccessReturnDto(list);
+    }
+
+    /**
+     * 修改用户页面
+     * @param id
+     * @return
+     */
+    @RequestMapping(value = "/edit/{id}")
+    public String editUser(){
+        return "user_edit";
+
+    }
+
+    @RequestMapping(value = "/detailUser/{id}")
+    @ResponseBody
+    public ReturnDto detailUser(@PathVariable(name="id") Integer id){
+        Users user = usersService.detailUser(id);
+        return ReturnDto.buildSuccessReturnDto(user);
     }
 
 }
