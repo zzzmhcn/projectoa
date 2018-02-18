@@ -21,6 +21,11 @@
     详解html和thymeleaf中的相对路径，解决springboot前台页面的相对路径问题
     http://blog.csdn.net/qq_35603331/article/details/76255125
 
-另外
+注意
+    IDEA中有2个地方的报错是误报 下面的contextPath报错是误报
+    <script th:src="@{/assets/js/jquery.min.js(path=${contextPath})}"></script>
+    还有一些Service中的@Autowired也会，也可以不管
+
+感谢
     本项目是我与云朵同学共同合作完成！！！
     特别要感谢云朵同学的鼎力相助！！！

@@ -22,7 +22,7 @@ function getInit() {
 function getPosition() {
     $.ajax({
         type: "POST",
-        url: "/position/query",
+        url: contextPath + "/position/query",
         //data: {username:$("#username").val(), content:$("#content").val()},
         //dataType: "json",
         success: function(result){
@@ -35,7 +35,7 @@ function getPosition() {
 function getDepartment() {
     $.ajax({
         type: "POST",
-        url: "/department/query",
+        url: contextPath + "/department/query",
         //data: {username:$("#username").val(), content:$("#content").val()},
         //dataType: "json",
         success: function(result){

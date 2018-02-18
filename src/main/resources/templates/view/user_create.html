@@ -6,89 +6,85 @@
       layout:decorator="common/common">
 
 <div class="centerView" data-type="widgets" th:fragment="content">
-    <!-- 内容区域 -->
-    <div class="tpl-content-wrapper" id="user_create">
-        <div class="row-content am-cf">
-            <div class="row">
-                <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
-                    <div class="widget am-cf">
-                        <div class="widget-head am-cf">
-                            <div class="widget-title am-fl">创建员工</div>
-                            <!--<div class="widget-function am-fr">-->
+<!-- 内容区域 -->
+<div class="tpl-content-wrapper" id="user_create">
+    <div class="row-content am-cf">
+        <div class="row">
+            <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+                <div class="widget am-cf">
+                    <div class="widget-head am-cf">
+                        <div class="widget-title am-fl">创建员工</div>
+                        <!--<div class="widget-function am-fr">-->
                             <!--<a href="javascript:;" class="am-icon-cog"></a>-->
-                            <!--</div>-->
-                        </div>
-                        <div class="widget-body am-fr">
+                        <!--</div>-->
+                    </div>
+                    <div class="widget-body am-fr">
 
-                            <form class="am-form tpl-form-border-form tpl-form-border-br">
-                                <div class="am-form-group">
-                                    <label for="username" class="am-u-sm-3 am-form-label">用户名</label>
-                                    <div class="am-u-sm-9">
-                                        <input type="text" class="tpl-form-input" id="username" placeholder="请输入用户名">
-                                        <small>此为登录名，请输入6-20字母或数字</small>
-                                    </div>
+                        <form class="am-form tpl-form-border-form tpl-form-border-br">
+                            <div class="am-form-group">
+                                <label for="username" class="am-u-sm-3 am-form-label">用户名</label>
+                                <div class="am-u-sm-9">
+                                    <input type="text" class="tpl-form-input" id="username" placeholder="请输入用户名">
+                                    <small>此为登录名，请输入6-20字母或数字</small>
                                 </div>
+                            </div>
 
-                                <div class="am-form-group">
-                                    <label for="realname" class="am-u-sm-3 am-form-label">员工姓名 </label>
-                                    <div class="am-u-sm-9">
-                                        <input type="text" class="tpl-form-input" id="realname" placeholder="请输入员工姓名">
-                                        <small>填写员工真实姓名</small>
-                                    </div>
+                            <div class="am-form-group">
+                                <label for="realname" class="am-u-sm-3 am-form-label">员工姓名 </label>
+                                <div class="am-u-sm-9">
+                                    <input type="text" class="tpl-form-input" id="realname" placeholder="请输入员工姓名">
+                                    <small>填写员工真实姓名</small>
                                 </div>
+                            </div>
 
 
-                                <div class="am-form-group">
-                                    <label for="department" class="am-u-sm-3 am-form-label">部门 </label>
-                                    <div class="am-u-sm-9">
-                                        <select data-am-selected="{searchBox: 1}" style="display: none;"
-                                                id="department">
-                                            <option v-for="department in departments" v-bind:value="department.id">
-                                                {{department.department}}
-                                            </option>
-                                        </select>
 
-                                    </div>
-                                </div>
-
-                                <div class="am-form-group">
-                                    <label for="position" class="am-u-sm-3 am-form-label">职位 </label>
-                                    <div class="am-u-sm-9">
-                                        <select data-am-selected="{searchBox: 1}" style="display: none;" id="position">
-                                            <option v-for="position in positions" v-bind:value="position.id">
-                                                {{position.position}}
-                                            </option>
-                                        </select>
-
-                                    </div>
-                                </div>
-
-                                <div class="am-form-group">
-                                    <div class="am-u-sm-9 am-u-sm-push-3">
-                                        <button type="button" class="am-btn am-btn-primary tpl-btn-bg-color-success "
-                                                v-on:click="createUser">提交
-                                        </button>
-                                        <a href="#" onclick="javascript :history.back(-1);" type="button"
-                                           class="am-btn am-btn-primary tpl-btn-bg-color-success ">返回
-                                        </a>
-                                    </div>
+                            <div class="am-form-group">
+                                <label for="department" class="am-u-sm-3 am-form-label">部门 </label>
+                                <div class="am-u-sm-9">
+                                    <select data-am-selected="{searchBox: 1}" style="display: none;" id="department" >
+                                        <option v-for="department in departments" v-bind:value="department.id">{{department.department}}</option>
+                                    </select>
 
                                 </div>
-                            </form>
-                        </div>
+                            </div>
+
+                            <div class="am-form-group">
+                                <label for="position" class="am-u-sm-3 am-form-label">职位 </label>
+                                <div class="am-u-sm-9">
+                                    <select data-am-selected="{searchBox: 1}" style="display: none;" id="position">
+                                        <option v-for="position in positions" v-bind:value="position.id">{{position.position}}</option>
+                                    </select>
+
+                                </div>
+                            </div>
+
+                            <div class="am-form-group">
+                                <div class="am-u-sm-9 am-u-sm-push-3">
+                                    <button  type="button" class="am-btn am-btn-primary tpl-btn-bg-color-success " v-on:click="createUser">提交
+                                    </button>
+                                    <a href="#" onclick="javascript :history.back(-1);" type="button" class="am-btn am-btn-primary tpl-btn-bg-color-success ">返回
+                                    </a>
+                                </div>
+
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
-
-
         </div>
+
+
+
+
     </div>
-    <script th:src="@{/js/user_create.js(path=${contextPath})}"></script>
-    <script>
-        $(document).ready(function () {
-            $('#userinfoA').attr('class', 'active');
-        });
-    </script>
+</div>
+<script src="js/user_create.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#userinfoA').attr('class', 'active');
+    });
+</script>
 </div>
 
 </html>
