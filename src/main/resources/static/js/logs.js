@@ -31,13 +31,12 @@ function readFiles() {
         type: "POST",
         url: contextPath + "/admin/readFiles",
         data: {fileName: $("#fileName").val()},
-        dataType: "text",
         success: function (result) {
-            alert(
-                'result.code:'+result.code+"\n"+
-                'result.value:'+result.value+"\n"+
-                result);
-            $('#logPre').html(result);
+            if(result.code == 000){
+                $('#logPre').html(result.value);
+            }else{
+                $('#logPre').html(result.message);
+            }
         }
     });
 }

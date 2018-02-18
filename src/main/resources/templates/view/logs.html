@@ -18,11 +18,11 @@
                         <div class="am-g error-log">
                             <div class="am-u-sm-12 am-u-sm-centered" style="margin: 10px">
                                 <select data-am-selected="{searchBox: 1,btnWidth: '300px'}" style="display: none;" id="fileName">
-                                    <option v-for="fileName in fileNames" v-bind:value="fileName" v-on:click="readFiles">
+                                    <option v-for="fileName in fileNames" v-bind:value="fileName">
                                         {{ fileName }}
                                     </option>
                                 </select>
-                                <pre class="am-pre-scrollable" id="logPre">abcd</pre>
+                                <pre class="am-pre-scrollable" id="logPre">加载中，请稍后。。。</pre>
                             </div>
                         </div>
                     </div>
@@ -33,7 +33,7 @@
     <script th:src="@{/js/logs.js(path=${contextPath})}"></script>
     <script>
         $(document).ready(function () {
-            $("#fileName").change(readFiles());
+            $('#fileName').change(readFiles());
             $('#logs').attr('class', 'active');
         });
     </script>

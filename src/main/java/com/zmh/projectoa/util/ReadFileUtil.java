@@ -1,5 +1,6 @@
 package com.zmh.projectoa.util;
 
+import com.zmh.projectoa.dto.ReturnDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -12,19 +13,15 @@ import java.util.List;
  * @date 2018/2/1813:42
  */
 public class ReadFileUtil {
-    private final static Logger logger = LoggerFactory.getLogger(ReadFileUtil.class);
-
     /**
      * 获取文件夹下的文件名
      *
      * @param filePath 文件夹全路径
      * @return 文件名的集合
      */
-    public static List<String> getFileName(String filePath) {
-        StringBuffer sb = new StringBuffer();
+    public static ReturnDto getFileName(String filePath) {
         List<String> list = new ArrayList<>();
         try {
-            sb.append("{'fileName':[");
             File file = new File(filePath);
             File[] files = file.listFiles();
             for (File f : files) {
@@ -33,9 +30,9 @@ public class ReadFileUtil {
                 }
             }
         } catch (Exception e) {
-            logger.error(e.getMessage());
+            ReturnDto.buildFailedReturnDto(e.getMessage());
         }
-        return list;
+        return ReturnDto.buildSuccessReturnDto(list);
     }
 
     /**
@@ -44,7 +41,7 @@ public class ReadFileUtil {
      * @param filePath 文件全路径
      * @return 文件内容
      */
-    public static String readFileByLines(String filePath, String fileName,String charSet) {
+    public static ReturnDto readFileByLines(String filePath, String fileName, String charSet) {
         StringBuffer sb = new StringBuffer();
         try {
             File file = new File(filePath + "/" + fileName);
@@ -56,8 +53,8 @@ public class ReadFileUtil {
             }
             reader.close();
         } catch (IOException e) {
-            logger.error(e.getMessage());
+            ReturnDto.buildFailedReturnDto(e.getMessage());
         }
-        return sb.toString();
+        return ReturnDto.buildSuccessReturnDto(sb.toString());
     }
 }

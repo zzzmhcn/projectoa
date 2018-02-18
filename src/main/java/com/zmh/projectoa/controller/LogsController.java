@@ -29,7 +29,7 @@ public class LogsController {
     @RequestMapping(value = "/getFileNames")
     @ResponseBody
     public ReturnDto getFileNames(){
-        return ReturnDto.buildSuccessReturnDto(ReadFileUtil.getFileName(filePath));
+        return ReadFileUtil.getFileName(filePath);
     }
 
     /**
@@ -39,6 +39,6 @@ public class LogsController {
     @RequestMapping(value = "/readFiles")
     @ResponseBody
     public ReturnDto readFiles(@RequestParam("fileName")String fileName){
-        return ReturnDto.buildSuccessReturnDto(ReadFileUtil.readFileByLines(filePath,fileName,charSet));
+        return ReadFileUtil.readFileByLines(filePath,fileName,charSet);
     }
 }
