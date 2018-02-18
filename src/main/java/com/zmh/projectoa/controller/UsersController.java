@@ -67,6 +67,11 @@ public class UsersController {
         }
     }
 
+    /**
+     * 用户列表
+     * @param users
+     * @return
+     */
     @RequestMapping(value = "/userList")
     @ResponseBody
     public ReturnDto userList(Users users){
