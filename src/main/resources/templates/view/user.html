@@ -138,7 +138,7 @@
             </div>
         </div>
     </div>
-    <script src="/js/user.js"></script>
+    <script th:src="@{/js/user.js(path=${contextPath})}"></script>
     <script>
         $(document).ready(function() {
             $('#userA').attr('class','active');
