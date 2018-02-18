@@ -2,11 +2,13 @@ var vm = new Vue({
     el : '#user',
     data : {
         departments : [],
-        positions : []
+        positions : [],
+        userList : [],
     },
     methods : {
         getPosition : getPosition,
         getDepartment : getDepartment,
+        getUser : getUser
     },
     created : getInit()
 
@@ -15,6 +17,7 @@ var vm = new Vue({
 function getInit() {
     getDepartment();
     getPosition();
+    getUser();
 }
 
 //查询职位
@@ -41,5 +44,26 @@ function getDepartment() {
             vm.departments = result.value;
         }
     });
+}
+
+//查询员工
+function getUser() {
+
+    var departmentId = $('#department').val() == 0 ? null : $('#department').val();
+    var positionId = $('#position').val() == 0 ? null : $('#position').val();
+    var realname = $('#realname').val() == '' ? null : $('#realname').val();
+    var data = {};
+    data.departmentId = departmentId;
+    data.positionId = positionId;
+    data.realname = realname;
+    $.ajax({
+        type : "POST",
+        url : "/projectoa/user/userList",
+        data : data,
+        dataType : "json",
+        success : function (result) {
+            vm.userList = result.value.list;
+        }
+    })
 }
 

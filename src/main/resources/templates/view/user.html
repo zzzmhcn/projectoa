@@ -7,7 +7,7 @@
 
 <div class="centerView" data-type="widgets" th:fragment="content">
     <!-- 内容区域 -->
-    <div class="tpl-content-wrapper" id="user">
+    <div class="tpl-content-wrapper" id="user" style="display:none;" v-show="departments.length != 0">
         <div class="row-content am-cf">
             <div class="row">
                 <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
@@ -47,14 +47,16 @@
                             </div>
                             <div class="am-u-sm-12 am-u-md-12 am-u-lg-3">
                                 <div class="am-input-group am-input-group-sm tpl-form-border-form cl-p" style="width: 200px">
-                                    <input type="text" class="am-form-field " placeholder="姓名">
+                                    <input type="text" class="am-form-field " placeholder="姓名" id="realname">
                                 </div>
                             </div>
 
                             <div class="am-u-sm-12 am-u-md-12 am-u-lg-1">
                                 <div class="am-input-group am-input-group-sm tpl-form-border-form cl-p">
                                 <span class="am-input-group-btn">
-                                    <button class="am-btn  am-btn-default am-btn-success tpl-table-list-field " type="button">查询</button>
+                                    <button class="am-btn  am-btn-default am-btn-success tpl-table-list-field " type="button" v-on:click="getUser">
+                                        查询
+                                    </button>
                                 </span>
                                 </div>
                             </div>
@@ -72,33 +74,23 @@
                                         <th>操作</th>
                                     </tr>
                                     </thead>
-                                    <tbody>
-                                    <tr class="gradeX">
-                                        <td>aaa</td>
-                                        <td>张鹏飞</td>
-                                        <td>2016-09-26</td>
-                                        <td>aaa</td>
-                                        <td>aaa</td>
-                                        <td>
-                                            <div class="tpl-table-black-operation">
-                                                <a href="javascript:;">
-                                                    <i class="am-icon-pencil"></i> 编辑
-                                                </a>
-                                                <a href="javascript:;" class="tpl-table-black-operation-del">
-                                                    <i class="am-icon-trash"></i> 删除
-                                                </a>
-                                                <a href="javascript:;">
-                                                    <i class="am-icon-refresh"></i> 重置密码
-                                                </a>
-                                            </div>
+                                    <tbody v-if="userList.length == 0" >
+                                        <tr>
+                                            <td colspan="6" align="center">暂无数据</td>
+                                        </tr>
+                                    </tbody>
+                                    <tbody v-else>
+                                    <tr class="gradeX" v-for="user in userList">
+                                        <td>{{user.realname}}</td>
+                                        <td v-for="department in departments" v-if="department.id == user.departmentId">
+                                            {{department.department}}
                                         </td>
-                                    </tr>
-                                    <tr class="even gradeC">
-                                        <td>有适配微信小程序的计划吗</td>
-                                        <td>天纵之人</td>
-                                        <td>2016-09-26</td>
-                                        <td>aaa</td>
-                                        <td>aaa</td>
+                                        <td v-for="position in positions" v-if="position.id == user.positionId">
+                                            {{position.position}}
+                                        </td>
+                                        <td>{{user.createTime}}</td>
+                                        <td v-if="user.lastLoginTime != null">{{user.lastLoginTime}}</td>
+                                        <td v-else>未登录</td>
                                         <td>
                                             <div class="tpl-table-black-operation">
                                                 <a href="javascript:;">

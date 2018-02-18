@@ -306,28 +306,28 @@
       <if test="username != null">
         and username = #{username,jdbcType=VARCHAR}
       </if>
-      <if test="password != null">
+      <if test="password != null and password !='' ">
         and password = #{password,jdbcType=VARCHAR}
       </if>
-      <if test="realname != null">
+      <if test="realname != null and realname !='' ">
         and realname = #{realname,jdbcType=VARCHAR}
       </if>
-      <if test="departmentId != null">
+      <if test="departmentId != null and departmentId !='' ">
         and department_id = #{departmentId,jdbcType=INTEGER}
       </if>
-      <if test="positionId != null">
+      <if test="positionId != null and positionId !='' ">
         and position_id = #{positionId,jdbcType=INTEGER}
       </if>
-      <if test="isDel != null">
+      <if test="isDel != null and isDel !='' ">
         and is_del = #{isDel,jdbcType=VARCHAR}
       </if>
-      <if test="lastLoginTime != null">
+      <if test="lastLoginTime != null and lastLoginTime !='' ">
         and last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP}
       </if>
-      <if test="createTime != null">
+      <if test="createTime != null and createTime !=''">
         and create_time = #{createTime,jdbcType=TIMESTAMP}
       </if>
-      <if test="updateTime != null">
+      <if test="updateTime != null and updateTime !=''">
         and update_time = #{updateTime,jdbcType=TIMESTAMP}
       </if>
     order by create_time desc
