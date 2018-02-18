@@ -38,7 +38,7 @@ public class IndexController {
      */
     @RequestMapping(value = "/user")
     public String user(){
-        return "user";
+        return "users";
     }
 
     /**
