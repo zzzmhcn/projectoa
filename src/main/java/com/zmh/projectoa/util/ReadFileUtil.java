@@ -52,17 +52,12 @@ public class ReadFileUtil {
                     (new FileInputStream(file),charSet));
             String tempString = null;
             while ((tempString = reader.readLine()) != null) {
-                sb.append(tempString + "\n");
+                sb.append(tempString + "<br/>");
             }
             reader.close();
         } catch (IOException e) {
             logger.error(e.getMessage());
         }
         return sb.toString();
-    }
-
-    public static void main(String[] args) {
-        System.out.println(getFileName("c:/logs"));
-        System.out.println(readFileByLines("c:/logs", "projectoa.20180218.log","GBK"));
     }
 }

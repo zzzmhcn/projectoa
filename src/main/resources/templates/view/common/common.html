@@ -21,10 +21,7 @@
     <link rel="stylesheet" th:href="@{/assets/css/app.css(path=${contextPath})}">
     <script th:src="@{/assets/js/jquery.min.js(path=${contextPath})}"></script>
     <script th:src="@{/assets/js/vue.js(path=${contextPath})}"></script>
-    <script>
-        //定义一个绝对路径的开头部分 作为全局变量
-        var contextPath = "/projectoa";
-    </script>
+    <script>var contextPath = "/projectoa";</script>
 </head>
 <body data-type="index">
 <script th:src="@{/assets/js/theme.js(path=${contextPath})}"></script>
@@ -98,7 +95,7 @@
                                 </a>
                             </li>
                             <li class="tpl-dropdown-menu-messages">
-                                <a href="message" class="tpl-dropdown-menu-messages-item am-cf,memu">
+                                <a href="message" class="tpl-dropdown-menu-messages-item am-cf">
                                     <i class="am-icon-circle-o"></i> 进入列表…
                                 </a>
                             </li>
@@ -150,7 +147,7 @@
 
 
                             <li class="tpl-dropdown-menu-notifications">
-                                <a href="notice" class="tpl-dropdown-menu-notifications-item am-cf,memu">
+                                <a href="notice" class="tpl-dropdown-menu-notifications-item am-cf">
                                     <i class="am-icon-bell"></i> 进入列表…
                                 </a>
                             </li>
@@ -195,42 +192,42 @@
         <!-- 菜单 -->
         <ul class="sidebar-nav">
             <li class="sidebar-nav-link">
-                <a href="index" id="indexA" class="memu">
+                <a href="index" id="indexA">
                     <i class="am-icon-home sidebar-nav-link-logo"></i> 首页
                 </a>
             </li>
             <li class="sidebar-nav-link">
-                <a href="user" id="userA" class="memu">
+                <a href="user" id="userA">
                     <i class="am-icon-table sidebar-nav-link-logo"></i> 人员信息
                 </a>
             </li>
             <li class="sidebar-nav-link">
-                <a href="userinfo" id="userinfoA" class="memu">
+                <a href="userinfo" id="userinfoA">
                     <i class="am-icon-wpforms sidebar-nav-link-logo"></i> 个人信息
                 </a>
             </li>
             <li class="sidebar-nav-link">
-                <a href="calendar" id="calendarA" class="memu">
+                <a href="calendar" id="calendarA">
                     <i class="am-icon-calendar sidebar-nav-link-logo"></i> 日历
                 </a>
             </li>
             <li class="sidebar-nav-link">
-                <a href="admin" id="admin" target="_blank" class="memu">
+                <a href="admin" id="admin" target="_blank">
                     <i class="am-icon-heartbeat sidebar-nav-link-logo"></i> SpringBootAdmin
                 </a>
             </li>
             <li class="sidebar-nav-link">
-                <a href="logs" id="logs" class="memu">
+                <a href="logs" id="logs">
                     <i class="am-icon-list-alt sidebar-nav-link-logo"></i> 系统日志
                 </a>
             </li>
             <li class="sidebar-nav-link">
-                <a href="message" id="messageA" class="memu">
+                <a href="message" id="messageA">
                     <i class="am-icon-envelope sidebar-nav-link-logo"></i> 站内信箱
                 </a>
             </li>
             <li class="sidebar-nav-link">
-                <a href="notice" id="noticeA" class="memu">
+                <a href="notice" id="noticeA">
                     <i class="am-icon-bell sidebar-nav-link-logo"></i> 通知公告
                 </a>
             </li>
@@ -290,9 +287,9 @@
         $('#listSwitchButton').on('click', function () {
             leftSidebar();
         });
-        //找到需要修正相对路径的对象
-        $('.memu').each(function(){
-            $(this).attr('href',contextPath + "/" + $(this).attr('href'));
+        $('a').each(function(){
+            if($(this).attr('href').indexOf('javascript') < 0)
+                $(this).attr('href',contextPath + "/" + $(this).attr('href'));
         });
     });
 </script>

@@ -1,13 +1,13 @@
 var vm = new Vue({
-    el : '#logs',
-    data : {
-        fileNames : []
+    el: '#log',
+    data: {
+        fileNames: []
     },
-    methods : {
-        getFileNames : getFileNames,
-        readFiles : readFiles
+    methods: {
+        getFileNames: getFileNames,
+        readFiles: readFiles
     },
-    created : getInit()
+    created: getInit()
 })
 
 function getInit() {
@@ -19,8 +19,8 @@ function getFileNames() {
     $.ajax({
         type: "POST",
         url: contextPath + "/admin/getFileNames",
-        success: function(result){
-            vm.fileNames = result.value;
+        success: function (result) {
+            vm.fileNames = result.value.reverse();
         }
     });
 }
@@ -30,10 +30,14 @@ function readFiles() {
     $.ajax({
         type: "POST",
         url: contextPath + "/admin/readFiles",
-        data: {fileName:$("#fileName").val()},
+        data: {fileName: $("#fileName").val()},
         dataType: "text",
-        success: function(result){
-
+        success: function (result) {
+            alert(
+                'result.code:'+result.code+"\n"+
+                'result.value:'+result.value+"\n"+
+                result);
+            $('#logPre').html(result);
         }
     });
 }
