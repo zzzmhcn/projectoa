@@ -47,7 +47,7 @@ function readFiles() {
  * 自适应高度
  */
 function reSizePre() {
-    //方法就用最简单粗暴的了，body高度除以17取整数加单位
-    var maxHeight = parseInt($('body').height() / 17) + 'rem';
+    //方法就用最简单粗暴的了，屏幕分辨率高度除以倍数取整数加单位
+    var maxHeight = parseInt(window.screen.availHeight / 18) + 'rem';
     $('.am-pre-scrollable').css('max-height', maxHeight);
 }
