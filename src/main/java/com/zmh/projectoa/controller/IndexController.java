@@ -64,5 +64,12 @@ public class IndexController {
     public String logs(){
         return "logs";
     }
+    /**
+     * 系统监控
+     */
+    @RequestMapping(value = "/springbootadmin")
+    public String springbootadmin(){
+        return "springbootadmin";
+    }
 
 }

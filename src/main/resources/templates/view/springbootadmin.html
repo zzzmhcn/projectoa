@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="common/common">
+
+<div class="centerView" data-type="widgets" th:fragment="content">
+<!-- 内容区域 -->
+<div class="tpl-content-wrapper">
+    <script>
+        // 这个页面有个古怪 在iframe后面的js不执行 所有他放在前面
+        $(document).ready(function () {
+            $('#springbootadminA').attr('class', 'active');
+            var iframeHeight = window.screen.availHeight * 0.75;
+            $('iframe').height(iframeHeight);
+        });
+    </script>
+    <div class="row-content am-cf">
+        <div class="row">
+            <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+                <div class="widget am-cf">
+                    <div class="widget-head am-cf">
+                        <div class="widget-title  am-cf">系统监控</div>
+                    </div>
+                    <div>
+                        <iframe th:src="@{/admin}" style="width: 100%" />
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</html>
