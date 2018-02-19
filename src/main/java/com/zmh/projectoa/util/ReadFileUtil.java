@@ -49,7 +49,7 @@ public class ReadFileUtil {
                     (new FileInputStream(file),charSet));
             String tempString = null;
             while ((tempString = reader.readLine()) != null) {
-                sb.append(tempString + "<br/>");
+                sb.append(tempString + "\r\n");
             }
             reader.close();
         } catch (IOException e) {
