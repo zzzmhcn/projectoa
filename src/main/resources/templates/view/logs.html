@@ -6,6 +6,9 @@
       layout:decorator="common/common">
 
 <div class="centerView" data-type="index" th:fragment="content">
+    <!-- 非常轻量级的代码高亮插件 用来增强pre的功能 由于本次只用在log显示上，所以单独放在这 而不放公共区域 -->
+    <link rel="stylesheet" th:href="@{/prism/prism.css(path=${contextPath})}"/>
+    <script th:src="@{/prism/prism.js(path=${contextPath})}"></script>
     <!-- 内容区域 -->
     <div class="tpl-content-wrapper" id="log">
         <div class="row-content am-cf">
@@ -22,7 +25,8 @@
                                         {{ fileName }}
                                     </option>
                                 </select>
-                                <pre class="am-pre-scrollable" id="logPre">加载中，请稍后。。。</pre>
+                                <!--<pre class="am-pre-scrollable" ><code id="logPre" class="line-numbers,language-java">加载中，请稍后。</code></pre>-->
+                                <pre class="line-numbers"><code class="language-Java" id="logPre"></code></pre>
                             </div>
                         </div>
                     </div>
@@ -30,7 +34,7 @@
             </div>
         </div>
     </div>
-    <script th:src="@{/js/logs.js(path=${contextPath})}"></script>
+    <script th:src="@{/js/logs.js}"></script>
     <script>
         $(document).ready(function () {
             $('#logs').attr('class', 'active');

@@ -32,11 +32,12 @@ function readFiles() {
         url: contextPath + "/admin/readFiles",
         data: {fileName: $("#fileName").val()},
         success: function (result) {
-            if(result.code == 000){
-                $('#logPre').html(result.value);
-            }else{
-                $('#logPre').html(result.message);
-            }
+            // if(result.code == 000){
+            //     $('#logPre').html(result.value);
+            // }else{
+            //     $('#logPre').html(result.message);
+            // }
+            $('#logPre').html("public static vod main");
         }
     });
 }
