@@ -20,6 +20,8 @@
     http://blog.csdn.net/clementad/article/details/70613209
     详解html和thymeleaf中的相对路径，解决springboot前台页面的相对路径问题
     http://blog.csdn.net/qq_35603331/article/details/76255125
+    彩虹猫启动画面
+    https://raw.githubusercontent.com/snicoll-demos/spring-boot-4tw-uni/master/spring-boot-4tw-web/src/main/resources/banner.txt
 
 注意
     IDEA中有2个地方的报错是误报 下面的contextPath报错是误报
