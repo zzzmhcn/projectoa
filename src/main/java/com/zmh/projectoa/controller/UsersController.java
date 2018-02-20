@@ -84,11 +84,11 @@ public class UsersController {
 
     /**
      * 修改用户页面
-     * @param id
+     * @param
      * @return
      */
     @RequestMapping(value = "/edit/{id}")
-    public String editUser(){
+    public String editView(){
         return "user_edit";
 
     }
@@ -98,6 +98,23 @@ public class UsersController {
     public ReturnDto detailUser(@PathVariable(name="id") Integer id){
         Users user = usersService.detailUser(id);
         return ReturnDto.buildSuccessReturnDto(user);
+    }
+
+    /**
+     * 修改用户
+     * @param id
+     * @param user
+     * @return
+     */
+    @RequestMapping(value = "/userEdit/{id}")
+    @ResponseBody
+    public ReturnDto editUser(@PathVariable(name="id") Integer id, Users user){
+        int result = usersService.editUser(id, user);
+        if (result == 1){
+            return ReturnDto.buildSuccessReturnDto("修改成功");
+        }else {
+            return ReturnDto.buildFailedReturnDto("修改失败");
+        }
     }
 
 }

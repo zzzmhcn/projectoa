@@ -80,9 +80,21 @@ public class UsersService {
         return page;
     }
 
+    /**
+     * 用户回显
+     * @param id
+     * @return
+     */
     public Users detailUser(Integer id){
         Users user = usersMapper.selectByPrimaryKey(id);
         return user;
+    }
+
+    public int editUser(Integer id, Users user){
+        user.setUsername(null);
+        user.setId(id);
+        int result = usersMapper.updateByPrimaryKeySelective(user);
+        return result;
     }
 
 

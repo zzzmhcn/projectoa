@@ -67,7 +67,7 @@ function createUser() {
 
         $.ajax({
             type: "POST",
-            url: "/user/userCreate",
+            url: contextPath + "/user/userCreate",
             data: data,
             dataType: "json",
             success: function(result){
