@@ -8,7 +8,8 @@ var vm = new Vue({
     methods : {
         getPosition : getPosition,
         getDepartment : getDepartment,
-        getUser : getUser
+        getUser : getUser,
+        deleteUser : deleteUser,
     },
     created : getInit()
 
@@ -65,5 +66,16 @@ function getUser() {
             vm.userList = result.value.list;
         }
     })
+}
+
+function deleteUser() {
+    showConfirm('确定删除此员工么？','删除员工','取消','删除').modal({
+        onConfirm: function() {
+            alert(1)
+        },
+        onCancel: function() {
+            //干点啥
+        }
+    });
 }
 
