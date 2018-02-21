@@ -22,7 +22,8 @@
     http://blog.csdn.net/qq_35603331/article/details/76255125
     彩虹猫启动画面
     https://raw.githubusercontent.com/snicoll-demos/spring-boot-4tw-uni/master/spring-boot-4tw-web/src/main/resources/banner.txt
-
+    SpringBoot项目中使用redis缓存的方法步骤
+    http://www.jb51.net/article/129775.htm
 注意
     IDEA中有2个地方的报错是误报 下面的contextPath报错是误报
     <script th:src="@{/assets/js/jquery.min.js(path=${contextPath})}"></script>
