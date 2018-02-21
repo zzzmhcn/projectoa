@@ -41,30 +41,17 @@
         //这个页面一共也就几句话，就写页面里面了
         $(document).ready(function () {
             var calendarData = getCalendarData('0');
-            if(calendarData == null || calendarData == ''){
-                //初次使用
-                var calendarData = [{
-                    id: 1,
-                    title: '给她抱抱 叫她包包 喂她吃饱 给她买包',
-                    start: '2018-02-01',
-                    end: '2018-02-10'
-                }, {
-                    id: 2,
-                    title: '给她抱抱',
-                    start: '2018-02-07',
-                    end: '2018-02-10'
-                }, {
-                    id: 3,
-                    title: '叫她包包',
-                    start: '2018-02-09',
-                    end: '2018-02-10'
-                }];
+            if (calendarData == null || calendarData == '') {
+                //初次使用 空的json数组
+                var calendarData = [];
+            }else if(typeof calendarData == 'string'){
+                //类型转换  json string -> json object
+                calendarData = jQuery.parseJSON(calendarData);
             }
-
             var editBox = $('#calendar-edit-box');
             $('.edit-box-close').on('click', function () {
                 $('#calendar').fullCalendar('unselect');
-            })
+            });
             $('#calendar').fullCalendar({
                 header: {
                     left: 'prev,next today',
@@ -100,9 +87,13 @@
                             end: end
                         };
                         $('#calendar').fullCalendar('renderEvent', eventData, true); // stick? = true
+                        //同步到redis ID用最后一个的id+1 第一次用没有最后一个 使用 0
+                        if(calendarData.length > 0)
+                            eventData.id = calendarData[calendarData.length - 1].id + 1;
+                        else
+                            eventData.id = 0;
                         calendarData.push(eventData);
-                        alert(JSON.stringify(calendarData))
-                        setCalendarData('0',JSON.stringify(calendarData));
+                        setCalendarData('0', JSON.stringify(calendarData));
                     }
                     $('#calendar').fullCalendar('unselect');
                 },
@@ -117,11 +108,12 @@
         function getCalendarData(userID) {
             var result = "";
             $.ajax({
-                type: "post",
+                type: "POST",
                 url: contextPath + "/calendarGetValue",
                 data: {'key': 'calendar_' + userID},
                 dataType: "json",
                 async: false,//同步
+                cache:false,
                 success: function (data) {
                     if (data.code == 000)
                         result = data.value;
@@ -130,8 +122,8 @@
             return result;
         }
 
-        function setCalendarData(userID,calendarData) {
-            $.post(contextPath + "/calendarSetValue",{'key':'calendar_' + userID,'value':calendarData});
+        function setCalendarData(userID, calendarData) {
+            $.post(contextPath + "/calendarSetValue", {'key': 'calendar_' + userID, 'value': calendarData});
         }
     </script>
 </div>

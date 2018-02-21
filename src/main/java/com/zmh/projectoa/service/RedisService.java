@@ -20,13 +20,11 @@ public class RedisService {
     @Autowired
     private StringRedisTemplate redisTemplate;
 
-    public void setValue(String key,String value){
-        logger.debug("key:"+key+" value:"+value);
-        System.out.println("key:"+key+" value:"+value);
+    public void setValue(String key, String value) {
         redisTemplate.opsForValue().set(key, value);
     }
 
-    public String getValue(String key){
+    public String getValue(String key) {
         return redisTemplate.opsForValue().get(key);
     }
 }
