@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en"
       xmlns="http://www.w3.org/1999/xhtml"
-xmlns:th="http://www.thymeleaf.org"
-xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-layout:decorator="common/common">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="common/common">
 
 <div class="centerView" data-type="widgets" th:fragment="content">
     <!-- 内容区域 -->
@@ -14,154 +14,126 @@ layout:decorator="common/common">
             </div>
         </div>
     </div>
-<!-- 弹出层 -->
-<div class="am-modal am-modal-no-btn" id="calendar-edit-box">
-    <div class="am-modal-dialog tpl-model-dialog">
-        <div class="am-modal-hd">
-            <a href="javascript: void(0)" class="am-close edit-box-close am-close-spin" data-am-modal-close>&times;</a>
-        </div>
-        <div class="am-modal-bd tpl-am-model-bd am-cf">
+    <!-- 弹出层 -->
+    <div class="am-modal am-modal-no-btn" id="calendar-edit-box">
+        <div class="am-modal-dialog tpl-model-dialog">
+            <div class="am-modal-hd">
+                <a href="javascript: void(0)" class="am-close edit-box-close am-close-spin"
+                   data-am-modal-close>&times;</a>
+            </div>
+            <div class="am-modal-bd tpl-am-model-bd am-cf">
 
-            <form class="am-form tpl-form-border-form">
-                <div class="am-form-group am-u-sm-12">
-                    <label for="user-name" class="am-u-sm-12 am-form-label am-text-left">标题 <span class="tpl-form-line-small-title">Title</span></label>
-                    <div class="am-u-sm-12">
-                        <input type="text" class="tpl-form-input am-margin-top-xs calendar-edit-box-title" id="user-name" placeholder="" disabled>
+                <form class="am-form tpl-form-border-form">
+                    <div class="am-form-group am-u-sm-12">
+                        <label for="user-name" class="am-u-sm-12 am-form-label am-text-left">标题 <span
+                                class="tpl-form-line-small-title">Title</span></label>
+                        <div class="am-u-sm-12">
+                            <input type="text" class="tpl-form-input am-margin-top-xs calendar-edit-box-title"
+                                   id="user-name" placeholder="" disabled>
+                        </div>
                     </div>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
     </div>
-</div>
 
-<script>
-    $(document).ready(function() {
-        var editBox = $('#calendar-edit-box');
+    <script>
+        //这个页面一共也就几句话，就写页面里面了
+        $(document).ready(function () {
+            var calendarData = getCalendarData('0');
+            if(calendarData == null || calendarData == ''){
+                //初次使用
+                var calendarData = [{
+                    id: 1,
+                    title: '给她抱抱 叫她包包 喂她吃饱 给她买包',
+                    start: '2018-02-01',
+                    end: '2018-02-10'
+                }, {
+                    id: 2,
+                    title: '给她抱抱',
+                    start: '2018-02-07',
+                    end: '2018-02-10'
+                }, {
+                    id: 3,
+                    title: '叫她包包',
+                    start: '2018-02-09',
+                    end: '2018-02-10'
+                }];
+            }
 
-        $('.edit-box-close').on('click', function() {
-            $('#calendar').fullCalendar('unselect');
-        })
-        $('#calendar').fullCalendar({
-
-            header: {
-                left: 'prev,next today',
-                center: 'title',
-                right: 'month,agendaWeek,agendaDay'
-            },
-
-            monthNames: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
-            monthNamesShort: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
-            dayNames: ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"],
-            dayNamesShort: ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"],
-            today: ["今天"],
-            firstDay: 1,
-            buttonText: {
-                today: '本月',
-                month: '月',
-                week: '周',
-                day: '日',
-                prev: '上一月',
-                next: '下一月'
-            },
-            defaultDate: '2016-09-12',
-            lang: 'zh-cn',
-            navLinks: true, // can click day/week names to navigate views
-            selectable: true,
-            selectHelper: true,
-            select: function(start, end) {
-                var title = prompt('填写你的记录的:');
-                var eventData;
-                if (title) {
-                    eventData = {
-                        title: title,
-                        start: start,
-                        end: end
-                    };
-                    $('#calendar').fullCalendar('renderEvent', eventData, true); // stick? = true
-                }
+            var editBox = $('#calendar-edit-box');
+            $('.edit-box-close').on('click', function () {
                 $('#calendar').fullCalendar('unselect');
+            })
+            $('#calendar').fullCalendar({
+                header: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'month,agendaWeek,agendaDay'
+                },
+                monthNames: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
+                monthNamesShort: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
+                dayNames: ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"],
+                dayNamesShort: ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"],
+                today: ["今天"],
+                firstDay: 1,
+                buttonText: {
+                    today: '本月',
+                    month: '月',
+                    week: '周',
+                    day: '日',
+                    prev: '上一月',
+                    next: '下一月'
+                },
+                lang: 'zh-cn',
+                navLinks: true, // can click day/week names to navigate views
+                selectable: true,
+                selectHelper: true,
+                select: function (start, end) {
+                    //弹出框部分
+                    var title = prompt('填写你的记录的:');
+                    var eventData;
+                    if (title) {
+                        eventData = {
+                            title: title,
+                            start: start,
+                            end: end
+                        };
+                        $('#calendar').fullCalendar('renderEvent', eventData, true); // stick? = true
+                        calendarData.push(eventData);
+                        alert(JSON.stringify(calendarData))
+                        setCalendarData('0',JSON.stringify(calendarData));
+                    }
+                    $('#calendar').fullCalendar('unselect');
+                },
+                editable: true,
+                eventLimit: true, // allow "more" link when too many events
+                events: calendarData
+            });
 
-
-
-            },
-            editable: true,
-            eventLimit: true, // allow "more" link when too many events
-            /*
-            eventClick: function(event, jsEvent, view) {
-
-                // event.source.events[0].title = '222223333'
-                // 修改数据
-                // 标题
-                $('.calendar-edit-box-title').val(event.title)
-                //  弹出框
-                editBox.modal();
-            },*/
-            events: [{
-                id: 1,
-                title: '给她抱抱 叫她包包 喂她吃饱 给她买包',
-                start: '2016-09-01',
-                end: '2016-09-10'
-            }, {
-                id: 2,
-                title: '给她抱抱',
-                start: '2016-09-07',
-                end: '2016-09-10'
-            }, {
-                id: 3,
-                title: '叫她包包',
-                start: '2016-09-09',
-                end: '2016-09-10'
-            }, {
-                id: 4,
-                title: '喂她吃饱',
-                start: '2016-09-16',
-                end: '2016-09-10'
-            }, {
-                id: 5,
-                title: '喂她吃饱',
-                start: '2016-09-11',
-                end: '2016-09-13'
-            }, {
-                id: 6,
-                title: '喂她吃饱',
-                start: '2016-09-12',
-                end: '2016-09-12'
-            }, {
-                id: 7,
-                title: '喂她吃饱',
-                start: '2016-09-12',
-                end: '2016-09-12'
-            }, {
-                id: 8,
-                title: '喂她吃饱',
-                start: '2016-09-12',
-                end: '2016-09-12'
-            }, {
-                id: 9,
-                title: '喂她吃饱',
-                start: '2016-09-12',
-                end: '2016-09-12'
-            }, {
-                id: 10,
-                title: '喂她吃饱',
-                start: '2016-09-12',
-                end: '2016-09-12'
-            }, {
-                id: 11,
-                title: 'Birthday Party',
-                start: '2016-09-13',
-                end: '2016-09-12'
-            }, {
-                id: 12,
-                title: 'Click for Google',
-                start: '2016-09-28',
-                end: '2016-09-12'
-            }]
         });
+        $('#calendarA').attr('class', 'active');
 
-    });
-    $('#calendarA').attr('class','active');
-</script>
+        function getCalendarData(userID) {
+            var result = "";
+            $.ajax({
+                type: "post",
+                url: contextPath + "/calendarGetValue",
+                data: {'key': 'calendar_' + userID},
+                dataType: "json",
+                async: false,//同步
+                success: function (data) {
+                    if (data.code == 000)
+                        result = data.value;
+                }
+            });
+            return result;
+        }
+
+        function setCalendarData(userID,calendarData) {
+            $.post(contextPath + "/calendarSetValue",{'key':'calendar_' + userID,'value':calendarData});
+        }
+    </script>
 </div>
 
 </html>

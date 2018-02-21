@@ -18,14 +18,6 @@ public class IndexController {
     }
 
     /**
-     * 日历页面
-     */
-    @RequestMapping(value = "/calendar")
-    public String calendar(){
-        return "calendar";
-    }
-
-    /**
      * 人员信息
      */
     @RequestMapping(value = "/userinfo")
