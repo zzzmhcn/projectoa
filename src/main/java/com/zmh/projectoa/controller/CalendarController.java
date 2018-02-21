@@ -40,9 +40,7 @@ public class CalendarController {
     @RequestMapping(value = "/calendarGetValue")
     @ResponseBody
     public ReturnDto calendarGetValue(@RequestParam("key")String key){
-        System.out.println(key);
         String value = redisService.getValue(key);
-        System.out.println(value);
         if(value != null){
             return ReturnDto.buildSuccessReturnDto(value);
         }else{
