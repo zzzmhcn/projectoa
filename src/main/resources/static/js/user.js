@@ -69,9 +69,27 @@ function getUser() {
 }
 
 function deleteUser() {
+    var id=event.target.id.replace("delete_", "");
     showConfirm('确定删除此员工么？','删除员工','取消','删除').modal({
         onConfirm: function() {
-            alert(1)
+            $.ajax({
+                type: "POST",
+                url: contextPath + "/user/userDelete/" + id,
+                success: function(result){
+                    if (result.code == 000){
+                        //成功
+                        showAlert('删除成功');
+                        setTimeout(function(){
+                            window.location.href="user"
+                        },2000);
+
+                    }else {
+                        //失败
+                        showAlert(result.message);
+                    }
+
+                }
+            });
         },
         onCancel: function() {
             //干点啥

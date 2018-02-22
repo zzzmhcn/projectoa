@@ -96,7 +96,7 @@
                                                 <a :href="'user/edit/' + user.id ">
                                                     <i class="am-icon-pencil" ></i> 编辑
                                                 </a>
-                                                <a class="tpl-table-black-operation-del" v-on:click="deleteUser">
+                                                <a class="tpl-table-black-operation-del" v-on:click="deleteUser" :id="'delete_' + user.id">
                                                     <i class="am-icon-trash"></i> 删除
                                                 </a>
                                                 <a href="javascript:;">

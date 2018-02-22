@@ -11,7 +11,9 @@ import com.zmh.projectoa.model.UsersExample;
 import com.zmh.projectoa.util.MD5Util;
 import org.omg.CORBA.UserException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.security.oauth2.resource.UserInfoRestTemplateCustomizer;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -90,6 +92,12 @@ public class UsersService {
         return user;
     }
 
+    /**
+     * 修改用户
+     * @param id
+     * @param user
+     * @return
+     */
     public int editUser(Integer id, Users user){
         user.setUsername(null);
         user.setId(id);
@@ -97,5 +105,24 @@ public class UsersService {
         return result;
     }
 
+    /**
+     * 删除用户
+     * @param id
+     * @return
+     */
+    public int deleteUser(Integer id){
+        Users user = new Users();
+        user.setId(id);
+        user.setIsDel("1");
+
+        Userinfo userinfo = userinfoMapper.queryUserinfoByUserid(id);
+        userinfo.setIsDel("1");
+        int result = usersMapper.updateByPrimaryKeySelective(user);
+        int result2 = userinfoMapper.updateByPrimaryKeySelective(userinfo);
+        if (result == 1 && result2 == 1){
+            return 1;
+        }
+        return 0;
+    }
 
 }

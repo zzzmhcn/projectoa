@@ -93,6 +93,11 @@ public class UsersController {
 
     }
 
+    /**
+     * 用户回显
+     * @param id
+     * @return
+     */
     @RequestMapping(value = "/detailUser/{id}")
     @ResponseBody
     public ReturnDto detailUser(@PathVariable(name="id") Integer id){
@@ -114,6 +119,22 @@ public class UsersController {
             return ReturnDto.buildSuccessReturnDto("修改成功");
         }else {
             return ReturnDto.buildFailedReturnDto("修改失败");
+        }
+    }
+
+    /**
+     * 删除用户
+     * @param id
+     * @return
+     */
+    @RequestMapping(value = "/userDelete/{id}")
+    @ResponseBody
+    public ReturnDto userDelete(@PathVariable(name="id") Integer id){
+        int result = usersService.deleteUser(id);
+        if (result == 1){
+            return  ReturnDto.buildSuccessReturnDto("删除成功");
+        }else {
+            return ReturnDto.buildFailedReturnDto("删除失败，请联系管理员");
         }
     }
 
