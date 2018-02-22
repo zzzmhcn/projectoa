@@ -10,6 +10,7 @@ var vm = new Vue({
         getDepartment : getDepartment,
         getUser : getUser,
         deleteUser : deleteUser,
+        reverseUser : reverseUser,
     },
     created : getInit()
 
@@ -79,6 +80,35 @@ function deleteUser() {
                     if (result.code == 000){
                         //成功
                         showAlert('删除成功');
+                        setTimeout(function(){
+                            window.location.href="user"
+                        },2000);
+
+                    }else {
+                        //失败
+                        showAlert(result.message);
+                    }
+
+                }
+            });
+        },
+        onCancel: function() {
+            //干点啥
+        }
+    });
+}
+
+function reverseUser() {
+    var id=event.target.id.replace("reverse_", "");
+    showConfirm('确定重置此员工密码么？','重置密码','取消','重置').modal({
+        onConfirm: function() {
+            $.ajax({
+                type: "POST",
+                url: contextPath + "/user/userReverse/" + id,
+                success: function(result){
+                    if (result.code == 000){
+                        //成功
+                        showAlert('重置成功');
                         setTimeout(function(){
                             window.location.href="user"
                         },2000);

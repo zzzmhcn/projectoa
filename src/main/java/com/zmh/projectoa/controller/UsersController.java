@@ -138,4 +138,20 @@ public class UsersController {
         }
     }
 
+    /**
+     * 重置密码
+     * @param id
+     * @return
+     */
+    @RequestMapping(value = "/userReverse/{id}")
+    @ResponseBody
+    public ReturnDto userReverse(@PathVariable(name="id") Integer id){
+        int result = usersService.reverseUser(id);
+        if (result == 1){
+            return  ReturnDto.buildSuccessReturnDto("重置成功");
+        }else {
+            return ReturnDto.buildFailedReturnDto("重置失败，请联系管理员");
+        }
+    }
+
 }

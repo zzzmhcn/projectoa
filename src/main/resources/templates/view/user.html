@@ -99,7 +99,7 @@
                                                 <a class="tpl-table-black-operation-del" v-on:click="deleteUser" :id="'delete_' + user.id">
                                                     <i class="am-icon-trash"></i> 删除
                                                 </a>
-                                                <a href="javascript:;">
+                                                <a v-on:click="reverseUser" :id="'reverse_' + user.id">
                                                     <i class="am-icon-refresh"></i> 重置密码
                                                 </a>
                                             </div>

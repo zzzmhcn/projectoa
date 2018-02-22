@@ -125,4 +125,20 @@ public class UsersService {
         return 0;
     }
 
+    /**
+     * 重置密码
+     * @param id
+     * @return
+     */
+    public int reverseUser(Integer id){
+        Users user = new Users();
+        user.setId(id);
+        String password = MD5Util.string2MD5("123456");
+        user.setPassword(password);
+
+        int result = usersMapper.updateByPrimaryKeySelective(user);
+
+        return result;
+    }
+
 }
