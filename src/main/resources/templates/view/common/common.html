@@ -262,6 +262,20 @@
             </div>
         </div>
     </div>
+    <!-- prompt -->
+    <div class="am-modal am-modal-prompt" tabindex="-1" id="showPromptID">
+        <div class="am-modal-dialog">
+            <div class="am-modal-hd" id="promptTitle"></div>
+            <div class="am-modal-bd">
+                <span id="promptText"></span>
+                <input type="text" class="am-modal-prompt-input">
+            </div>
+            <div class="am-modal-footer">
+                <span id="promptCancel" class="am-modal-btn" data-am-modal-cancel></span>
+                <span id="promptOK" class="am-modal-btn" data-am-modal-confirm></span>
+            </div>
+        </div>
+    </div>
 </div>
 </div>
 <script th:src="@{/assets/js/amazeui.min.js}"></script>
@@ -287,8 +301,10 @@
         $('#listSwitchButton').on('click', function () {
             leftSidebar();
         });
+        //所有a标签纠正
         $('a').each(function(){
-            if($(this).attr('href') && $(this).attr('href').indexOf('javascript') < 0)
+            if($(this).attr('href') && $(this).attr('href').indexOf('javascript') < 0
+                && $(this).attr('href') != '#')
                 $(this).attr('href',contextPath + "/" + $(this).attr('href'));
         });
     });

@@ -28,6 +28,8 @@ function leftSidebar() {
     }
 }
 
+
+
 /**
  * 只传一个参数 ，标题不传就用默认标题，需要自定义标题就传入2个参数
  * @param text  内容
@@ -76,4 +78,31 @@ function  showConfirm(text,title,cancel,ok) {
     $('#confirmCancel').text(cancel);
     $('#confirmOK').text(ok);
     return $('#showConfirmID');
+}
+
+
+/**
+ * 只有第一个参数 text 是必填项，其余都是可选项
+ * 直接上栗子
+ showPrompt('内容','标题','取消','确定').modal({
+      onConfirm: function(e) {
+        alert('你输入的是：' + e.data)
+      }
+    });
+ */
+function  showPrompt(text,title,cancel,ok) {
+    if(title == null || title == '' || title == undefined){
+        title = '系统提示';
+    }
+    if(cancel == null || cancel == '' || cancel == undefined){
+        cancel = '取消';
+    }
+    if(ok == null || ok == '' || ok == undefined){
+        ok = '确定';
+    }
+    $("#promptTitle").html(title);
+    $("#promptText").html(text);
+    $('#promptCancel').text(cancel);
+    $('#promptOK').text(ok);
+    return $('#showPromptID');
 }

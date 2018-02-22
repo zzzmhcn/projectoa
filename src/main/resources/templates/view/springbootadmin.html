@@ -12,22 +12,16 @@
         // 这个页面有个古怪 在iframe后面的js不执行 所有他放在前面
         $(document).ready(function () {
             $('#springbootadminA').attr('class', 'active');
-            var iframeHeight = window.screen.availHeight * 0.75;
+             var iframeHeight = window.screen.availHeight * 0.9;
             $('iframe').height(iframeHeight);
         });
     </script>
     <div class="row-content am-cf">
         <div class="row">
             <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
-                <div class="widget am-cf">
-                    <div class="widget-head am-cf">
-                        <div class="widget-title  am-cf">系统监控</div>
+                    <div style="width:100%;overflow:hidden;border: 8px solid #FFFFFF;">
+                        <iframe th:src="@{/admin}" style="width: 100%;margin-top: -140px"></iframe>
                     </div>
-                    <div>
-                        <iframe th:src="@{/admin}" style="width: 100%" />
-                    </div>
-
-                </div>
             </div>
         </div>
     </div>

@@ -78,24 +78,30 @@
                 selectHelper: true,
                 select: function (start, end) {
                     //弹出框部分
-                    var title = prompt('填写你的记录的:');
-                    var eventData;
-                    if (title) {
-                        eventData = {
-                            title: title,
-                            start: start,
-                            end: end
-                        };
-                        $('#calendar').fullCalendar('renderEvent', eventData, true); // stick? = true
-                        //同步到redis ID用最后一个的id+1 第一次用没有最后一个 使用 0
-                        if(calendarData.length > 0)
-                            eventData.id = calendarData[calendarData.length - 1].id + 1;
-                        else
-                            eventData.id = 0;
-                        calendarData.push(eventData);
-                        setCalendarData('0', JSON.stringify(calendarData));
-                    }
-                    $('#calendar').fullCalendar('unselect');
+                    showPrompt('请输入要记录在日历上的日程','记录日程').modal({
+                        onConfirm: function(e) {
+                            if(e&&e.data){
+                                var title = e.data;
+                                var eventData;
+                                if (title) {
+                                    eventData = {
+                                        title: title,
+                                        start: start,
+                                        end: end
+                                    };
+                                    $('#calendar').fullCalendar('renderEvent', eventData, true); // stick? = true
+                                    //同步到redis ID用最后一个的id+1 第一次用没有最后一个 使用 0
+                                    if(calendarData.length > 0)
+                                        eventData.id = calendarData[calendarData.length - 1].id + 1;
+                                    else
+                                        eventData.id = 0;
+                                    calendarData.push(eventData);
+                                    setCalendarData('0', JSON.stringify(calendarData));
+                                }
+                                $('#calendar').fullCalendar('unselect');
+                            }
+                        }
+                    });
                 },
                 editable: true,
                 eventLimit: true, // allow "more" link when too many events
