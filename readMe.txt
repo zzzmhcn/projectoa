@@ -22,7 +22,8 @@
     https://raw.githubusercontent.com/snicoll-demos/spring-boot-4tw-uni/master/spring-boot-4tw-web/src/main/resources/banner.txt
     SpringBoot项目中使用redis缓存的方法步骤
     http://www.jb51.net/article/129775.htm
-
+    开涛大神的《跟我学Shiro》系列
+    http://jinnianshilongnian.iteye.com/blog/2018398
 感谢
     本项目是我与云朵同学共同合作完成！！！
     特别要感谢云朵同学的鼎力相助！！！
