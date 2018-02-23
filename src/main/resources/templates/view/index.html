@@ -9,7 +9,9 @@
 <!-- 内容区域 -->
 <div class="tpl-content-wrapper">
     <div class="row-content am-cf">
+        <!---
         <div class="row  am-cf">
+
             <div class="am-u-sm-12 am-u-md-12 am-u-lg-4">
                 <div class="widget am-cf">
                     <div class="widget-head am-cf">
@@ -74,47 +76,31 @@
                 </div>
             </div>
         </div>
-
+        -->
         <div class="row am-cf">
             <div class="am-u-sm-12 am-u-md-8">
-                <div class="widget am-cf">
+                <div class="widget am-cf am-text-center">
                     <div class="widget-head am-cf">
-                        <div class="widget-title am-fl">月度财务收支计划</div>
-                        <div class="widget-function am-fr">
-                            <a href="javascript:;" class="am-icon-cog"></a>
+                        <div class="widget-title am-fl">
+                            <span id="today"></span>
                         </div>
                     </div>
-                    <div class="widget-body-md widget-body tpl-amendment-echarts am-fr" id="tpl-echarts">
-
+                    <div class="widget-body-md widget-body am-fr">
+                        <div class="clock" style="margin:2em;"></div>
                     </div>
                 </div>
             </div>
 
             <div class="am-u-sm-12 am-u-md-4">
-                <div class="widget am-cf">
+                <div class="widget am-cf am-text-center">
                     <div class="widget-head am-cf">
-                        <div class="widget-title am-fl">专用服务器负载</div>
-                        <div class="widget-function am-fr">
-                            <a href="javascript:;" class="am-icon-cog"></a>
-                        </div>
+                        <div class="widget-title am-fl">天气情况</div>
                     </div>
                     <div class="widget-body widget-body-md am-fr">
-
-                        <div class="am-progress-title">CPU Load <span
-                                class="am-fr am-progress-title-more">28% / 100%</span></div>
-                        <div class="am-progress">
-                            <div class="am-progress-bar" style="width: 15%"></div>
-                        </div>
-                        <div class="am-progress-title">CPU Load <span
-                                class="am-fr am-progress-title-more">28% / 100%</span></div>
-                        <div class="am-progress">
-                            <div class="am-progress-bar  am-progress-bar-warning" style="width: 75%"></div>
-                        </div>
-                        <div class="am-progress-title">CPU Load <span
-                                class="am-fr am-progress-title-more">28% / 100%</span></div>
-                        <div class="am-progress">
-                            <div class="am-progress-bar am-progress-bar-danger" style="width: 35%"></div>
-                        </div>
+                        <!-- 2345天气http://tianqi.2345.com/plugin/setting.htm?style=classicBig2day -->
+                        <iframe style="margin-top: 20px" allowtransparency="true" frameborder="0" width="290"
+                                height="96" scrolling="no"
+                                src="//tianqi.2345.com/plugin/widget/index.htm?s=2&z=1&t=0&v=0&d=2&bd=0&k=&f=0080c0&ltf=009944&htf=cc0000&q=1&e=0&a=1&c=58362&w=290&h=96&align=left"></iframe>
                     </div>
                 </div>
             </div>
@@ -125,127 +111,59 @@
             <div class="am-u-sm-12 am-u-md-12 am-u-lg-4 widget-margin-bottom-lg ">
                 <div class="tpl-user-card am-text-center widget-body-lg">
                     <div class="tpl-user-card-title">
-                        禁言小张
-                    </div>
-                    <div class="achievement-subheading">
                         月度最佳员工
                     </div>
                     <img class="achievement-image" src="assets/img/user07.png" alt="">
+                    <div class="achievement-subheading">
+                        禁言小张
+                    </div>
                     <div class="achievement-description">
-                        禁言小张在
-                        <strong>30天内</strong> 禁言了
-                        <strong>200多</strong>人。
+                        再接再厉，勇创新高！
                     </div>
                 </div>
             </div>
 
-            <div class="am-u-sm-12 am-u-md-12 am-u-lg-8 widget-margin-bottom-lg">
-
+            <div class="am-u-sm-12 am-u-md-12 am-u-lg-4 widget-margin-bottom-lg">
                 <div class="widget am-cf widget-body-lg">
-
                     <div class="widget-body  am-fr">
                         <div class="am-scrollable-horizontal ">
-
-
-                            <table width="100%" class="am-table am-table-compact am-text-nowrap tpl-table-black "
-                                   id="example-r">
-                                <thead>
-                                <tr>
-                                    <th>文章标题</th>
-                                    <th>作者</th>
-                                    <th>时间</th>
-                                    <th>操作</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr class="gradeX">
-                                    <td>新加坡大数据初创公司 Latize 获 150 万美元风险融资</td>
-                                    <td>张鹏飞</td>
-                                    <td>2016-09-26</td>
-                                    <td>
-                                        <div class="tpl-table-black-operation">
-                                            <a href="javascript:;">
-                                                <i class="am-icon-pencil"></i> 编辑
-                                            </a>
-                                            <a href="javascript:;" class="tpl-table-black-operation-del">
-                                                <i class="am-icon-trash"></i> 删除
-                                            </a>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr class="even gradeC">
-                                    <td>自拍的“政治角色”：观众背对希拉里自拍合影表示“支持”</td>
-                                    <td>天纵之人</td>
-                                    <td>2016-09-26</td>
-                                    <td>
-                                        <div class="tpl-table-black-operation">
-                                            <a href="javascript:;">
-                                                <i class="am-icon-pencil"></i> 编辑
-                                            </a>
-                                            <a href="javascript:;" class="tpl-table-black-operation-del">
-                                                <i class="am-icon-trash"></i> 删除
-                                            </a>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr class="gradeX">
-                                    <td>关于创新管理，我想和你当面聊聊。</td>
-                                    <td>王宽师</td>
-                                    <td>2016-09-26</td>
-                                    <td>
-                                        <div class="tpl-table-black-operation">
-                                            <a href="javascript:;">
-                                                <i class="am-icon-pencil"></i> 编辑
-                                            </a>
-                                            <a href="javascript:;" class="tpl-table-black-operation-del">
-                                                <i class="am-icon-trash"></i> 删除
-                                            </a>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr class="even gradeC">
-                                    <td>究竟是趋势带动投资，还是投资引领趋势？</td>
-                                    <td>着迷</td>
-                                    <td>2016-09-26</td>
-                                    <td>
-                                        <div class="tpl-table-black-operation">
-                                            <a href="javascript:;">
-                                                <i class="am-icon-pencil"></i> 编辑
-                                            </a>
-                                            <a href="javascript:;" class="tpl-table-black-operation-del">
-                                                <i class="am-icon-trash"></i> 删除
-                                            </a>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr class="even gradeC">
-                                    <td>Docker领域再添一员，网易云发布“蜂巢”，加入云计算之争</td>
-                                    <td>醉里挑灯看键</td>
-                                    <td>2016-09-26</td>
-                                    <td>
-                                        <div class="tpl-table-black-operation">
-                                            <a href="javascript:;">
-                                                <i class="am-icon-pencil"></i> 编辑
-                                            </a>
-                                            <a href="javascript:;" class="tpl-table-black-operation-del">
-                                                <i class="am-icon-trash"></i> 删除
-                                            </a>
-                                        </div>
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
+                            <div class="widget-head am-cf">
+                                <div class="widget-title am-fl">公告板</div>
+                            </div>
+                            <div class="widget-body widget-body-md am-fr">
+                                <p>公告的具体内容显示在这里 只显示本人最新的那一条</p>
+                            </div>
                         </div>
                     </div>
                 </div>
+            </div>
 
+            <div class="am-u-sm-12 am-u-md-12 am-u-lg-4 widget-margin-bottom-lg">
+                <div class="widget am-cf widget-body-lg">
+                    <div class="widget-body  am-fr">
+                        <div class="am-scrollable-horizontal ">
+                            <div class="widget-head am-cf">
+                                <div class="widget-title am-fl">站内信</div>
+                            </div>
+                            <div class="widget-body widget-body-md am-fr">
+                                <p>站内信的具体内容显示在这里 只显示本人最新的那一条</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
+<script th:src="@{/js/index.js}"></script>
 <script>
     $(document).ready(function() {
         $('#indexA').attr('class','active');
+        //翻页钟插件初始化
+        var clock = $('.clock').FlipClock({
+            clockFace: 'TwentyFourHourClock'
+        });
+        $("#today").text(getCurrentDateTime() + " 农历 " + showCal());
     });
 </script>
 </div>

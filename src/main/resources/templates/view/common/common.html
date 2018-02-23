@@ -19,6 +19,7 @@
     <link rel="stylesheet" th:href="@{/assets/css/fullcalendar.min.css}"/>
     <link rel="stylesheet" th:href="@{/assets/css/fullcalendar.print.css}" media='print'/>
     <link rel="stylesheet" th:href="@{/assets/css/app.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/flipclock.css}">
     <script th:src="@{/assets/js/jquery.min.js}"></script>
     <script th:src="@{/assets/js/vue.js}"></script>
     <script>var contextPath = "/projectoa";</script>
@@ -36,9 +37,10 @@
         <div class="tpl-header-fluid">
             <!-- 侧边切换 -->
             <div class="am-fl tpl-header-switch-button am-icon-list" id="listSwitchButton">
-                <span>
-                </span>
             </div>
+            <!-- 天气插件 http://tianqi.2345.com/plugin/setting.htm?style=classicBig2day -->
+            <iframe style="margin-top: 15px" allowtransparency="true" frameborder="0" width="200" height="55" scrolling="no"
+                    src="//tianqi.2345.com/plugin/widget/index.htm?s=3&z=1&t=1&v=0&d=1&bd=0&k=000000&f=0080c0&ltf=009944&htf=cc0000&q=1&e=0&a=1&c=58362&w=200&h=55&align=left"></iframe>
             <!-- 其它功能-->
             <div class="am-fr tpl-header-navbar">
                 <ul>
@@ -208,7 +210,7 @@
             </li>
             <li class="sidebar-nav-link">
                 <a href="calendar" id="calendarA">
-                    <i class="am-icon-calendar sidebar-nav-link-logo"></i> 日历
+                    <i class="am-icon-calendar sidebar-nav-link-logo"></i> 日程表
                 </a>
             </li>
             <li class="sidebar-nav-link">
@@ -284,6 +286,7 @@
 <script th:src="@{/assets/js/app.js}"></script>
 <script th:src="@{/assets/js/moment.js}"></script>
 <script th:src="@{/assets/js/fullcalendar.min.js}"></script>
+<script th:src="@{/assets/js/flipclock.min.js}"></script>
 <script th:src="@{/js/common.js}"></script>
 <script>
     $(document).ready(function () {
