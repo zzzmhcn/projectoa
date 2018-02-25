@@ -310,7 +310,7 @@
         and password = #{password,jdbcType=VARCHAR}
       </if>
       <if test="realname != null and realname !='' ">
-        and realname = #{realname,jdbcType=VARCHAR}
+        and realname LIKE "%"#{realname,jdbcType=VARCHAR}"%"
       </if>
       <if test="departmentId != null and departmentId !='' ">
         and department_id = #{departmentId,jdbcType=INTEGER}
