@@ -154,4 +154,13 @@ public class UsersController {
         }
     }
 
+    @RequestMapping(value = "/getUser")
+    @ResponseBody
+    public ReturnDto getUser(){
+        //用户id从session中取，是user表中的id
+        Integer id = 7;
+        Users user = usersService.detailUser(id);
+        return ReturnDto.buildSuccessReturnDto(user);
+    }
+
 }
