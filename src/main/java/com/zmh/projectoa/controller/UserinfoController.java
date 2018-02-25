@@ -49,7 +49,7 @@ public class UserinfoController {
 
     @RequestMapping(value = "/getSelf")
     @ResponseBody
-    public ReturnDto getUser(){
+    public ReturnDto getSelf(){
         //用户id从session中取，是user表中的id
         Integer id = 7;
         Users user = usersService.detailUser(id);

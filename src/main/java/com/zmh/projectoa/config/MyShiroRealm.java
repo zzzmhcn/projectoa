@@ -24,7 +24,7 @@ import java.util.Set;
  */
 public class MyShiroRealm extends AuthorizingRealm {
 
-    private static final Log logger = LogFactory.getLog(AuthorizingRealm.class);
+    private static final Log logger = LogFactory.getLog(MyShiroRealm.class);
 
     @Autowired
     UsersService usersService;
