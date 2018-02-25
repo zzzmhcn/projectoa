@@ -2,7 +2,9 @@ package com.zmh.projectoa.controller;
 
 import com.github.pagehelper.PageInfo;
 import com.zmh.projectoa.dto.ReturnDto;
+import com.zmh.projectoa.model.Userinfo;
 import com.zmh.projectoa.model.Users;
+import com.zmh.projectoa.service.UserinfoService;
 import com.zmh.projectoa.service.UsersService;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +27,9 @@ public class UsersController {
 
     @Autowired
     UsersService usersService;
+
+    @Autowired
+    UserinfoService userinfoService;
 
     /**
      * 创建用户页面
@@ -161,6 +166,18 @@ public class UsersController {
         Integer id = 7;
         Users user = usersService.detailUser(id);
         return ReturnDto.buildSuccessReturnDto(user);
+    }
+
+    @RequestMapping(value = "/userinfo/{id}")
+    public String userinfoPage(){
+        return "userinfo_detail";
+    }
+
+    @RequestMapping(value = "/userinfo/detail/{id}")
+    @ResponseBody
+    public ReturnDto userinfoDetail(@PathVariable(name="id") Integer id){
+        Userinfo userinfo = userinfoService.getUserinfoByUserId(id);
+        return ReturnDto.buildSuccessReturnDto(userinfo);
     }
 
 }
