@@ -37,7 +37,8 @@ public class LoginController {
 
     @RequestMapping(value = "/login/check")
     //@ResponseBody
-    public String check(@RequestParam("username")String username, @RequestParam("password")String password){
+    public String check(@RequestParam("username")String username, @RequestParam("password")String password,
+                        HttpServletRequest request){
         Subject currentUser = SecurityUtils.getSubject();
         if (!currentUser.isAuthenticated()){
             UsernamePasswordToken token = new UsernamePasswordToken(username, password);
@@ -47,6 +48,7 @@ public class LoginController {
                 Integer id = user.getId();
                 user = new Users();
                 user.setLastLoginTime(new Date());
+                request.getSession().setAttribute("userID",id);
                 usersService.editUser(id,user);
             }catch (IncorrectCredentialsException ae){
                 logger.error("登录验证不通过 : 账号或密码不正确！ username:"+username+" password:"+password);

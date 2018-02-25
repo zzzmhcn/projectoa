@@ -87,6 +87,7 @@ public class MyShiroRealm extends AuthorizingRealm {
         //管理员权限
         if (departmentId == 1){
             roles.add("admin");
+            roles.add("user");
         }
         //人事权限
         if (departmentId == 2){
