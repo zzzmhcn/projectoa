@@ -48,6 +48,7 @@ dependencies {
 	compile('com.github.pagehelper:pagehelper:5.1.2')
     //使用的是shiro-spring 而非shiro
     compile('org.apache.shiro:shiro-spring:1.4.0')
+	compile('com.github.theborakompanioni:thymeleaf-extras-shiro:1.2.1')
 	//测试
     testCompile('org.springframework.boot:spring-boot-starter-test')
 }

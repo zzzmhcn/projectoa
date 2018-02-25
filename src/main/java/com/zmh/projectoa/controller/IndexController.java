@@ -48,20 +48,4 @@ public class IndexController {
     public String message(){
         return "message";
     }
-
-    /**
-     * 站内信箱
-     */
-    @RequestMapping(value = "/logs")
-    public String logs(){
-        return "logs";
-    }
-    /**
-     * 系统监控
-     */
-    @RequestMapping(value = "/springbootadmin")
-    public String springbootadmin(){
-        return "springbootadmin";
-    }
-
 }

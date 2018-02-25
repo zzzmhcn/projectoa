@@ -14,7 +14,7 @@ function  changeTheme() {
 //退出登录
 function exit() {
     sessionStorage.clear();
-    window.location.href = contextPath+'/login';
+    window.location.href = contextPath+'/logout';
 }
 //左边栏的隐藏和出现
 function leftSidebar() {

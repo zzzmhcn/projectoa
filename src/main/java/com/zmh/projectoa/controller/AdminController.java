@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Controller
 @RequestMapping(value = "/admin")
-public class LogsController {
+public class AdminController {
     //这两个参数从application.properties获取
     @Value("${logback.filepath}")
     private String filePath;
@@ -40,5 +40,21 @@ public class LogsController {
     @ResponseBody
     public ReturnDto readFiles(@RequestParam("fileName")String fileName){
         return ReadFileUtil.readFileByLines(filePath,fileName,charSet);
+    }
+
+
+    /**
+     * 日志
+     */
+    @RequestMapping(value = "/logs")
+    public String logs(){
+        return "logs";
+    }
+    /**
+     * 系统监控
+     */
+    @RequestMapping(value = "/springbootadmin")
+    public String springbootadmin(){
+        return "springbootadmin";
     }
 }

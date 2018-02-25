@@ -54,7 +54,7 @@ function getDepartment() {
 function getUser() {
     $.ajax({
         type: "POST",
-        url: contextPath + "/user/getUser",
+        url: contextPath + "/userinfo/getSelf",
         //data: {username:$("#username").val(), content:$("#content").val()},
         //dataType: "json",
         success: function(result){

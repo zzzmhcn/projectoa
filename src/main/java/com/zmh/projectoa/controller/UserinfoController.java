@@ -4,11 +4,10 @@ import com.zmh.projectoa.dto.ReturnDto;
 import com.zmh.projectoa.model.Userinfo;
 import com.zmh.projectoa.model.Users;
 import com.zmh.projectoa.service.UserinfoService;
+import com.zmh.projectoa.service.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
@@ -22,6 +21,8 @@ public class UserinfoController {
     @Autowired
     UserinfoService userinfoService;
 
+    @Autowired
+    UsersService usersService;
 
     @RequestMapping(value = "/getUserinfo")
     @ResponseBody
@@ -44,5 +45,14 @@ public class UserinfoController {
         }else {
             return ReturnDto.buildFailedReturnDto("保存失败，请联系管理员");
         }
+    }
+
+    @RequestMapping(value = "/getSelf")
+    @ResponseBody
+    public ReturnDto getUser(){
+        //用户id从session中取，是user表中的id
+        Integer id = 7;
+        Users user = usersService.detailUser(id);
+        return ReturnDto.buildSuccessReturnDto(user);
     }
 }
