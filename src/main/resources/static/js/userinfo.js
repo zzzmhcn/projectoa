@@ -117,7 +117,8 @@ function saveUserinfo() {
 }
 
 function getTime(time) {
-    return time.substring(0, 10)
+    var str = time.substring(0, 10);
+    return str;
 }
 
 
