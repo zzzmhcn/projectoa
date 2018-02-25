@@ -46,7 +46,7 @@
                 <ul>
                     <!-- 欢迎语 -->
                     <li class="am-text-sm tpl-header-navbar-welcome">
-                        <a href="javascript:;">欢迎你, <span>Amaze UI</span> </a>
+                        <a href="userinfo">欢迎你, <span shiro:principal property="realname"></span> </a>
                     </li>
 
                     <!-- 新邮件 -->
@@ -184,9 +184,9 @@
                 </div>
                 <span class="user-panel-logged-in-text">
               <i class="am-icon-circle-o am-text-success tpl-user-panel-status-icon"></i>
-              禁言小张
+              <span shiro:principal property="realname"></span>
           </span>
-                <a href="javascript:;" class="tpl-user-panel-action-link"> <span class="am-icon-pencil"></span> 账号设置</a>
+                <a href="javascript:;" class="tpl-user-panel-action-link"> <span class="am-icon-pencil"></span>修改密码</a>
             </div>
         </div>
 
