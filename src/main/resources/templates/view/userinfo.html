@@ -6,163 +6,155 @@
       layout:decorator="common/common">
 
 <div class="centerView" data-type="widgets" th:fragment="content">
-    <!-- 内容区域 -->
-    <div class="tpl-content-wrapper" id="userinfo">
-        <div class="row-content am-cf">
+<!-- 内容区域 -->
+<div class="tpl-content-wrapper" id="userinfo">
+    <div class="row-content am-cf">
 
-            <div class="row">
+        <div class="row">
 
-                <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
-                    <div class="widget am-cf">
-                        <div class="widget-head am-cf">
-                            <div class="widget-title am-fl">个人信息</div>
+            <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+                <div class="widget am-cf">
+                    <div class="widget-head am-cf">
+                        <div class="widget-title am-fl">个人信息</div>
 
-                        </div>
-                        <div class="widget-body am-fr">
+                    </div>
+                    <div class="widget-body am-fr">
 
-                            <form class="am-form tpl-form-border-form tpl-form-border-br">
-                                <div class="am-form-group">
-                                    <label for="username" class="am-u-sm-3 am-form-label">用户名</label>
-                                    <div class="am-u-sm-9">
-                                        <input type="text" class="tpl-form-input" id="username"
-                                               v-bind:value="user.username" readonly="readonly">
-                                    </div>
+                        <form class="am-form tpl-form-border-form tpl-form-border-br">
+                            <div class="am-form-group">
+                                <label for="username" class="am-u-sm-3 am-form-label">用户名</label>
+                                <div class="am-u-sm-9">
+                                    <input type="text" class="tpl-form-input" id="username" v-bind:value="user.username" readonly="readonly">
+
                                 </div>
+                            </div>
 
-                                <div class="am-form-group">
-                                    <label for="realname" class="am-u-sm-3 am-form-label">员工姓名 </label>
-                                    <div class="am-u-sm-9">
-                                        <input type="text" class="tpl-form-input" id="realname"
-                                               v-bind:value="user.realname" readonly="readonly">
-                                    </div>
+                            <div class="am-form-group">
+                                <label for="realname" class="am-u-sm-3 am-form-label">员工姓名 </label>
+                                <div class="am-u-sm-9">
+                                    <input type="text" class="tpl-form-input" id="realname" v-bind:value="user.realname" readonly="readonly">
                                 </div>
+                            </div>
 
 
-                                <div class="am-form-group">
-                                    <label for="department" class="am-u-sm-3 am-form-label">部门 </label>
-                                    <div class="am-u-sm-9">
-                                        <input type="text" class="tpl-form-input" id="department"
-                                               v-for="department in departments" v-if="department.id==user.departmentId"
-                                               v-bind:value="department.department" readonly="readonly">
-                                    </div>
+                            <div class="am-form-group">
+                                <label for="department" class="am-u-sm-3 am-form-label">部门 </label>
+                                <div class="am-u-sm-9">
+                                    <input type="text" class="tpl-form-input" id="department"
+                                           v-for="department in departments" v-if="department.id==user.departmentId" v-bind:value="department.department" readonly="readonly">
                                 </div>
+                            </div>
 
-                                <div class="am-form-group">
-                                    <label for="position" class="am-u-sm-3 am-form-label">职位 </label>
-                                    <div class="am-u-sm-9">
-                                        <input type="text" class="tpl-form-input" id="position"
-                                               v-for="position in positions" v-if="position.id==user.positionId"
-                                               v-bind:value="position.position" readonly="readonly">
-                                    </div>
+                            <div class="am-form-group">
+                                <label for="position" class="am-u-sm-3 am-form-label">职位 </label>
+                                <div class="am-u-sm-9">
+                                    <input type="text" class="tpl-form-input" id="position"
+                                           v-for="position in positions" v-if="position.id==user.positionId" v-bind:value="position.position" readonly="readonly">
                                 </div>
+                            </div>
 
-                                <div class="am-form-group">
-                                    <label for="sex" class="am-u-sm-3 am-form-label">性别 </label>
-                                    <div class="am-u-sm-9">
-                                        <label class="am-radio-inline" v-if="user.sex==1" name="sex">
-                                            <input type="radio" name="sex" value="1" checked="checked" data-am-ucheck/>男
-                                        </label>
-                                        <label class="am-radio-inline" v-else name="sex">
-                                            <input type="radio" name="sex" value="1" data-am-ucheck/>男
-                                        </label>
-                                        <label class="am-radio-inline" v-if="user.sex==2" name="sex">
-                                            <input type="radio" name="sex" value="2" checked="checked" data-am-ucheck/>女
-                                        </label>
-                                        <label class="am-radio-inline" v-else name="sex">
-                                            <input type="radio" name="sex" value="2" data-am-ucheck/>女
-                                        </label>
-                                        <label class="am-radio-inline" v-if="user.sex!=1 && user.sex != 2" name="sex">
-                                            <input type="radio" name="sex" value="3" checked="checked" data-am-ucheck/>人妖
-                                        </label>
-                                        <label class="am-radio-inline" v-else name="sex">
-                                            <input type="radio" name="sex" value="3" data-am-ucheck/>人妖
-                                        </label>
-                                    </div>
+                            <div class="am-form-group">
+                                <label for="sex" class="am-u-sm-3 am-form-label">性别 </label>
+                                <div class="am-u-sm-9">
+                                    <label class="am-radio-inline" v-if="userinfo.sex==1" name="sex">
+                                        <input type="radio" name="sex" value="1" checked="checked" data-am-ucheck/>男
+                                    </label>
+                                    <label class="am-radio-inline" v-else name="sex">
+                                        <input type="radio" name="sex" value="1" data-am-ucheck/>男
+                                    </label>
+                                    <label class="am-radio-inline" v-if="userinfo.sex==2" name="sex">
+                                        <input type="radio" name="sex" value="2" checked="checked" data-am-ucheck/>女
+                                    </label>
+                                    <label class="am-radio-inline" v-else name="sex">
+                                        <input type="radio" name="sex" value="2" data-am-ucheck/>女
+                                    </label>
+                                    <label class="am-radio-inline" v-if="userinfo.sex!=1 && user.sex != 2" name="sex">
+                                        <input type="radio" name="sex" value="3" checked="checked" data-am-ucheck/>人妖
+                                    </label>
+                                    <label class="am-radio-inline" v-else name="sex">
+                                        <input type="radio" name="sex" value="3" data-am-ucheck/>人妖
+                                    </label>
                                 </div>
-                                <div class="am-form-group">
-                                    <label for="birthday" class="am-u-sm-3 am-form-label">生日</label>
-                                    <div class="am-u-sm-9">
-                                        <input type="text" class="am-form-field tpl-form-no-bg" id="birthday"
-                                               data-am-datepicker="" readonly="">
-                                    </div>
-                                </div>
+                            </div>
 
-                                <div class="am-form-group">
-                                    <label for="age" class="am-u-sm-3 am-form-label">年龄</label>
-                                    <div class="am-u-sm-9">
-                                        <input type="text" class="tpl-form-input" id="age" v-bind:value="userinfo.age">
-
-                                    </div>
+                            <div class="am-form-group">
+                                <label for="birthday" class="am-u-sm-3 am-form-label">生日</label>
+                                <div class="am-u-sm-9">
+                                    <input type="text" class="am-form-field tpl-form-no-bg" id="birthday"
+                                           data-am-datepicker="" readonly="">
                                 </div>
+                            </div>
 
-                                <div class="am-form-group">
-                                    <label for="idcard" class="am-u-sm-3 am-form-label">身份证</label>
-                                    <div class="am-u-sm-9">
-                                        <input type="text" class="tpl-form-input" id="idcard"
-                                               v-bind:value="userinfo.identityCard">
-                                    </div>
-                                </div>
+                            <div class="am-form-group">
+                                <label for="age" class="am-u-sm-3 am-form-label">年龄</label>
+                                <div class="am-u-sm-9">
+                                    <input type="text" class="tpl-form-input" id="age" v-bind:value="userinfo.age">
 
-                                <div class="am-form-group">
-                                    <label for="email" class="am-u-sm-3 am-form-label">E-mail</label>
-                                    <div class="am-u-sm-9">
-                                        <input type="text" class="tpl-form-input" id="email"
-                                               v-bind:value="userinfo.email">
-                                    </div>
                                 </div>
+                            </div>
 
-                                <div class="am-form-group">
-                                    <label for="qq" class="am-u-sm-3 am-form-label">QQ</label>
-                                    <div class="am-u-sm-9">
-                                        <input type="text" class="tpl-form-input" id="qq" v-bind:value="userinfo.qq">
-                                    </div>
+                            <div class="am-form-group">
+                                <label for="idcard" class="am-u-sm-3 am-form-label">身份证</label>
+                                <div class="am-u-sm-9">
+                                    <input type="text" class="tpl-form-input" id="idcard" v-bind:value="userinfo.identityCard">
                                 </div>
+                            </div>
 
-                                <div class="am-form-group">
-                                    <label for="wechat" class="am-u-sm-3 am-form-label">微信</label>
-                                    <div class="am-u-sm-9">
-                                        <input type="text" class="tpl-form-input" id="wechat"
-                                               v-bind:value="userinfo.wechat">
-                                    </div>
+                            <div class="am-form-group">
+                                <label for="email" class="am-u-sm-3 am-form-label">E-mail</label>
+                                <div class="am-u-sm-9">
+                                    <input type="text" class="tpl-form-input" id="email" v-bind:value="userinfo.email" >
                                 </div>
+                            </div>
 
-                                <div class="am-form-group">
-                                    <label for="weibo" class="am-u-sm-3 am-form-label">微博</label>
-                                    <div class="am-u-sm-9">
-                                        <input type="text" class="tpl-form-input" id="weibo"
-                                               v-bind:value="userinfo.weibo">
-                                    </div>
+                            <div class="am-form-group">
+                                <label for="qq" class="am-u-sm-3 am-form-label">QQ</label>
+                                <div class="am-u-sm-9">
+                                    <input type="text" class="tpl-form-input" id="qq" v-bind:value="userinfo.qq" >
                                 </div>
+                            </div>
 
-                                <div class="am-form-group">
-                                    <label for="phone" class="am-u-sm-3 am-form-label">电话号码</label>
-                                    <div class="am-u-sm-9">
-                                        <input type="text" class="tpl-form-input" id="phone"
-                                               v-bind:value="userinfo.phone">
-                                    </div>
+                            <div class="am-form-group">
+                                <label for="wechat" class="am-u-sm-3 am-form-label">微信</label>
+                                <div class="am-u-sm-9">
+                                    <input type="text" class="tpl-form-input" id="wechat" v-bind:value="userinfo.wechat" >
                                 </div>
+                            </div>
 
-                                <div class="am-form-group">
-                                    <div class="am-u-sm-9 am-u-sm-push-3">
-                                        <button type="button" class="am-btn am-btn-primary tpl-btn-bg-color-success "
-                                                v-on:click="saveUserinfo">保存
-                                        </button>
-                                    </div>
+                            <div class="am-form-group">
+                                <label for="weibo" class="am-u-sm-3 am-form-label">微博</label>
+                                <div class="am-u-sm-9">
+                                    <input type="text" class="tpl-form-input" id="weibo" v-bind:value="userinfo.weibo" >
                                 </div>
-                            </form>
-                        </div>
+                            </div>
+
+                            <div class="am-form-group">
+                                <label for="phone" class="am-u-sm-3 am-form-label">电话号码</label>
+                                <div class="am-u-sm-9">
+                                    <input type="text" class="tpl-form-input" id="phone" v-bind:value="userinfo.phone">
+                                </div>
+                            </div>
+
+                            <div class="am-form-group">
+                                <div class="am-u-sm-9 am-u-sm-push-3">
+                                    <button type="button" class="am-btn am-btn-primary tpl-btn-bg-color-success " v-on:click="saveUserinfo">保存
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
-
-
         </div>
+
+
     </div>
+</div>
     <script th:src="@{/js/userinfo.js}"></script>
-    <script>
-        $(document).ready(function () {
-            $('#userinfoA').attr('class', 'active');
-        });
-    </script>
+<script>
+    $(document).ready(function () {
+        $('#userinfoA').attr('class', 'active');
+    });
+</script>
 </div>
 </html>

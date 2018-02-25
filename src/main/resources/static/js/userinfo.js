@@ -14,6 +14,7 @@ var vm = new Vue({
         saveUserinfo : saveUserinfo
     },
     created : getInit()
+
 })
 
 function getInit() {
@@ -112,5 +113,8 @@ function saveUserinfo() {
             }
         }
     });
+    
 }
+
+
 
