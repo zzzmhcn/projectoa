@@ -12,6 +12,7 @@ var vm = new Vue({
         getUser : getUser,
         getUserinfo : getUserinfo,
         saveUserinfo : saveUserinfo,
+        getTime : getTime,
     },
     created : getInit()
 
@@ -78,7 +79,7 @@ function getUserinfo() {
 
 function saveUserinfo() {
     var sex = $("input[name='sex']:checked").val();
-    var birthday = $('#birthday').val() == '' ? '0000-00-00' : $('#birthday').val() + ' 00:00:00';
+    var birthday = $('#birthday').val() == '' ? undefined : $('#birthday').val();
 
     var age = $('#age').val();
     var identity_card = $('#idcard').val();
@@ -89,7 +90,7 @@ function saveUserinfo() {
     var phone = $('#phone').val();
     var data = {};
     data.sex = sex;
-    data.birthday = Date.parse(birthday);
+    data.birthday =birthday==undefined? undefined : new Date(birthday.replace(/-/,"/")) ;
     data.age = age;
     data.identityCard = identity_card;
     data.email = email;
@@ -113,6 +114,10 @@ function saveUserinfo() {
         }
     });
     
+}
+
+function getTime(time) {
+    return time.substring(0, 10)
 }
 
 

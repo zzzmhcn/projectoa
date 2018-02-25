@@ -80,7 +80,7 @@
                             <div class="am-form-group">
                                 <label for="birthday" class="am-u-sm-3 am-form-label">生日 </label>
                                 <div class="am-u-sm-9">
-                                    <input type="text" class="am-form-field tpl-form-no-bg" id="birthday" data-am-datepicker="" readonly="">
+                                    <input type="text" class="am-form-field tpl-form-no-bg" id="birthday" data-am-datepicker="" readonly="" v-bind:value="getTime(userinfo.birthday)">
 
                                 </div>
                             </div>
