@@ -11,11 +11,9 @@ var vm = new Vue({
         getDepartment : getDepartment,
         getUser : getUser,
         getUserinfo : getUserinfo,
-        saveUserinfo : saveUserinfo,
-        getTime : getTime,
+        saveUserinfo : saveUserinfo
     },
     created : getInit()
-
 })
 
 function getInit() {
@@ -72,6 +70,7 @@ function getUserinfo() {
        url : contextPath + "/userinfo/getUserinfo",
        success : function (result) {
             vm.userinfo = result.value;
+            $('#birthday').datepicker('setValue', vm.userinfo.birthday);
         }
     });
     
@@ -113,12 +112,4 @@ function saveUserinfo() {
             }
         }
     });
-    
 }
-
-function getTime(time) {
-    var str = time.substring(0, 10);
-    return str;
-}
-
-
