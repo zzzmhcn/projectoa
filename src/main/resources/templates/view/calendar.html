@@ -40,7 +40,7 @@
     <script>
         //这个页面一共也就几句话，就写页面里面了
         $(document).ready(function () {
-            var calendarData = getCalendarData('0');
+            var calendarData = getCalendarData();
             if (calendarData == null || calendarData == '') {
                 //初次使用 空的json数组
                 var calendarData = [];
@@ -96,7 +96,7 @@
                                     else
                                         eventData.id = 0;
                                     calendarData.push(eventData);
-                                    setCalendarData('0', JSON.stringify(calendarData));
+                                    setCalendarData(JSON.stringify(calendarData));
                                 }
                                 $('#calendar').fullCalendar('unselect');
                             }
@@ -111,12 +111,11 @@
         });
         $('#calendarA').attr('class', 'active');
 
-        function getCalendarData(userID) {
+        function getCalendarData() {
             var result = "";
             $.ajax({
                 type: "POST",
                 url: contextPath + "/calendarGetValue",
-                data: {'key': 'calendar_' + userID},
                 dataType: "json",
                 async: false,//同步
                 cache:false,
@@ -128,8 +127,8 @@
             return result;
         }
 
-        function setCalendarData(userID, calendarData) {
-            $.post(contextPath + "/calendarSetValue", {'key': 'calendar_' + userID, 'value': calendarData});
+        function setCalendarData(calendarData) {
+            $.post(contextPath + "/calendarSetValue", {'value': calendarData});
         }
     </script>
 </div>

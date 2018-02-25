@@ -8,15 +8,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
+
 @Controller
 public class CalendarController {
     @Autowired
     private RedisService redisService;
+
     /**
      * 日历
      */
     @RequestMapping(value = "/calendar")
-    public String calendar(){
+    public String calendar() {
         return "calendar";
     }
 
@@ -27,7 +30,8 @@ public class CalendarController {
      */
     @RequestMapping(value = "/calendarSetValue")
     @ResponseBody
-    public ReturnDto calendarSetValue(@RequestParam("key")String key,@RequestParam("value")String value){
+    public ReturnDto calendarSetValue(@RequestParam("value") String value, HttpServletRequest request) {
+        String key = "calendar_" + request.getSession().getAttribute("userID");
         redisService.setValue(key, value);
         return ReturnDto.buildSuccessReturnDto();
     }
@@ -39,11 +43,12 @@ public class CalendarController {
      */
     @RequestMapping(value = "/calendarGetValue")
     @ResponseBody
-    public ReturnDto calendarGetValue(@RequestParam("key")String key){
+    public ReturnDto calendarGetValue(HttpServletRequest request) {
+        String key = "calendar_" + request.getSession().getAttribute("userID");
         String value = redisService.getValue(key);
-        if(value != null){
+        if (value != null) {
             return ReturnDto.buildSuccessReturnDto(value);
-        }else{
+        } else {
             return ReturnDto.buildFailedReturnDto("value is null");
         }
     }
