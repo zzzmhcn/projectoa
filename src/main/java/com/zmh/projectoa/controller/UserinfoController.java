@@ -24,7 +24,15 @@ public class UserinfoController {
     UserinfoService userinfoService;
 
     @Autowired
-    UsersService usersService;
+    UsersService usersService;    /**
+     * 个人
+     */
+    @RequestMapping(value = "/userinfo")
+    public String userinfo(){
+        return "userinfo";
+    }
+
+
 
     @RequestMapping(value = "/getUserinfo")
     @ResponseBody

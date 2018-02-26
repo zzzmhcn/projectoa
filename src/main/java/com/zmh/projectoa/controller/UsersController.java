@@ -34,6 +34,14 @@ public class UsersController {
     UserinfoService userinfoService;
 
     /**
+     * 人员
+     */
+    @RequestMapping(value = "/user")
+    public String user(){
+        return "user";
+    }
+
+    /**
      * 创建用户页面
      * @return
      */

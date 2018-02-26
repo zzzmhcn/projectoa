@@ -18,39 +18,7 @@ public class IndexController {
     }
 
     /**
-     * 人员信息
-     */
-    @RequestMapping(value = "/userinfo")
-    public String userinfo(){
-        return "userinfo";
-    }
-
-    /**
-     * 个人信息
-     */
-    @RequestMapping(value = "/user")
-    public String user(){
-        return "user";
-    }
-
-    /**
-     * 通知公告
-     */
-    @RequestMapping(value = "/notice")
-    public String notice(){
-        return "notice";
-    }
-
-    /**
-     * 站内信箱
-     */
-    @RequestMapping(value = "/message")
-    public String message(){
-        return "message";
-    }
-
-    /**
-     * 站内信箱
+     * 没有权限访问
      */
     @RequestMapping(value = "/403")
     public String error403(){

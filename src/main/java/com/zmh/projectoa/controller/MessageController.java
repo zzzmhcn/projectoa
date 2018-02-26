@@ -9,7 +9,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * 站内信
  */
 @Controller
-@RequestMapping("/message")
+@RequestMapping(value = "/message")
 public class MessageController {
-
+    /**
+     * 站内信箱
+     */
+    @RequestMapping(value = "/message")
+    public String message(){
+        return "message";
+    }
 }
