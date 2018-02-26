@@ -5,6 +5,9 @@ import com.zmh.projectoa.model.Userinfo;
 import com.zmh.projectoa.model.Users;
 import com.zmh.projectoa.service.UserinfoService;
 import com.zmh.projectoa.service.UsersService;
+import com.zmh.projectoa.util.MD5Util;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +23,7 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 @RequestMapping("/userinfo")
 public class UserinfoController {
+    Logger logger = LoggerFactory.getLogger(LoginController.class.getName());
 
     @Autowired
     UserinfoService userinfoService;
@@ -81,16 +85,30 @@ public class UserinfoController {
         //用户id从session中取，是user表中的id
         Integer id = (Integer) request.getSession().getAttribute("userID");
         //验证旧密码是否正确环节
-
-        //验证新密码是否合法环节 首先防止null或者空字符串蒙混过关 并且再次确认两次输入一致
-        if(newpassword != null && !"".equals(newpassword) && newpassword == repeatpassword){
-            //验证新密码是否合法
-
-            //更新新密码
-
-            //返回修改成功
-            return ReturnDto.buildSuccessReturnDto("success");
+        Users user = usersService.detailUser(id);
+        if(!user.getPassword().equals(MD5Util.string2MD5(oldpassword))){
+            logger.error("旧密码不正确");
+            return ReturnDto.buildFailedReturnDto("旧密码不正确");
         }
+        System.out.println(newpassword+"\t"+repeatpassword);
+        //验证新密码是否合法环节 首先防止null或者空字符串蒙混过关 并且再次确认两次输入一致
+        if(newpassword != null && !"".equals(newpassword) && newpassword.equals(repeatpassword)){
+            //验证新密码是否合法
+            if(!newpassword.matches(".*[a-zA-Z0-9]+.*") || newpassword.length() > 20 || newpassword.length() < 6){
+                logger.error("新密码不合法");
+                return ReturnDto.buildFailedReturnDto("新密码不合法");
+            }
+            //更新新密码
+            Users temp = new Users();
+            temp.setPassword(MD5Util.string2MD5(newpassword));
+            int i = usersService.editUser(id,temp);
+            System.out.println(i+" "+MD5Util.string2MD5(newpassword));
+            if(i > 0){
+                //返回修改成功
+                return ReturnDto.buildSuccessReturnDto("success");
+            }
+        }
+        logger.error("未知的异常");
         //默认返回错误
         return ReturnDto.buildFailedReturnDto("error");
     }
