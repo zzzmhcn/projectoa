@@ -20,7 +20,7 @@
                     <div class="row-content am-cf">
                         <div class="row">
                             <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
-                                <div class="widget am-cf">
+                                <div class="widget am-cf" id="sendBackTable">
                                     <div class="widget-head am-cf">
                                         <div class="widget-title am-fl">发送站内信</div>
                                     </div>
@@ -30,8 +30,7 @@
                                                 <label for="receives" class="am-u-sm-3 am-form-label">收件人</label>
                                                 <div class="am-u-sm-6">
                                                     <select id="receives" placeholder="请选择你要发给谁，可以多选" multiple
-                                                            data-am-selected></select>
-                                                    <small>选择收件人，可以选择多个！</small>
+                                                            data-am-selected style="width: 100%"></select>
                                                 </div>
                                             </div>
                                             <div class="am-form-group">
@@ -145,10 +144,11 @@
             $('#receives').selected({
                 btnSize: 'sm',
                 btnStyle: 'default',
-                btnWidth: '460px',
-                maxHeight: '360px',
+                btnWidth: '100%',
+                maxHeight: '350px',
                 searchBox: 1
             });
+            $('#sendBackTable').css('height',$('#sendBackTable').css('width').replace('px','') / 2.5 );
         });
     </script>
 </div>

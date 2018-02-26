@@ -18,7 +18,7 @@ function getInit() {
 function getAllUser() {
     $.ajax({
         type: "POST",
-        url: "/projectoa/message/getAllUser",
+        url: contextPath + "/message/getAllUser",
         dataType: "json",
         success: function (result) {
             //返回的是所有的用户的ID realname和部门名称
@@ -26,7 +26,7 @@ function getAllUser() {
             //初始化 收件人 下拉列表
             initReceives();
         }
-    })
+    });
 }
 
 /**
@@ -80,10 +80,38 @@ function initReceives() {
     $('#receives').append(code)
 }
 
+/**
+ * 发送站内信 支持群发
+ */
 function sendMessage() {
-    var selected = $('#receives').val();
+    var userIDs = $('#receives').val().toString();
     var title = $('#messageTitle').val();
     var message = $('#messageMain').val();
+    if (userIDs == null || userIDs == "" || userIDs == undefined) {
+        showAlert("请选择收件人");
+    } else if (title == null || title == "" || title == undefined) {
+        showAlert("请输入标题");
+    } else if (message == null || message == "" || message == undefined) {
+        showAlert("请输入内容");
+    } else {
+        var data = {};
+        data.userIDs = userIDs;
+        data.title = title;
+        data.message = message;
+        $.ajax({
+            type: "POST",
+            url: contextPath + "/message/send_message",
+            data: data,
+            dataType: "json",
+            success: function (result) {
+                if(result.code == 000){
+                    showAlert("发送成功!");
+                }else{
+                    showAlert("发送失败 "+result.message);
+                }
 
+            }
+        });
+    }
 
 }
