@@ -11,8 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.websocket.server.PathParam;
 import java.util.List;
 import java.util.Objects;
@@ -161,9 +163,7 @@ public class UsersController {
 
     @RequestMapping(value = "/getUser")
     @ResponseBody
-    public ReturnDto getUser(){
-        //用户id从session中取，是user表中的id
-        Integer id = 7;
+    public ReturnDto getUser(@RequestParam("userID")Integer id){
         Users user = usersService.detailUser(id);
         return ReturnDto.buildSuccessReturnDto(user);
     }

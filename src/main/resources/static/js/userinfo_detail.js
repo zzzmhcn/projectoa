@@ -50,10 +50,13 @@ function getDepartment() {
 
 //用户回显
 function getUser() {
+    var url = window.location.href;
+    var index = url.lastIndexOf("\/");
+    var id  = url.substring(index + 1, url.length);
     $.ajax({
         type: "POST",
         url: contextPath + "/user/getUser",
-        //data: {username:$("#username").val(), content:$("#content").val()},
+        data: {'userID':id},
         //dataType: "json",
         success: function(result){
             vm.user = result.value;
