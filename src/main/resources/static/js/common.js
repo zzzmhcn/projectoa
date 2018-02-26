@@ -106,3 +106,41 @@ function  showPrompt(text,title,cancel,ok) {
     $('#promptOK').text(ok);
     return $('#showPromptID');
 }
+
+/**
+ * 修改密码
+ */
+function changePassWord() {
+    var oldpassword = $('#oldpassword').val();
+    var newpassword = $('#newpassword').val();
+    var repeatpassword = $('#repeatpassword').val();
+    var uPattern = /^[a-zA-Z0-9_-]{6,20}$/;
+    if (!uPattern.test(newpassword)){
+        showAlert('密码必须是数字或者字母,长度为6-20字符之间,请重新输入','您输入的密码不正确');
+    }else if(oldpassword == newpassword){
+        showAlert('新密码不能和旧密码相同','您输入的密码不正确');
+
+    }else if(newpassword != repeatpassword){
+        showAlert('新密码两次输入不一致，请重新输入','您输入的密码不正确');
+    }else{
+        //基本验证通过 进入后台验证
+        $.ajax({
+            type: "POST",
+            url:contextPath+'/userinfo/setNewPassWord',
+            data: {'oldpassword':oldpassword,
+                'newpassword':newpassword,
+                'repeatpassword':repeatpassword},
+            dataType: "json",
+            success: function(result){
+                if(result.code == '101'){
+                    showAlert('发生了异常 : ' + result.message);
+                }else if(result.code == '000'){
+                    showAlert('修改密码成功','成功')
+                }
+            }
+        });
+    }
+
+
+
+}
