@@ -7,7 +7,7 @@
 
 <div class="centerView" data-type="widgets" th:fragment="content">
     <!-- 内容区域 -->
-    <div class="tpl-content-wrapper">
+    <div class="tpl-content-wrapper" id="message">
         <!-- 选项卡 -->
         <div class="am-tabs" id="messagesTabs">
             <ul class="am-tabs-nav am-nav am-nav-tabs">
@@ -27,24 +27,30 @@
                                     <div class="widget-body am-fr">
                                         <form class="am-form tpl-form-border-form tpl-form-border-br">
                                             <div class="am-form-group">
-
-                                                <label for="user-name" class="am-u-sm-3 am-form-label">标题</label>
-                                                <div class="am-u-sm-9">
-                                                    <input type="text" class="tpl-form-input" id="user-name"
-                                                           placeholder="请输入标题文字">
-                                                    <small>请填写标题文字10-20字左右。</small>
+                                                <label for="receives" class="am-u-sm-3 am-form-label">收件人</label>
+                                                <div class="am-u-sm-6">
+                                                    <select id="receives" placeholder="请选择你要发给谁，可以多选" multiple
+                                                            data-am-selected></select>
+                                                    <small>选择收件人，可以选择多个！</small>
                                                 </div>
                                             </div>
                                             <div class="am-form-group">
-                                                <label for="user-intro" class="am-u-sm-3 am-form-label">文章内容</label>
-                                                <div class="am-u-sm-9">
-                                                    <textarea class="" rows="10" id="user-intro"
-                                                              placeholder="请输入文章内容"></textarea>
+                                                <label for="messageTitle" class="am-u-sm-3 am-form-label">标题</label>
+                                                <div class="am-u-sm-6">
+                                                    <input type="text" class="tpl-form-input" id="messageTitle"
+                                                           placeholder="请输入标题文字">
+                                                </div>
+                                            </div>
+                                            <div class="am-form-group">
+                                                <label for="messageMain" class="am-u-sm-3 am-form-label">站内信内容</label>
+                                                <div class="am-u-sm-6">
+                                                    <textarea class="" rows="10" id="messageMain"
+                                                              placeholder="请输入要发送的内容"></textarea>
                                                 </div>
                                             </div>
                                             <div class="am-form-group">
                                                 <div class="am-u-sm-9 am-u-sm-push-3">
-                                                    <button type="button"
+                                                    <button type="button" onclick="sendMessage()"
                                                             class="am-btn am-btn-primary tpl-btn-bg-color-success ">提交
                                                     </button>
                                                 </div>
@@ -130,10 +136,19 @@
             </div>
         </div>
     </div>
+    <script th:src="@{/js/message.js}"></script>
     <script>
         $(document).ready(function () {
             $('#messageA').attr('class', 'active');
             $('#messagesTabs').tabs();
+            // 设置参数
+            $('#receives').selected({
+                btnSize: 'sm',
+                btnStyle: 'default',
+                btnWidth: '460px',
+                maxHeight: '360px',
+                searchBox: 1
+            });
         });
     </script>
 </div>

@@ -3,6 +3,7 @@ package com.zmh.projectoa.mapper;
 import com.zmh.projectoa.model.Users;
 import com.zmh.projectoa.model.UsersExample;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -34,4 +35,6 @@ public interface UsersMapper {
     Users queryUserByUsername (@Param("username") String username);
 
     List<Users> queryBySelective(Users users);
+
+    List<Map<String,String>> queryAll();
 }

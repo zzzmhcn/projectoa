@@ -332,4 +332,17 @@
       </if>
     order by create_time desc
   </select>
+
+
+  <select id="queryAll" resultType="java.util.Map">
+    SELECT
+        users.id,
+        users.realname,
+        departments.department
+    FROM
+        users
+    INNER JOIN departments ON departments.id = users.department_id
+    ORDER BY
+        users.department_id
+  </select>
 </mapper>

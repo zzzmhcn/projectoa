@@ -3,6 +3,7 @@ package com.zmh.projectoa.service;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.zmh.projectoa.dto.ReturnDto;
 import com.zmh.projectoa.mapper.UserinfoMapper;
 import com.zmh.projectoa.mapper.UsersMapper;
 import com.zmh.projectoa.model.Userinfo;
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -141,4 +143,13 @@ public class UsersService {
         return result;
     }
 
+
+    /**
+     * 取所有用户 下拉框使用
+     * @return
+     */
+    public ReturnDto getAllUser(){
+        List<Map<String,String>> list = usersMapper.queryAll();
+        return ReturnDto.buildSuccessReturnDto(list);
+    }
 }
