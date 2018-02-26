@@ -198,11 +198,13 @@
                     <i class="am-icon-home sidebar-nav-link-logo"></i> 首页
                 </a>
             </li>
+            <shiro:hasRole name="user">
             <li class="sidebar-nav-link">
                 <a href="user" id="userA">
                     <i class="am-icon-table sidebar-nav-link-logo"></i> 人员信息
                 </a>
             </li>
+            </shiro:hasRole>
             <li class="sidebar-nav-link">
                 <a href="userinfo" id="userinfoA">
                     <i class="am-icon-wpforms sidebar-nav-link-logo"></i> 个人信息
@@ -213,6 +215,7 @@
                     <i class="am-icon-calendar sidebar-nav-link-logo"></i> 日程表
                 </a>
             </li>
+            <shiro:hasRole name="admin">
             <li class="sidebar-nav-link">
                 <a href="admin/springbootadmin" id="springbootadminA">
                     <i class="am-icon-heartbeat sidebar-nav-link-logo"></i> 系统监控
@@ -223,6 +226,7 @@
                     <i class="am-icon-list-alt sidebar-nav-link-logo"></i> 系统日志
                 </a>
             </li>
+            </shiro:hasRole>
             <li class="sidebar-nav-link">
                 <a href="message" id="messageA">
                     <i class="am-icon-envelope sidebar-nav-link-logo"></i> 站内信箱

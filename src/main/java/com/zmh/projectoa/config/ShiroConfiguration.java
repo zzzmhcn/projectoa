@@ -90,7 +90,10 @@ public class ShiroConfiguration {
     }
 
     /**
-     * 加载ShiroFilter权限控制规则  
+     * 加载ShiroFilter权限控制规则
+     * 这块代码是负责拦截的
+     * 也就是说，如果当前登陆的人，不符合访问某个url的访问权限条件的，直接给他弹开
+     * 也就是分配谁能访问谁
      */
     private void loadShiroFilterChain(ShiroFilterFactoryBean factoryBean) {
         /**下面这些规则配置最好配置到配置文件中*/
@@ -101,13 +104,18 @@ public class ShiroConfiguration {
         //authc:所有url都必须认证通过才可以访问; anon:所有url都都可以匿名访问
         filterChainMap.put("/login", "anon");
         filterChainMap.put("/login/check", "anon");
+        filterChainMap.put("/403", "anon");
         filterChainMap.put("/assets/**", "anon");
         filterChainMap.put("/js/**", "anon");
         filterChainMap.put("/prism/**", "anon");
 
         //权限分配
-        filterChainMap.put("/admin/**", "roles[admin]");
-        filterChainMap.put("/user/**", "roles[user]");
+        filterChainMap.put("/admin/**", "authc,roles[admin]");
+        filterChainMap.put("/user/**", "authc,roles[user]");
+
+        //行为分配
+        filterChainMap.put("/notice/notice_create", "authc,perms[notice]");
+        filterChainMap.put("/notice/notice_send", "authc,perms[notice]");
 
         //登出的过滤器
         filterChainMap.put("/logout", "logout");

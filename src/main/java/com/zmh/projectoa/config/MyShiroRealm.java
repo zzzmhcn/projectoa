@@ -74,28 +74,51 @@ public class MyShiroRealm extends AuthorizingRealm {
      * doGetAuthorizationInfo()是权限控制，
      * 当访问到页面的时候，使用了相应的注解或者shiro标签才会执行此方法否则不会执行，
      * 所以如果只是简单的身份认证没有权限的控制的话，那么这个方法可以不进行实现，直接返回null即可
+     *
+     * 简单来说这个方法的功能就是赋权
+     * 根据数据库里面的分类
+     * 不同的用户类型给与不同的权限
+     * 前后端会根据这里的权限，进行智能的显示其对应的页面和功能
+     * 如果强行访问无权访问的url也会被弹开
+     *
+     * 这里是按照一个简单粗暴的方式分权
+     * admin享有一切权限
+     *
+     * 人事的所有人都可以管理人员信息
+     * 经理及以上可以允许发送公告的行为
      */
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
+        //0.创建SimpleAuthorizationInfo
+        SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
         //1.从PrincipalCollection中获取登陆用户的信息
         Object principal = principals.getPrimaryPrincipal();
         //2.利用登陆用户的信息来获取当前用户的角色或权限（可能需要查询数据库）
         Users user = (Users) principal;
+        //存放角色的set
         Set<String> roles = new HashSet<>();
         Integer departmentId = user.getDepartmentId();
         Integer positionId = user.getPositionId();
-        //管理员权限
+        //管理员角色
         if (departmentId == 1){
             roles.add("admin");
             roles.add("user");
         }
-        //人事权限
+        //人事角色
         if (departmentId == 2){
             roles.add("user");
         }
-        //3.创建SimpleAuthorizationInfo， 并设置其roles属性。
-        SimpleAuthorizationInfo info = new SimpleAuthorizationInfo(roles);
-        //4.返回对象
+        info.setRoles(roles);
+
+        //存放具体的行为的set
+        Set<String> permissions = new HashSet<String>();
+        //只有管理员或者经理，才允许发送公告
+        if(positionId == 1 || positionId == 2){
+            permissions.add("notice");
+        }
+        info.setStringPermissions(permissions);
+
+
         return info;
     }
 }

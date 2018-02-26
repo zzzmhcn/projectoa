@@ -16,7 +16,7 @@
                             <div class="widget-title  am-cf">公告板</div>
                         </div>
                         <div class="widget-body  am-fr">
-
+                            <shiro:hasPermission name="notice">
                             <div class="am-u-sm-12 am-u-md-6 am-u-lg-6">
                                 <div class="am-form-group">
                                     <div class="am-btn-toolbar">
@@ -29,6 +29,7 @@
                                     </div>
                                 </div>
                             </div>
+                            </shiro:hasPermission>
                             <div class="am-u-sm-12">
                                 <table width="100%" class="am-table am-table-compact am-table-striped tpl-table-black "
                                        id="example-r">

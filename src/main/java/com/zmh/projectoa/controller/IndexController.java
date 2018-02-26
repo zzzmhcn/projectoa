@@ -48,4 +48,12 @@ public class IndexController {
     public String message(){
         return "message";
     }
+
+    /**
+     * 站内信箱
+     */
+    @RequestMapping(value = "/403")
+    public String error403(){
+        return "403";
+    }
 }
