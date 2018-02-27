@@ -292,7 +292,9 @@
         //所有a标签纠正
         $('a').each(function(){
             if($(this).attr('href') && $(this).attr('href').indexOf('javascript') < 0
+                && $(this).attr('href') && $(this).attr('href').indexOf('projectoa') < 0
                 && $(this).attr('href') != '#')
+
                 $(this).attr('href',contextPath + "/" + $(this).attr('href'));
         });
     });
