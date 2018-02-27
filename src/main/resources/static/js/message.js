@@ -1,17 +1,18 @@
 var vm = new Vue({
     el: '#message',
     data: {
-        userList: [],
+        messages: [],
     },
     methods: {
+        getMessages:getMessages,
         getAllUser: getAllUser
     },
     created: getInit()
-
 })
 
 function getInit() {
     getAllUser();
+    getMessages();
 }
 
 //查询员工
@@ -91,6 +92,8 @@ function sendMessage() {
         showAlert("请选择收件人");
     } else if (title == null || title == "" || title == undefined) {
         showAlert("请输入标题");
+    } else if (title.length > 15) {
+        showAlert("标题最多15个字");
     } else if (message == null || message == "" || message == undefined) {
         showAlert("请输入内容");
     } else {
@@ -113,5 +116,38 @@ function sendMessage() {
             }
         });
     }
+}
 
+/**
+ * 这里用来获取本人的未读信息
+ */
+function getUnReadMessages() {
+    $.ajax({
+        type: "POST",
+        url: contextPath + "/message/getUnReadMessages",
+        dataType: "json",
+        success: function (result) {
+            if(result.code == 000){
+                vm_message.messageList = result.value;
+            }
+        }
+    });
+}
+
+/**
+ * 获取所有未读信息(本人的)
+ */
+function getMessages() {
+    $.ajax({
+        type: "POST",
+        url: contextPath + "/message/getMessages",
+        dataType: "json",
+        success: function (result) {
+            if(result.code == 000){
+                vm.messages = result.value;
+            }else{
+                showAlert("获取站内信异常!")
+            }
+        }
+    });
 }

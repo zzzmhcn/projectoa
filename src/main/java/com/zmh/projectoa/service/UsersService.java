@@ -148,8 +148,8 @@ public class UsersService {
      * 取所有用户 下拉框使用
      * @return
      */
-    public ReturnDto getAllUser(){
-        List<Map<String,String>> list = usersMapper.queryAll();
+    public ReturnDto getAllUser(Integer id){
+        List<Map<String,String>> list = usersMapper.queryAll(id);
         return ReturnDto.buildSuccessReturnDto(list);
     }
 }

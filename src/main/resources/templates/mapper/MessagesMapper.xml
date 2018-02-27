@@ -115,14 +115,50 @@
       </if>
     </if>
   </select>
+  <select id="selectByIDs" resultType="java.util.Map">
+      SELECT
+          messages.id,
+          messages.title,
+          messages.create_time,
+          users.realname
+      FROM
+          messages
+      INNER JOIN users ON messages.send_id = users.id
+      WHERE
+          messages.id IN
+      <foreach collection="list" item="ID"  open="(" separator="," close=")">
+          #{ID}
+      </foreach>
+      ORDER BY
+          messages.create_time DESC
+  </select>
+
+    <select id="selectByreceiveID"  parameterType="java.lang.Integer" resultType="java.util.Map">
+        SELECT
+            messages.id,
+            messages.title,
+            messages.create_time,
+            messages.message,
+            users.realname
+        FROM
+            messages
+        INNER JOIN users ON messages.send_id = users.id
+        WHERE
+            messages.receive_id = #{ID}
+        ORDER BY
+            messages.create_time DESC
+    </select>
+
+
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
-    select 
+    select
     <include refid="Base_Column_List" />
     ,
     <include refid="Blob_Column_List" />
     from messages
     where id = #{id,jdbcType=INTEGER}
   </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from messages
     where id = #{id,jdbcType=INTEGER}

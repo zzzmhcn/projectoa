@@ -3,6 +3,7 @@ package com.zmh.projectoa.mapper;
 import com.zmh.projectoa.model.Messages;
 import com.zmh.projectoa.model.MessagesExample;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -22,6 +23,10 @@ public interface MessagesMapper {
     List<Messages> selectByExampleWithBLOBs(MessagesExample example);
 
     List<Messages> selectByExample(MessagesExample example);
+
+    List<Map<String,String>> selectByreceiveID(Integer ID);
+
+    List<Map<String,String>> selectByIDs(List<Integer> IDs);
 
     Messages selectByPrimaryKey(Integer id);
 

@@ -176,9 +176,9 @@ ul.tpl-dropdown-content .tpl-dropdown-menu-messages-item .menu-messages-time {
 ul.tpl-dropdown-content .tpl-dropdown-menu-notifications-item .menu-messages-content,
 ul.tpl-dropdown-content .tpl-dropdown-menu-messages-item .menu-messages-content {
   display: block;
-  font-size: 13px;
-  margin-left: 45px;
-  margin-right: 50px;
+  font-size: 12px;
+  margin-left: 5px;
+  margin-right: 5px;
 }
 ul.tpl-dropdown-content .tpl-dropdown-menu-notifications-item .menu-messages-content .menu-messages-content-time,
 ul.tpl-dropdown-content .tpl-dropdown-menu-messages-item .menu-messages-content .menu-messages-content-time {
@@ -1910,3 +1910,5 @@ ul.tpl-dropdown-content .tpl-dropdown-menu-messages-item .menu-messages-content 
     right: 0;
   }
 }
+
+[v-cloak] { display: none }

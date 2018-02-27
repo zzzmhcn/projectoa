@@ -50,54 +50,35 @@
                     </li>
 
                     <!-- 新邮件 -->
-                    <li class="am-dropdown tpl-dropdown" data-am-dropdown>
+                    <li class="am-dropdown tpl-dropdown" data-am-dropdown id="messageLi">
                         <a href="javascript:;" class="am-dropdown-toggle tpl-dropdown-toggle" data-am-dropdown-toggle>
                             <i class="am-icon-envelope"></i>
-                            <span class="am-badge am-badge-success am-round item-feed-badge">4</span>
+                            <!-- 智能显示消息个数 等于=则不显示 使用v-cloak可以避免加载中显示出花括号 -->
+                            <span class="am-badge am-badge-success am-round item-feed-badge"
+                                  v-if="messageList.length != 0" v-cloak>{{messageList.length}}</span>
                         </a>
                         <!-- 弹出列表 -->
-                        <ul class="am-dropdown-content tpl-dropdown-content">
-                            <li class="tpl-dropdown-menu-messages">
+                        <ul class="am-dropdown-content tpl-dropdown-content" style="width: 400px">
+                            <li class="tpl-dropdown-menu-messages" v-if="messageList.length == 0">
                                 <a href="javascript:;" class="tpl-dropdown-menu-messages-item am-cf">
-                                    <div class="menu-messages-ico">
-                                        <img th:src="@{/assets/img/user04.png}" alt="">
-                                    </div>
-                                    <div class="menu-messages-time">
-                                        3小时前
-                                    </div>
                                     <div class="menu-messages-content">
-                                        <div class="menu-messages-content-title">
-                                            <i class="am-icon-circle-o am-text-success"></i>
-                                            <span>夕风色</span>
+                                        <div class="am-text-truncate">
+                                            <span>暂无新消息</span>
                                         </div>
-                                        <div class="am-text-truncate"> Amaze UI 的诞生，依托于 GitHub 及其他技术社区上一些优秀的资源；Amaze UI
-                                            的成长，则离不开用户的支持。
-                                        </div>
-                                        <div class="menu-messages-content-time">2016-09-21 下午 16:40</div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="tpl-dropdown-menu-messages" v-else v-for="message in messageList">
+                                <a href="javascript:;" class="tpl-dropdown-menu-messages-item am-cf">
+                                    <div class="menu-messages-content">
+                                        <span class="am-text-truncate">{{message.realname}}&nbsp;:&nbsp;{{message.title}}</span>
+                                        <span class="menu-messages-content-time" style="float:right">{{message.create_time}}</span>
                                     </div>
                                 </a>
                             </li>
 
                             <li class="tpl-dropdown-menu-messages">
-                                <a href="javascript:;" class="tpl-dropdown-menu-messages-item am-cf">
-                                    <div class="menu-messages-ico">
-                                        <img th:src="@{/assets/img/user02.png}" alt="">
-                                    </div>
-                                    <div class="menu-messages-time">
-                                        5天前
-                                    </div>
-                                    <div class="menu-messages-content">
-                                        <div class="menu-messages-content-title">
-                                            <i class="am-icon-circle-o am-text-warning"></i>
-                                            <span>禁言小张</span>
-                                        </div>
-                                        <div class="am-text-truncate"> 为了能最准确的传达所描述的问题， 建议你在反馈时附上演示，方便我们理解。</div>
-                                        <div class="menu-messages-content-time">2016-09-16 上午 09:23</div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="tpl-dropdown-menu-messages">
-                                <a href="message" class="tpl-dropdown-menu-messages-item am-cf">
+                                <a href="message/message" class="tpl-dropdown-menu-messages-item am-cf">
                                     <i class="am-icon-circle-o"></i> 进入列表…
                                 </a>
                             </li>
@@ -149,7 +130,7 @@
 
 
                             <li class="tpl-dropdown-menu-notifications">
-                                <a href="notice" class="tpl-dropdown-menu-notifications-item am-cf">
+                                <a href="notice/notice" class="tpl-dropdown-menu-notifications-item am-cf">
                                     <i class="am-icon-bell"></i> 进入列表…
                                 </a>
                             </li>
@@ -291,6 +272,7 @@
 <script th:src="@{/assets/js/moment.js}"></script>
 <script th:src="@{/assets/js/fullcalendar.min.js}"></script>
 <script th:src="@{/assets/js/flipclock.min.js}"></script>
+<script th:src="@{/js/message.js}"></script><!-- 首页需要用他的获取未读信息功能 -->
 <script th:src="@{/js/common.js}"></script>
 <script>
     $(document).ready(function () {

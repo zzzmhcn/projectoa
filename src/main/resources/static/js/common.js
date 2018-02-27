@@ -1,3 +1,16 @@
+var vm_message = new Vue({
+    el: '#messageLi',
+    data: {
+        messageList: [],
+    },
+    methods: {
+        getUnReadMessages:getUnReadMessages
+    },
+    created: getInit()
+})
+function getInit() {
+    getUnReadMessages();
+}
 //护眼模式
 function  changeTheme() {
     //这里toggleClass的意思是如果 有就删掉 没有就加上

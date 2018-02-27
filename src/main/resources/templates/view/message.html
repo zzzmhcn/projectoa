@@ -82,23 +82,16 @@
                                                     <th>操作</th>
                                                 </tr>
                                                 </thead>
-                                                <tbody>
-                                                <tr class="gradeX">
-                                                    <td>Amaze UI 模式窗口</td>
-                                                    <td>张鹏飞</td>
-                                                    <td>2016-09-26</td>
-                                                    <td>
-                                                        <div class="tpl-table-black-operation">
-                                                            <a href="javascript:;">
-                                                                <i class="am-icon-search"></i> 查看
-                                                            </a>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr class="even gradeC">
-                                                    <td>有适配微信小程序的计划吗</td>
-                                                    <td>天纵之人</td>
-                                                    <td>2016-09-26</td>
+                                                <tbody v-if="messages.length == 0">
+                                                    <tr>
+                                                        <td colspan="6" align="center">暂无数据</td>
+                                                    </tr>
+                                                </tbody>
+                                                <tbody v-else>
+                                                <tr class="gradeX" v-for="message in messages">
+                                                    <td>{{message.title}}</td>
+                                                    <td>{{message.realname}}</td>
+                                                    <td>{{message.create_time}}</td>
                                                     <td>
                                                         <div class="tpl-table-black-operation">
                                                             <a href="javascript:;">
@@ -108,7 +101,6 @@
                                                     </td>
                                                 </tr>
 
-                                                <!-- more data -->
                                                 </tbody>
                                             </table>
                                         </div>
@@ -148,7 +140,7 @@
                 maxHeight: '350px',
                 searchBox: 1
             });
-            $('#sendBackTable').css('height',$('#sendBackTable').css('width').replace('px','') / 2.5 );
+            $('#sendBackTable').css('height',$('#sendBackTable').css('width').replace('px','') / 1.8 );
         });
     </script>
 </div>

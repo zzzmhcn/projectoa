@@ -334,7 +334,7 @@
   </select>
 
 
-  <select id="queryAll" resultType="java.util.Map">
+  <select id="queryAll" resultType="java.util.Map" parameterType="Integer">
     SELECT
         users.id,
         users.realname,
@@ -342,6 +342,8 @@
     FROM
         users
     INNER JOIN departments ON departments.id = users.department_id
+    WHERE
+        users.id != #{id}
     ORDER BY
         users.department_id
   </select>
