@@ -1,4 +1,4 @@
-var vm_message = new Vue({
+var vm_common = new Vue({
     el: '#messageLi',
     data: {
         messageList: [],
@@ -153,7 +153,20 @@ function changePassWord() {
             }
         });
     }
+}
 
-
-
+/**
+ * 这里用来获取本人的未读信息
+ */
+function getUnReadMessages() {
+    $.ajax({
+        type: "POST",
+        url: contextPath + "/message/getUnReadMessages",
+        dataType: "json",
+        success: function (result) {
+            if(result.code == 000){
+                vm_common.messageList = result.value;
+            }
+        }
+    });
 }

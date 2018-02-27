@@ -1,4 +1,4 @@
-var vm = new Vue({
+var vm_message = new Vue({
     el: '#message',
     data: {
         messages: [],
@@ -23,7 +23,7 @@ function getAllUser() {
         dataType: "json",
         success: function (result) {
             //返回的是所有的用户的ID realname和部门名称
-            vm.userList = result.value;
+            vm_message.userList = result.value;
             //初始化 收件人 下拉列表
             initReceives();
         }
@@ -119,22 +119,6 @@ function sendMessage() {
 }
 
 /**
- * 这里用来获取本人的未读信息
- */
-function getUnReadMessages() {
-    $.ajax({
-        type: "POST",
-        url: contextPath + "/message/getUnReadMessages",
-        dataType: "json",
-        success: function (result) {
-            if(result.code == 000){
-                vm_message.messageList = result.value;
-            }
-        }
-    });
-}
-
-/**
  * 获取所有未读信息(本人的)
  */
 function getMessages() {
@@ -144,7 +128,7 @@ function getMessages() {
         dataType: "json",
         success: function (result) {
             if(result.code == 000){
-                vm.messages = result.value;
+                vm_message.messages = result.value;
             }else{
                 showAlert("获取站内信异常!")
             }

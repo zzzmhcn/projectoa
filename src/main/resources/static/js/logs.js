@@ -1,4 +1,4 @@
-var vm = new Vue({
+var vm_log = new Vue({
     el: '#log',
     data: {
         fileNames: []
@@ -20,7 +20,7 @@ function getFileNames() {
         type: "POST",
         url: contextPath + "/admin/getFileNames",
         success: function (result) {
-            vm.fileNames = result.value.reverse();
+            vm_log.fileNames = result.value.reverse();
         }
     });
 }
