@@ -3,6 +3,7 @@ package com.zmh.projectoa.mapper;
 import com.zmh.projectoa.model.Notices;
 import com.zmh.projectoa.model.NoticesExample;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -36,4 +37,8 @@ public interface NoticesMapper {
     int updateByPrimaryKeyWithBLOBs(Notices record);
 
     int updateByPrimaryKey(Notices record);
+
+    List<Notices> selectAllNotice();
+
+    List<Map<String,String>> selectByIDs(List<Integer> IDs);
 }

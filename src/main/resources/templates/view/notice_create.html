@@ -21,27 +21,28 @@
                                     <div class="widget-body am-fr">
                                         <form class="am-form tpl-form-border-form tpl-form-border-br">
                                             <div class="am-form-group">
-                                                <label for="user-name" class="am-u-sm-3 am-form-label">标题 <span
+                                                <label for="noticeTile" class="am-u-sm-3 am-form-label">标题 <span
                                                         class="tpl-form-line-small-title">Title</span></label>
                                                 <div class="am-u-sm-9">
-                                                    <input type="text" class="tpl-form-input" id="user-name"
-                                                           placeholder="请输入标题文字">
-                                                    <small>请填写标题文字10-20字左右。</small>
+                                                    <input type="text" class="tpl-form-input" id="noticeTile"
+                                                           placeholder="请输入公告标题">
+                                                    <small>请填写公告标题 最多不要超过20字</small>
                                                 </div>
                                             </div>
                                             <div class="am-form-group">
-                                                <label for="user-intro" class="am-u-sm-3 am-form-label">文章内容</label>
+                                                <label for="noticeMain" class="am-u-sm-3 am-form-label">公告内容</label>
                                                 <div class="am-u-sm-9">
-                                                    <textarea class="" rows="16" id="user-intro"
-                                                              placeholder="请输入文章内容"></textarea>
+                                                    <textarea class="" rows="16" id="noticeMain"
+                                                              placeholder="请输入公告内容"></textarea>
                                                 </div>
                                             </div>
                                             <div class="am-form-group">
                                                 <div class="am-u-sm-9 am-u-sm-push-3">
-                                                    <button  type="button" class="am-btn am-btn-primary tpl-btn-bg-color-success " v-on:click="createUser">提交
+                                                    <button  type="button" class="am-btn am-btn-primary tpl-btn-bg-color-success "
+                                                             onclick="sendNotice()">提交
                                                     </button>
-                                                    <a href="#" onclick="javascript :history.back(-1);" type="button" class="am-btn am-btn-primary tpl-btn-bg-color-success ">返回
-                                                    </a>
+                                                    <a href="notice/notice" type="button" style="margin-left: 15px"
+                                                       class="am-btn am-btn-primary tpl-btn-bg-color-success ">返回</a>
                                                 </div>
                                             </div>
                                         </form>
@@ -54,6 +55,7 @@
             </div>
         </div>
     </div>
+    <script th:src="@{/js/notice_dtl.js}"></script>
     <script>
         $(document).ready(function () {
             $('#noticeA').attr('class', 'active');

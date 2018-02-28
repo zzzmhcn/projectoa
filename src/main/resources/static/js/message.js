@@ -4,7 +4,7 @@ var vm_message = new Vue({
         messages: [],
     },
     methods: {
-        getMessages:getMessages,
+        getMessages: getMessages,
         getAllUser: getAllUser
     },
     created: getInit()
@@ -92,10 +92,12 @@ function sendMessage() {
         showAlert("请选择收件人");
     } else if (title == null || title == "" || title == undefined) {
         showAlert("请输入标题");
-    } else if (title.length > 15) {
-        showAlert("标题最多15个字");
+    } else if (title.length > 20) {
+        showAlert("标题不能超过20字");
     } else if (message == null || message == "" || message == undefined) {
         showAlert("请输入内容");
+    } else if (message.length > 500) {
+        showAlert("内容不能超过500字");
     } else {
         var data = {};
         data.userIDs = userIDs;
@@ -107,10 +109,10 @@ function sendMessage() {
             data: data,
             dataType: "json",
             success: function (result) {
-                if(result.code == 000){
+                if (result.code == 000) {
                     showAlert("发送成功!");
-                }else{
-                    showAlert("发送失败 "+result.message);
+                } else {
+                    showAlert("发送失败 " + result.message);
                 }
 
             }
@@ -127,9 +129,9 @@ function getMessages() {
         url: contextPath + "/message/getMessages",
         dataType: "json",
         success: function (result) {
-            if(result.code == 000){
+            if (result.code == 000) {
                 vm_message.messages = result.value;
-            }else{
+            } else {
                 showAlert("获取站内信异常!")
             }
         }

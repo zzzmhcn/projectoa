@@ -2,14 +2,17 @@ var vm_common = new Vue({
     el: '#messageLi',
     data: {
         messageList: [],
+        noticeList: [],
     },
     methods: {
-        getUnReadMessages:getUnReadMessages
+
+
     },
     created: getInit()
 })
 function getInit() {
     getUnReadMessages();
+    getUnReadNotices();
 }
 //护眼模式
 function  changeTheme() {
@@ -166,6 +169,19 @@ function getUnReadMessages() {
         success: function (result) {
             if(result.code == 000){
                 vm_common.messageList = result.value;
+            }
+        }
+    });
+}
+
+function getUnReadNotices() {
+    $.ajax({
+        type: "POST",
+        url: contextPath + "/notice/getUnReadNotices",
+        dataType: "json",
+        success: function (result) {
+            if(result.code == 000){
+                vm_common.noticeList = result.value;
             }
         }
     });

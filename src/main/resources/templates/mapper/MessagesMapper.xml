@@ -135,11 +135,7 @@
 
     <select id="selectByreceiveID"  parameterType="java.lang.Integer" resultType="java.util.Map">
         SELECT
-            messages.id,
-            messages.title,
-            messages.create_time,
-            messages.message,
-            users.realname
+            *
         FROM
             messages
         INNER JOIN users ON messages.send_id = users.id

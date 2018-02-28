@@ -5,6 +5,7 @@ import com.zmh.projectoa.model.Messages;
 import com.zmh.projectoa.service.MessageService;
 import com.zmh.projectoa.service.RedisService;
 import com.zmh.projectoa.service.UsersService;
+import com.zmh.projectoa.util.JSONUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -95,7 +96,7 @@ public class MessageController {
         String unReadMessageIDs = redisService.getValue("message_" + id);
         //取出来是空直接跳过 标准格式是10,22,44 代表未读messageID
         if (!Objects.isNull(unReadMessageIDs) && !"null".equals(unReadMessageIDs) && unReadMessageIDs.length() > 0) {
-            List<Integer> list = String2List(unReadMessageIDs);
+            List<Integer> list = JSONUtil.String2List(unReadMessageIDs);
             //返回一个list<map> map包括发件人姓名 和 message的 id titile
             List<Map<String, String>> selectByIDs = messageService.selectByIDs(list);
             return ReturnDto.buildSuccessReturnDto(selectByIDs);
@@ -115,39 +116,12 @@ public class MessageController {
         String unReadMessageIDs = redisService.getValue("message_" + userID);
         //取出来是空直接跳过 标准格式是10,22,44 代表未读messageID
         if (!Objects.isNull(unReadMessageIDs) && !"null".equals(unReadMessageIDs)) {
-            list = String2List(unReadMessageIDs);
+            list = JSONUtil.String2List(unReadMessageIDs);
         }
         list.remove(messageID);
-        unReadMessageIDs = List2String(list);
+        unReadMessageIDs = JSONUtil.List2String(list);
         redisService.setValue("message_" + userID, unReadMessageIDs);
         return ReturnDto.buildSuccessReturnDto();
-    }
-
-    /**
-     * 传入Redis里未读ID的String 返回List
-     */
-    public List<Integer> String2List(String string) {
-        List<Integer> list = new ArrayList<>();
-        if (string.length() > 0)
-            for (String temp : string.split(",")) {
-                if(temp!=null&&!"".equals(temp))
-                    list.add(Integer.parseInt(temp));
-            }
-        return list;
-    }
-
-    /**
-     * 传入Redis里未读ID的String 返回List
-     */
-    public String List2String(List<Integer> list) {
-        StringBuffer sb = new StringBuffer();
-        for (int i = 0; i < list.size(); i++) {
-            Integer integer = list.get(i);
-            sb.append(integer);
-            if (i != list.size() - 1)
-                sb.append(",");
-        }
-        return sb.toString();
     }
 
     /**
@@ -160,10 +134,20 @@ public class MessageController {
         return ReturnDto.buildSuccessReturnDto(messageService.selectByreceiveID(id));
     }
 
+    /**
+     * 返回某一条详细信息
+     * 新增判断这条信息是否属于这个人
+     */
     @RequestMapping(value = "/getMessageDtl")
     @ResponseBody
-    public ReturnDto checkMessage(@RequestParam("id") Integer id) {
-        return ReturnDto.buildSuccessReturnDto(messageService.selectByID(id));
+    public ReturnDto checkMessage(@RequestParam("id") Integer id, HttpServletRequest request) {
+        Integer userID = (Integer) request.getSession().getAttribute("userID");
+        Messages message = messageService.selectByID(id);
+        if(userID != null && message != null && !"".equals(userID)
+                && userID.intValue() == message.getReceiveId().intValue())
+            return ReturnDto.buildSuccessReturnDto(message);
+
+        return ReturnDto.buildFailedReturnDto("没有权限");
     }
 
     /**

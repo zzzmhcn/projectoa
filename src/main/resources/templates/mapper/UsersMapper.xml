@@ -347,4 +347,17 @@
     ORDER BY
         users.department_id
   </select>
+
+
+    <select id="queryAllUsers" resultMap="BaseResultMap">
+        SELECT
+            id,
+            realname
+        FROM
+            users
+        WHERE
+            is_del != 1
+    </select>
+
+
 </mapper>

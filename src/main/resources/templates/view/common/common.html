@@ -54,7 +54,7 @@
                         <a href="javascript:;" class="am-dropdown-toggle tpl-dropdown-toggle" data-am-dropdown-toggle>
                             <i class="am-icon-envelope"></i>
                             <!-- 智能显示消息个数 等于=则不显示 使用v-cloak可以避免加载中显示出花括号 -->
-                            <span class="am-badge am-badge-success am-round item-feed-badge" id="unReadNum"
+                            <span class="am-badge am-badge-success am-round item-feed-badge"
                                   v-if="messageList.length != 0" v-cloak>{{messageList.length}}</span>
                         </a>
                         <!-- 弹出列表 -->
@@ -69,9 +69,9 @@
                                 </a>
                             </li>
                             <li class="tpl-dropdown-menu-messages" v-else v-for="message in messageList">
-                                <a :href="'/projectoa/message/message_dtl/' + message.id" class="tpl-dropdown-menu-messages-item am-cf">
+                                <a href="javascript:;" class="tpl-dropdown-menu-messages-item am-cf">
                                     <div class="menu-messages-content">
-                                        <span class="am-text-truncate">{{message.realname}}&nbsp;&nbsp;:&nbsp;&nbsp;{{message.title}}</span>
+                                        <span class="am-text-truncate">{{message.realname}}&nbsp;:&nbsp;{{message.title}}</span>
                                         <span class="menu-messages-content-time" style="float:right">{{message.create_time}}</span>
                                     </div>
                                 </a>
@@ -89,7 +89,9 @@
                     <li class="am-dropdown" data-am-dropdown>
                         <a href="javascript:;" class="am-dropdown-toggle" data-am-dropdown-toggle>
                             <i class="am-icon-bell"></i>
-                            <span class="am-badge am-badge-warning am-round item-feed-badge">5</span>
+                            <span class="am-badge am-badge-warning am-round item-feed-badge">
+                                {{noticeList.length}}
+                            </span>
                         </a>
 
                         <!-- 弹出列表 -->

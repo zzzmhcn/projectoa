@@ -152,4 +152,8 @@ public class UsersService {
         List<Map<String,String>> list = usersMapper.queryAll(id);
         return ReturnDto.buildSuccessReturnDto(list);
     }
+
+    public List<Users> getAllUsers(){
+        return usersMapper.queryAllUsers();
+    }
 }
