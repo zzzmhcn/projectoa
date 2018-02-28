@@ -7,7 +7,7 @@
 
 <div class="centerView" data-type="widgets" th:fragment="content">
     <!-- 内容区域 -->
-    <div class="tpl-content-wrapper">
+    <div class="tpl-content-wrapper" id="messsage_dtl">
         <div class="row-content am-cf">
             <div class="row">
                 <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
@@ -15,10 +15,27 @@
                         <div class="row">
                             <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
                                 <div class="widget am-cf">
-                                    <div class="widget-head am-cf">
-                                        <div class="widget-title am-fl">站内信详情</div>
-                                    </div>
+                                    <div class="widget-body">
+                                        <div class="tpl-page-state">
+                                            <div class="tpl-page-state-title am-text-center">
+                                                <span id="message_dtl_title"></span>
+                                            </div>
+                                            <div class="tpl-page-state-content">
+                                                <p id="message_dtl_main"></p>
+                                            </div>
+                                            <div class="tpl-page-state-content">
+                                                <span style="float: right" id="sendUserName"></span>
+                                                <br/>
+                                                <span style="float: right" id="sendTime"></span>
+                                                <br>
+                                                <a type="button" style="width:100px;margin: 0 auto;display:block;"
+                                                   class="am-btn am-btn-primary tpl-btn-bg-color-success am-text-center"
+                                                   href="message/message"
+                                                >返回</a>
+                                            </div>
+                                        </div>
 
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -26,11 +43,12 @@
                 </div>
             </div>
         </div>
+        <script th:src="@{/js/message_dtl.js}"></script>
+        <script>
+            $(document).ready(function () {
+                $('#messageA').attr('class', 'active');
+                getMessageDtl();
+            });
+        </script>
     </div>
-    <script>
-        $(document).ready(function () {
-            $('#messageA').attr('class', 'active');
-        });
-    </script>
-</div>
 </html>

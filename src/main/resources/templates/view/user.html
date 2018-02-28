@@ -93,10 +93,10 @@
                                         <td v-else>未登录</td>
                                         <td>
                                             <div class="tpl-table-black-operation">
-                                                <a :href="'edit/' + user.id ">
+                                                <a :href="'/projectoa/user/edit/' + user.id ">
                                                     <i class="am-icon-pencil" ></i> 编辑
                                                 </a>
-                                                <a :href="'userinfo/' + user.id">
+                                                <a :href="'/projectoa/user/userinfo/' + user.id">
                                                     <i class="am-icon-file-text" ></i> 详情
                                                 </a>
                                                 <a class="tpl-table-black-operation-del" v-on:click="deleteUser" :id="'delete_' + user.id">

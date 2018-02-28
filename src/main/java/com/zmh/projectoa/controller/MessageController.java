@@ -7,7 +7,6 @@ import com.zmh.projectoa.service.RedisService;
 import com.zmh.projectoa.service.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -40,10 +39,11 @@ public class MessageController {
     public String message() {
         return "message";
     }
+
     /**
      * 站内信详情
      */
-    @RequestMapping(value = "/message_dtl")
+    @RequestMapping(value = "/message_dtl/{id}")
     public String message_dtl() {
         return "message_dtl";
     }
@@ -94,16 +94,60 @@ public class MessageController {
         //这里的思路是去redis取message_+'本人id'为key的value 里面包含所有未读messageID
         String unReadMessageIDs = redisService.getValue("message_" + id);
         //取出来是空直接跳过 标准格式是10,22,44 代表未读messageID
-        if (!Objects.isNull(unReadMessageIDs) && !"null".equals(unReadMessageIDs)) {
-            List<Integer> list = new ArrayList<>();
-            for (String messsageID:unReadMessageIDs.split(",")) {
-                list.add(Integer.parseInt(messsageID));
-            }
+        if (!Objects.isNull(unReadMessageIDs) && !"null".equals(unReadMessageIDs) && unReadMessageIDs.length() > 0) {
+            List<Integer> list = String2List(unReadMessageIDs);
             //返回一个list<map> map包括发件人姓名 和 message的 id titile
             List<Map<String, String>> selectByIDs = messageService.selectByIDs(list);
             return ReturnDto.buildSuccessReturnDto(selectByIDs);
         }
         return ReturnDto.buildFailedReturnDto("数据异常");
+    }
+
+    /**
+     * 设为已读
+     * 从redis中剔除这条
+     */
+    @RequestMapping(value = "/setIsRead")
+    @ResponseBody
+    public ReturnDto setIsRead(@RequestParam("id") Integer messageID, HttpServletRequest request) {
+        Integer userID = (Integer) request.getSession().getAttribute("userID");
+        List<Integer> list = new ArrayList<>();
+        String unReadMessageIDs = redisService.getValue("message_" + userID);
+        //取出来是空直接跳过 标准格式是10,22,44 代表未读messageID
+        if (!Objects.isNull(unReadMessageIDs) && !"null".equals(unReadMessageIDs)) {
+            list = String2List(unReadMessageIDs);
+        }
+        list.remove(messageID);
+        unReadMessageIDs = List2String(list);
+        redisService.setValue("message_" + userID, unReadMessageIDs);
+        return ReturnDto.buildSuccessReturnDto();
+    }
+
+    /**
+     * 传入Redis里未读ID的String 返回List
+     */
+    public List<Integer> String2List(String string) {
+        List<Integer> list = new ArrayList<>();
+        if (string.length() > 0)
+            for (String temp : string.split(",")) {
+                if(temp!=null&&!"".equals(temp))
+                    list.add(Integer.parseInt(temp));
+            }
+        return list;
+    }
+
+    /**
+     * 传入Redis里未读ID的String 返回List
+     */
+    public String List2String(List<Integer> list) {
+        StringBuffer sb = new StringBuffer();
+        for (int i = 0; i < list.size(); i++) {
+            Integer integer = list.get(i);
+            sb.append(integer);
+            if (i != list.size() - 1)
+                sb.append(",");
+        }
+        return sb.toString();
     }
 
     /**
@@ -116,9 +160,18 @@ public class MessageController {
         return ReturnDto.buildSuccessReturnDto(messageService.selectByreceiveID(id));
     }
 
-    @RequestMapping(value = "/message/{id}")
+    @RequestMapping(value = "/getMessageDtl")
     @ResponseBody
-    public ReturnDto checkMessage(@PathVariable(name="id") Integer id){
+    public ReturnDto checkMessage(@RequestParam("id") Integer id) {
         return ReturnDto.buildSuccessReturnDto(messageService.selectByID(id));
+    }
+
+    /**
+     * 传入ID 返回发件人
+     */
+    @RequestMapping(value = "/getSendUserName")
+    @ResponseBody
+    public ReturnDto getSendUserName(@RequestParam("id") Integer id) {
+        return ReturnDto.buildSuccessReturnDto(usersService.detailUser(id).getRealname());
     }
 }

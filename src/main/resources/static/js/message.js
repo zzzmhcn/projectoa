@@ -59,10 +59,10 @@ function initReceives() {
     //需要把数据按照一定规律装载进select
     var tempdepartment = "";
     var code = "";
-    for (var i = 0; i < vm.userList.length; i++) {
-        var id = vm.userList[i].id;
-        var realname = vm.userList[i].realname;
-        var department = vm.userList[i].department;
+    for (var i = 0; i < vm_message.userList.length; i++) {
+        var id = vm_message.userList[i].id;
+        var realname = vm_message.userList[i].realname;
+        var department = vm_message.userList[i].department;
         //如果tempdepartment == "" 说明第一次执行 不用判断直接给department
         if (tempdepartment == "") {
             tempdepartment = department;
@@ -74,7 +74,7 @@ function initReceives() {
         }
         //动态装载用户
         code += '<option value=' + id + '>' + realname + '</option>';
-        if (i == vm.userList.length - 1) {
+        if (i == vm_message.userList.length - 1) {
             code += '</optgroup>';
         }
     }

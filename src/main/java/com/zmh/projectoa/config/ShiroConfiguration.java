@@ -108,8 +108,7 @@ public class ShiroConfiguration {
         filterChainMap.put("/assets/**", "anon");
         filterChainMap.put("/js/**", "anon");
         filterChainMap.put("/prism/**", "anon");
-        filterChainMap.put("/health/**", "anon");
-        filterChainMap.put("/api/**", "anon");
+
         //权限分配
         filterChainMap.put("/admin/**", "authc,roles[admin]");
         filterChainMap.put("/user/**", "authc,roles[user]");
