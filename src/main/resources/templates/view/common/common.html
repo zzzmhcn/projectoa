@@ -28,7 +28,7 @@
 <script th:src="@{/assets/js/theme.js}"></script>
 <div class="am-g tpl-g">
     <!-- 头部 -->
-    <header>
+    <header id="header">
         <!-- logo -->
         <div class="am-fl tpl-header-logo">
             <a href="javascript:;"><img th:src="@{/assets/img/logo.png}" alt=""></a>
@@ -53,7 +53,7 @@
                     <li class="am-dropdown tpl-dropdown" data-am-dropdown id="messageLi">
                         <a href="javascript:;" class="am-dropdown-toggle tpl-dropdown-toggle" data-am-dropdown-toggle>
                             <i class="am-icon-envelope"></i>
-                            <!-- 智能显示消息个数 等于=则不显示 使用v-cloak可以避免加载中显示出花括号 -->
+                            <!-- 智能显示消息个数 等于=0则不显示 使用v-cloak可以避免加载中显示出花括号 -->
                             <span class="am-badge am-badge-success am-round item-feed-badge"
                                   v-if="messageList.length != 0" v-cloak>{{messageList.length}}</span>
                         </a>
@@ -69,7 +69,7 @@
                                 </a>
                             </li>
                             <li class="tpl-dropdown-menu-messages" v-else v-for="message in messageList">
-                                <a href="javascript:;" class="tpl-dropdown-menu-messages-item am-cf">
+                                <a :href="'/projectoa/message/message_dtl/'+message.id" class="tpl-dropdown-menu-messages-item am-cf">
                                     <div class="menu-messages-content">
                                         <span class="am-text-truncate">{{message.realname}}&nbsp;:&nbsp;{{message.title}}</span>
                                         <span class="menu-messages-content-time" style="float:right">{{message.create_time}}</span>
@@ -89,47 +89,31 @@
                     <li class="am-dropdown" data-am-dropdown>
                         <a href="javascript:;" class="am-dropdown-toggle" data-am-dropdown-toggle>
                             <i class="am-icon-bell"></i>
-                            <span class="am-badge am-badge-warning am-round item-feed-badge">
+                            <span class="am-badge am-badge-warning am-round item-feed-badge"
+                                  v-if="noticeList.length != 0" v-cloak>
                                 {{noticeList.length}}
                             </span>
                         </a>
 
                         <!-- 弹出列表 -->
-                        <ul class="am-dropdown-content tpl-dropdown-content">
-                            <li class="tpl-dropdown-menu-notifications">
-                                <a href="javascript:;" class="tpl-dropdown-menu-notifications-item am-cf">
-                                    <div class="tpl-dropdown-menu-notifications-title">
-                                        <i class="am-icon-line-chart"></i>
-                                        <span> 有6笔新的销售订单</span>
-                                    </div>
-                                    <div class="tpl-dropdown-menu-notifications-time">
-                                        12分钟前
+                        <ul class="am-dropdown-content tpl-dropdown-content" style="width: 400px">
+                            <li class="tpl-dropdown-menu-messages" v-if="noticeList.length == 0">
+                                <a href="javascript:;" class="tpl-dropdown-menu-messages-item am-cf">
+                                    <div class="menu-messages-content">
+                                        <div class="am-text-truncate">
+                                            <span>暂无新消息</span>
+                                        </div>
                                     </div>
                                 </a>
                             </li>
-                            <li class="tpl-dropdown-menu-notifications">
-                                <a href="javascript:;" class="tpl-dropdown-menu-notifications-item am-cf">
-                                    <div class="tpl-dropdown-menu-notifications-title">
-                                        <i class="am-icon-star"></i>
-                                        <span> 有3个来自人事部的消息</span>
-                                    </div>
-                                    <div class="tpl-dropdown-menu-notifications-time">
-                                        30分钟前
+                            <li class="tpl-dropdown-menu-messages" v-else v-for="notice in noticeList">
+                                <a :href="'/projectoa/notice/notice_dtl/'+notice.id" class="tpl-dropdown-menu-messages-item am-cf">
+                                    <div class="menu-messages-content">
+                                        <span class="am-text-truncate">{{notice.realname}}&nbsp;:&nbsp;{{notice.title}}</span>
+                                        <span class="menu-messages-content-time" style="float:right">{{notice.create_time}}</span>
                                     </div>
                                 </a>
                             </li>
-                            <li class="tpl-dropdown-menu-notifications">
-                                <a href="javascript:;" class="tpl-dropdown-menu-notifications-item am-cf">
-                                    <div class="tpl-dropdown-menu-notifications-title">
-                                        <i class="am-icon-folder-o"></i>
-                                        <span> 上午开会记录存档</span>
-                                    </div>
-                                    <div class="tpl-dropdown-menu-notifications-time">
-                                        1天前
-                                    </div>
-                                </a>
-                            </li>
-
 
                             <li class="tpl-dropdown-menu-notifications">
                                 <a href="notice/notice" class="tpl-dropdown-menu-notifications-item am-cf">

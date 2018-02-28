@@ -38,7 +38,7 @@ public interface NoticesMapper {
 
     int updateByPrimaryKey(Notices record);
 
-    List<Notices> selectAllNotice();
+    List<Map<String,String>> selectAllNotice();
 
     List<Map<String,String>> selectByIDs(List<Integer> IDs);
 }

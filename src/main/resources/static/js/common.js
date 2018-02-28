@@ -1,5 +1,5 @@
 var vm_common = new Vue({
-    el: '#messageLi',
+    el: '#header',
     data: {
         messageList: [],
         noticeList: [],

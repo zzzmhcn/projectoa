@@ -34,7 +34,7 @@ public class NoticeService {
      * 获取本人所有公告
      * 这个功能不分人 大家都收到一样
      */
-    public List<Notices> getAllNotices(){
+    public List<Map<String,String>> getAllNotices(){
         return noticesMapper.selectAllNotice();
     }
 

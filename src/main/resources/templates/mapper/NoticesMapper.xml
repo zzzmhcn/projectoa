@@ -296,11 +296,13 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
 
-    <select id="selectAllNotice" resultMap="BaseResultMap">
+    <select id="selectAllNotice" resultType="java.util.Map">
     SELECT
-        *
+        notices.*,
+        users.realname
     FROM
         notices
+    INNER JOIN users ON notices.send_id = users.id
     ORDER BY
         notices.create_time DESC
   </select>

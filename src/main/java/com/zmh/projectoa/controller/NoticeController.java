@@ -50,6 +50,14 @@ public class NoticeController {
     }
 
     /**
+     * 公告详情
+     */
+    @RequestMapping(value = "/notice_dtl/{id}")
+    public String message_dtl() {
+        return "notice_dtl";
+    }
+
+    /**
      * 发送站内信
      * 这里接收到站内信后
      * 存数据库
@@ -94,4 +102,14 @@ public class NoticeController {
         }
         return ReturnDto.buildFailedReturnDto("数据异常");
     }
+
+    /**
+     * 本人所有接收到的信
+     */
+    @RequestMapping(value = "/getNotices")
+    @ResponseBody
+    public ReturnDto getMessages(HttpServletRequest request) {
+        return ReturnDto.buildSuccessReturnDto(noticeService.getAllNotices());
+    }
+
 }

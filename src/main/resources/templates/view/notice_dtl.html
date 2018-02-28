@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="common/common">
+
+<div class="centerView" data-type="widgets" th:fragment="content">
+    <!-- 内容区域 -->
+    <div class="tpl-content-wrapper" id="notice_dtl">
+        <div class="row-content am-cf">
+            <div class="row">
+                <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+                    <div class="widget am-cf">
+                        <div class="row">
+                            <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+                                <div class="widget am-cf">
+                                    <div class="widget-body">
+                                        <div class="tpl-page-state">
+                                            <div class="tpl-page-state-title am-text-center">
+                                                <span id="notice_dtl_title"></span>
+                                            </div>
+                                            <div class="tpl-page-state-content">
+                                                <p id="notice_dtl_main"></p>
+                                            </div>
+                                            <div class="tpl-page-state-content">
+                                                <span style="float: right" id="sendUserName"></span>
+                                                <br/>
+                                                <span style="float: right" id="sendTime"></span>
+                                                <br>
+                                                <a type="button" style="width:100px;margin: 0 auto;display:block;"
+                                                   class="am-btn am-btn-primary tpl-btn-bg-color-success am-text-center"
+                                                   href="notice/notice"
+                                                >返回</a>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script th:src="@{/js/notice_dtl.js}"></script>
+        <script>
+            $(document).ready(function () {
+                $('#noticeA').attr('class', 'active');
+                //getMessageDtl();
+            });
+        </script>
+    </div>
+</html>
