@@ -47,8 +47,8 @@ public class MyShiroRealm extends AuthorizingRealm {
             throw new UnknownAccountException("用户不存在");
         }
         //5.根据用户信息的情况，决定是否需要抛出其他的AuthenticationException异常
-        if (!"0".equals(user.getIsDel())){
-            throw new LockedAccountException("用户被锁定");
+        if ("1".equals(user.getIsDel())){
+            throw new LockedAccountException("用户状态异常");
         }
         //6.根据用户的情况， 来构建AuthenticationInfo对象并返回， 通常使用的实现类为：SimpleAuthenticationInfo
         //以下信息是从数据库中获取的

@@ -44,4 +44,8 @@ public class NoticeService {
     public List<Map<String,String>> selectByIDs(List<Integer> IDs){
         return noticesMapper.selectByIDs(IDs);
     }
+
+    public Notices selectByID(Integer id){
+        return noticesMapper.selectByPrimaryKey(id);
+    }
 }

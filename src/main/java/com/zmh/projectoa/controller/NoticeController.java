@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -96,7 +97,7 @@ public class NoticeController {
         //取出来是空直接跳过 标准格式是10,22,44 代表未读messageID
         List<Integer> list = JSONUtil.String2List(unReadNotices);
         //返回一个list<map> map包括发件人姓名 和 notice id titile
-        if(list != null && list.size() > 0){
+        if (list != null && list.size() > 0) {
             List<Map<String, String>> selectByIDs = noticeService.selectByIDs(list);
             return ReturnDto.buildSuccessReturnDto(selectByIDs);
         }
@@ -108,8 +109,39 @@ public class NoticeController {
      */
     @RequestMapping(value = "/getNotices")
     @ResponseBody
-    public ReturnDto getMessages(HttpServletRequest request) {
+    public ReturnDto getNotices(HttpServletRequest request) {
         return ReturnDto.buildSuccessReturnDto(noticeService.getAllNotices());
+    }
+
+    /**
+     * 返回某一条详细信息
+     */
+    @RequestMapping(value = "/getNoticeDtl")
+    @ResponseBody
+    public ReturnDto checkMessage(@RequestParam("id") Integer id) {
+        Notices notices = noticeService.selectByID(id);
+        return ReturnDto.buildSuccessReturnDto(notices);
+    }
+
+
+    /**
+     * 设为已读
+     * 从redis中剔除这条
+     */
+    @RequestMapping(value = "/setIsRead")
+    @ResponseBody
+    public ReturnDto setIsRead(@RequestParam("id") Integer noticeID, HttpServletRequest request) {
+        Integer userID = (Integer) request.getSession().getAttribute("userID");
+        List<Integer> list = new ArrayList<>();
+        String unReadNoticeIDs = redisService.getValue("notice_" + userID);
+        //取出来是空直接跳过 标准格式是10,22,44 代表未读messageID
+        if (!Objects.isNull(unReadNoticeIDs) && !"null".equals(unReadNoticeIDs)) {
+            list = JSONUtil.String2List(unReadNoticeIDs);
+        }
+        list.remove(noticeID);
+        unReadNoticeIDs = JSONUtil.List2String(list);
+        redisService.setValue("notice_" + userID, unReadNoticeIDs);
+        return ReturnDto.buildSuccessReturnDto();
     }
 
 }
