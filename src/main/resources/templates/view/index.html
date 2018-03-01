@@ -128,10 +128,12 @@
                     <div class="widget-body  am-fr">
                         <div class="am-scrollable-horizontal ">
                             <div class="widget-head am-cf">
-                                <div class="widget-title am-fl">公告板</div>
+                                <div class="widget-title am-fl">站内信</div>
                             </div>
                             <div class="widget-body widget-body-md am-fr">
-                                <p>公告的具体内容显示在这里 只显示本人最新的那一条</p>
+                                <p id="messageP">暂无最新信息</p>
+                                <span id="MessageRealnameS" style="float: right"></span><br/>
+                                <span id="MessageSendTimeS" style="float: right"></span>
                             </div>
                         </div>
                     </div>
@@ -143,10 +145,13 @@
                     <div class="widget-body  am-fr">
                         <div class="am-scrollable-horizontal ">
                             <div class="widget-head am-cf">
-                                <div class="widget-title am-fl">站内信</div>
+                                <div class="widget-title am-fl">公告板</div>
                             </div>
                             <div class="widget-body widget-body-md am-fr">
-                                <p>站内信的具体内容显示在这里 只显示本人最新的那一条</p>
+                                <p id="noticeP">暂无最新信息</p>
+                                <span id="NoticeRealnameS" style="float: right"></span><br/>
+                                <span id="NoticeSendTimeS" style="float: right"></span>
+
                             </div>
                         </div>
                     </div>
@@ -164,6 +169,9 @@
             clockFace: 'TwentyFourHourClock'
         });
         $("#today").text(getCurrentDateTime() + " 农历 " + showCal());
+
+        getLastMessage();
+        getLastNotice();
     });
 </script>
 </div>

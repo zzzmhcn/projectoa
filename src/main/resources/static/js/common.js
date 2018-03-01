@@ -4,18 +4,17 @@ var vm_common = new Vue({
         messageList: [],
         noticeList: [],
     },
-    methods: {
-
-
-    },
+    methods: {},
     created: getInit()
 })
+
 function getInit() {
     getUnReadMessages();
     getUnReadNotices();
 }
+
 //护眼模式
-function  changeTheme() {
+function changeTheme() {
     //这里toggleClass的意思是如果 有就删掉 没有就加上
     //按钮切换
     $('#eyesI').toggleClass('am-icon-toggle-off');
@@ -27,11 +26,13 @@ function  changeTheme() {
     saveSelectColor.Color = $('body').attr('class');
     storageSave(saveSelectColor);
 }
+
 //退出登录
 function exit() {
     sessionStorage.clear();
-    window.location.href = contextPath+'/logout';
+    window.location.href = contextPath + '/logout';
 }
+
 //左边栏的隐藏和出现
 function leftSidebar() {
     if ($('.left-sidebar').attr('class').indexOf('active') > 0
@@ -45,14 +46,13 @@ function leftSidebar() {
 }
 
 
-
 /**
  * 只传一个参数 ，标题不传就用默认标题，需要自定义标题就传入2个参数
  * @param text  内容
  * @param title 标题
  */
-function showAlert(text,title) {
-    if(title == null || title == '' || title == undefined){
+function showAlert(text, title) {
+    if (title == null || title == '' || title == undefined) {
         title = '系统提示';
     }
     $("#alertTitle").html(title);
@@ -70,7 +70,7 @@ function showAlert(text,title) {
  * @return 直接返回div的对象，可以连着点modal启用
  *
  * 栗子
-showConfirm('测试','你好','算了','滚蛋').modal({
+ showConfirm('测试','你好','算了','滚蛋').modal({
      onConfirm: function() {
          //干点啥
      },
@@ -79,14 +79,14 @@ showConfirm('测试','你好','算了','滚蛋').modal({
     }
 });
  */
-function  showConfirm(text,title,cancel,ok) {
-    if(title == null || title == '' || title == undefined){
+function showConfirm(text, title, cancel, ok) {
+    if (title == null || title == '' || title == undefined) {
         title = '系统提示';
     }
-    if(cancel == null || cancel == '' || cancel == undefined){
+    if (cancel == null || cancel == '' || cancel == undefined) {
         cancel = '取消';
     }
-    if(ok == null || ok == '' || ok == undefined){
+    if (ok == null || ok == '' || ok == undefined) {
         ok = '确定';
     }
     $("#confirmTitle").html(title);
@@ -106,14 +106,14 @@ function  showConfirm(text,title,cancel,ok) {
       }
     });
  */
-function  showPrompt(text,title,cancel,ok) {
-    if(title == null || title == '' || title == undefined){
+function showPrompt(text, title, cancel, ok) {
+    if (title == null || title == '' || title == undefined) {
         title = '系统提示';
     }
-    if(cancel == null || cancel == '' || cancel == undefined){
+    if (cancel == null || cancel == '' || cancel == undefined) {
         cancel = '取消';
     }
-    if(ok == null || ok == '' || ok == undefined){
+    if (ok == null || ok == '' || ok == undefined) {
         ok = '确定';
     }
     $("#promptTitle").html(title);
@@ -131,27 +131,29 @@ function changePassWord() {
     var newpassword = $('#newpassword').val();
     var repeatpassword = $('#repeatpassword').val();
     var uPattern = /^[a-zA-Z0-9_-]{6,20}$/;
-    if (!uPattern.test(newpassword)){
-        showAlert('密码必须是数字或者字母,长度为6-20字符之间,请重新输入','您输入的密码不正确');
-    }else if(oldpassword == newpassword){
-        showAlert('新密码不能和旧密码相同','您输入的密码不正确');
+    if (!uPattern.test(newpassword)) {
+        showAlert('密码必须是数字或者字母,长度为6-20字符之间,请重新输入', '您输入的密码不正确');
+    } else if (oldpassword == newpassword) {
+        showAlert('新密码不能和旧密码相同', '您输入的密码不正确');
 
-    }else if(newpassword != repeatpassword){
-        showAlert('新密码两次输入不一致，请重新输入','您输入的密码不正确');
-    }else{
+    } else if (newpassword != repeatpassword) {
+        showAlert('新密码两次输入不一致，请重新输入', '您输入的密码不正确');
+    } else {
         //基本验证通过 进入后台验证
         $.ajax({
             type: "POST",
-            url:contextPath+'/userinfo/setNewPassWord',
-            data: {'oldpassword':oldpassword,
-                'newpassword':newpassword,
-                'repeatpassword':repeatpassword},
+            url: contextPath + '/userinfo/setNewPassWord',
+            data: {
+                'oldpassword': oldpassword,
+                'newpassword': newpassword,
+                'repeatpassword': repeatpassword
+            },
             dataType: "json",
-            success: function(result){
-                if(result.code == '101'){
+            success: function (result) {
+                if (result.code == '101') {
                     showAlert('发生了异常 : ' + result.message);
-                }else if(result.code == '000'){
-                    showAlert('修改密码成功','成功')
+                } else if (result.code == '000') {
+                    showAlert('修改密码成功', '成功')
                 }
             }
         });
@@ -167,7 +169,7 @@ function getUnReadMessages() {
         url: contextPath + "/message/getUnReadMessages",
         dataType: "json",
         success: function (result) {
-            if(result.code == 000){
+            if (result.code == 000) {
                 vm_common.messageList = result.value;
             }
         }
@@ -180,9 +182,22 @@ function getUnReadNotices() {
         url: contextPath + "/notice/getUnReadNotices",
         dataType: "json",
         success: function (result) {
-            if(result.code == 000){
+            if (result.code == 000) {
                 vm_common.noticeList = result.value;
             }
         }
     });
+}
+
+/**
+ * 由于改后台的未读信息数据 前台要等刷新才能看出效果
+ * 这里做一个假的读过就简一的效果
+ */
+function changenums(spanID) {
+    var num = $('#' + spanID).text();
+    if (num - 1 == 0) {
+        $('#' + spanID).text('')
+    } else {
+        $('#' + spanID).text(num - 1)
+    }
 }

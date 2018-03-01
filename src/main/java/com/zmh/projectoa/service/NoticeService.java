@@ -48,4 +48,8 @@ public class NoticeService {
     public Notices selectByID(Integer id){
         return noticesMapper.selectByPrimaryKey(id);
     }
+
+    public List<Map<String,String>> getLastNotice(){
+        return noticesMapper.selectLastOneByReceiveID();
+    }
 }

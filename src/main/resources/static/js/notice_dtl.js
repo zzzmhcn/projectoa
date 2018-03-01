@@ -34,7 +34,9 @@ function setIsRead(noticeID) {
         data: {id:noticeID},
         dataType: "json",
         success: function (result) {
-            //暂不需要成功后执行
+            if(result.code == 000){
+                changenums('noticeUnReadNum');
+            }
         }
     });
 }

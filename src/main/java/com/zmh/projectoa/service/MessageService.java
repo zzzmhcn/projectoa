@@ -38,4 +38,8 @@ public class MessageService {
     public Messages selectByID(Integer id){
         return messagesMapper.selectByPrimaryKey(id);
     }
+
+    public List<Map<String,String>> getLastMessage(Integer receiveID){
+        return messagesMapper.selectLastOneByReceiveID(receiveID);
+    }
 }

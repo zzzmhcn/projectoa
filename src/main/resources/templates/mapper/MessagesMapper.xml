@@ -115,6 +115,27 @@
       </if>
     </if>
   </select>
+    <select id="selectLastOneByReceiveID" resultType="java.util.Map" parameterType="Integer">
+        SELECT
+            messages.id,
+            messages.title,
+            messages.message,
+            messages.create_time,
+            users.realname
+        FROM
+            messages
+        INNER JOIN users ON users.id = messages.send_id
+        WHERE
+            messages.id = (
+                SELECT
+                    max(messages.id)
+                FROM
+                    messages
+                WHERE
+                    receive_id = #{ID}
+            )
+    </select>
+
   <select id="selectByIDs" resultType="java.util.Map">
       SELECT
           messages.id,

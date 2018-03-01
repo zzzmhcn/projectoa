@@ -158,3 +158,39 @@ function GetLunarDay(solarYear,solarMonth,solarDay){
         return GetcDateString();
     }
 }
+
+/**
+ * 获取最新站内信
+ */
+function getLastMessage() {
+    $.ajax({
+        type: "POST",
+        url: contextPath + "/message/getLastMessage",
+        dataType: "json",
+        success: function (result) {
+            if(result.code == 000){
+                $('#messageP').text(result.value[0].message);
+                $('#MessageRealnameS').text(result.value[0].realname);
+                $('#MessageSendTimeS').text(result.value[0].create_time);
+            }
+        }
+    });
+}
+
+/**
+ * 获取最新公告
+ */
+function getLastNotice() {
+    $.ajax({
+        type: "POST",
+        url: contextPath + "/notice/getLastNotice",
+        dataType: "json",
+        success: function (result) {
+            if(result.code == 000){
+                $('#noticeP').text(result.value[0].notice);
+                $('#NoticeRealnameS').text(result.value[0].realname);
+                $('#NoticeSendTimeS').text(result.value[0].create_time);
+            }
+        }
+    });
+}

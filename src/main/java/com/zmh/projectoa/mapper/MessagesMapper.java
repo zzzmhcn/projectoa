@@ -28,6 +28,8 @@ public interface MessagesMapper {
 
     List<Map<String,String>> selectByIDs(List<Integer> IDs);
 
+    List<Map<String,String>> selectLastOneByReceiveID(Integer receiveID);
+
     Messages selectByPrimaryKey(Integer id);
 
     int updateByExampleSelective(@Param("record") Messages record, @Param("example") MessagesExample example);

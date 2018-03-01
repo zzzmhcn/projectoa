@@ -296,6 +296,25 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
 
+    <select id="selectLastOneByReceiveID" resultType="java.util.Map">
+        SELECT
+            notices.id,
+            notices.title,
+            notices.notice,
+            notices.create_time,
+            users.realname
+        FROM
+            notices
+        INNER JOIN users ON users.id = notices.send_id
+        WHERE
+            notices.id = (
+                SELECT
+                    max(notices.id)
+                FROM
+                    notices
+            )
+    </select>
+
     <select id="selectAllNotice" resultType="java.util.Map">
     SELECT
         notices.*,

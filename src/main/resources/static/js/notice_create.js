@@ -24,6 +24,9 @@ function sendNotice() {
             success: function (result) {
                 if (result.code == 000) {
                     showAlert("发送成功!");
+                    setTimeout(function(){
+                        window.location.href="/projectoa/notice/notice"
+                    },2000);
                 } else {
                     showAlert("发送失败 " + result.message);
                 }

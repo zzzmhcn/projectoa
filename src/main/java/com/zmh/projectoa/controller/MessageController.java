@@ -118,10 +118,12 @@ public class MessageController {
         if (!Objects.isNull(unReadMessageIDs) && !"null".equals(unReadMessageIDs)) {
             list = JSONUtil.String2List(unReadMessageIDs);
         }
+        if(!list.contains(messageID))
+            return ReturnDto.buildFailedReturnDto("这条信息不存在");
         list.remove(messageID);
         unReadMessageIDs = JSONUtil.List2String(list);
         redisService.setValue("message_" + userID, unReadMessageIDs);
-        return ReturnDto.buildSuccessReturnDto();
+        return ReturnDto.buildSuccessReturnDto("success");
     }
 
     /**
@@ -157,5 +159,16 @@ public class MessageController {
     @ResponseBody
     public ReturnDto getSendUserName(@RequestParam("id") Integer id) {
         return ReturnDto.buildSuccessReturnDto(usersService.detailUser(id).getRealname());
+    }
+
+    /**
+     * 最后一条信息
+     */
+    @RequestMapping(value = "/getLastMessage")
+    @ResponseBody
+    public ReturnDto getLastMessage(HttpServletRequest request) {
+        Integer id = (Integer) request.getSession().getAttribute("userID");
+        System.out.println(messageService.getLastMessage(id));
+        return ReturnDto.buildSuccessReturnDto(messageService.getLastMessage(id));
     }
 }

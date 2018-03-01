@@ -138,10 +138,22 @@ public class NoticeController {
         if (!Objects.isNull(unReadNoticeIDs) && !"null".equals(unReadNoticeIDs)) {
             list = JSONUtil.String2List(unReadNoticeIDs);
         }
+        if(!list.contains(noticeID))
+            return ReturnDto.buildFailedReturnDto("这条信息不存在");
         list.remove(noticeID);
         unReadNoticeIDs = JSONUtil.List2String(list);
         redisService.setValue("notice_" + userID, unReadNoticeIDs);
-        return ReturnDto.buildSuccessReturnDto();
+        return ReturnDto.buildSuccessReturnDto("success");
+    }
+
+    /**
+     * 最后一条公告
+     */
+    @RequestMapping(value = "/getLastNotice")
+    @ResponseBody
+    public ReturnDto getLastMessage() {
+        System.out.println(noticeService.getLastNotice());
+        return ReturnDto.buildSuccessReturnDto(noticeService.getLastNotice());
     }
 
 }

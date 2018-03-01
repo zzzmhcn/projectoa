@@ -54,7 +54,7 @@
                         <a href="javascript:;" class="am-dropdown-toggle tpl-dropdown-toggle" data-am-dropdown-toggle>
                             <i class="am-icon-envelope"></i>
                             <!-- 智能显示消息个数 等于=0则不显示 使用v-cloak可以避免加载中显示出花括号 -->
-                            <span class="am-badge am-badge-success am-round item-feed-badge"
+                            <span class="am-badge am-badge-success am-round item-feed-badge" id="messageUnReadNum"
                                   v-if="messageList.length != 0" v-cloak>{{messageList.length}}</span>
                         </a>
                         <!-- 弹出列表 -->
@@ -90,9 +90,8 @@
                         <a href="javascript:;" class="am-dropdown-toggle" data-am-dropdown-toggle>
                             <i class="am-icon-bell"></i>
                             <span class="am-badge am-badge-warning am-round item-feed-badge"
-                                  v-if="noticeList.length != 0" v-cloak>
-                                {{noticeList.length}}
-                            </span>
+                                  v-if="noticeList.length != 0" v-cloak
+                                  id="noticeUnReadNum" >{{noticeList.length}}</span>
                         </a>
 
                         <!-- 弹出列表 -->

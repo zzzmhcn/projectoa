@@ -34,7 +34,11 @@ function setIsRead(messageID) {
         data: {id:messageID},
         dataType: "json",
         success: function (result) {
-            //暂不需要成功后执行
+            //后台成功后 前台做个假的-1效果 弥补刷新前页面数字还是老的问题
+            if(result.code == 000){
+                changenums('messageUnReadNum');
+            }
+
         }
     });
 }

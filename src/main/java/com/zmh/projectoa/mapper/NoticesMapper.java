@@ -24,6 +24,8 @@ public interface NoticesMapper {
 
     List<Notices> selectByExample(NoticesExample example);
 
+    List<Map<String,String>> selectLastOneByReceiveID();
+
     Notices selectByPrimaryKey(Integer id);
 
     int updateByExampleSelective(@Param("record") Notices record, @Param("example") NoticesExample example);
