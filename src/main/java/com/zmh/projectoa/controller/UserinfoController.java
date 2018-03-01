@@ -3,6 +3,7 @@ package com.zmh.projectoa.controller;
 import com.zmh.projectoa.dto.ReturnDto;
 import com.zmh.projectoa.model.Userinfo;
 import com.zmh.projectoa.model.Users;
+import com.zmh.projectoa.service.RedisService;
 import com.zmh.projectoa.service.UserinfoService;
 import com.zmh.projectoa.service.UsersService;
 import com.zmh.projectoa.util.MD5Util;
@@ -29,7 +30,12 @@ public class UserinfoController {
     UserinfoService userinfoService;
 
     @Autowired
-    UsersService usersService;    /**
+    UsersService usersService;
+
+    @Autowired
+    RedisService redisService;
+
+    /**
      * 个人
      */
     @RequestMapping(value = "/userinfo")
@@ -54,6 +60,8 @@ public class UserinfoController {
         //id应该再session中取，id为user表中id
         Integer id = (Integer) request.getSession().getAttribute("userID");
         userinfo.setUserId(id);
+        //头像保存到redis
+        redisService.setValue("headImage_"+id,String.valueOf(userinfo.getHeadImage()));
         int result = userinfoService.saveUserinfo(userinfo);
         if (result == 1) {
             return ReturnDto.buildSuccessReturnDto("保存成功");
@@ -111,5 +119,30 @@ public class UserinfoController {
         logger.error("未知的异常");
         //默认返回错误
         return ReturnDto.buildFailedReturnDto("error");
+    }
+
+    /**
+     * 根据 id 返回头像num
+     */
+    @RequestMapping(value = "/getHeadImageNumByID")
+    @ResponseBody
+    public ReturnDto getHeadImageNumByID(HttpServletRequest request){
+        Integer id = (Integer) request.getSession().getAttribute("userID");
+        String num = redisService.getValue("headImage_"+id);
+        Integer result = 1;//先给个默认值
+        try { result = Integer.parseInt(num); } catch (NumberFormatException e) {}
+        return ReturnDto.buildSuccessReturnDto(result);
+    }
+
+    /**
+     * 根据 id 返回头像num
+     */
+    @RequestMapping(value = "/getBestImageNum")
+    @ResponseBody
+    public ReturnDto getBestImageNum(HttpServletRequest request){
+        String num = redisService.getValue("headImage_"+redisService.getValue("best"));
+        Integer result = 1;//先给个默认值
+        try { result = Integer.parseInt(num); } catch (NumberFormatException e) {}
+        return ReturnDto.buildSuccessReturnDto(result);
     }
 }

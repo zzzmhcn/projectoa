@@ -4,6 +4,7 @@ import com.github.pagehelper.PageInfo;
 import com.zmh.projectoa.dto.ReturnDto;
 import com.zmh.projectoa.model.Userinfo;
 import com.zmh.projectoa.model.Users;
+import com.zmh.projectoa.service.RedisService;
 import com.zmh.projectoa.service.UserinfoService;
 import com.zmh.projectoa.service.UsersService;
 import org.apache.ibatis.annotations.Param;
@@ -32,6 +33,9 @@ public class UsersController {
 
     @Autowired
     UserinfoService userinfoService;
+
+    @Autowired
+    RedisService redisService;
 
     /**
      * 人员
@@ -169,6 +173,12 @@ public class UsersController {
         }
     }
 
+    @RequestMapping(value = "/setBest")
+    @ResponseBody
+    public ReturnDto setBest(@RequestParam("id")Integer id){
+        redisService.setValue("best",String.valueOf(id));
+        return  ReturnDto.buildSuccessReturnDto("重置成功");
+    }
     @RequestMapping(value = "/getUser")
     @ResponseBody
     public ReturnDto getUser(@RequestParam("userID")Integer id){

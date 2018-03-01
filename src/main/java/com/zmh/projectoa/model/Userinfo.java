@@ -35,6 +35,16 @@ public class Userinfo implements Serializable {
 
     private Date updateTime;
 
+    private Integer headImage;
+
+    public Integer getHeadImage() {
+        return headImage;
+    }
+
+    public void setHeadImage(Integer headImage) {
+        this.headImage = headImage;
+    }
+
     private static final long serialVersionUID = 1L;
 
     public Integer getId() {

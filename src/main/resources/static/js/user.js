@@ -11,6 +11,7 @@ var vm = new Vue({
         getUser : getUser,
         deleteUser : deleteUser,
         reverseUser : reverseUser,
+        setBest:setBest
     },
     created : getInit()
 
@@ -20,6 +21,29 @@ function getInit() {
     getDepartment();
     getPosition();
     getUser();
+}
+
+function setBest() {
+    var id=event.target.id.replace("best_", "");
+    $.ajax({
+        type: "POST",
+        url: contextPath + "/user/setBest",
+        data: {id:id},
+        dataType: "json",
+        success: function(result){
+            if (result.code == 000){
+                //成功
+                showAlert('设置成功');
+                setTimeout(function(){
+                    window.location.href="user"
+                },1000);
+
+            }else {
+                //失败
+                showAlert(result.message);
+            }
+        }
+    });
 }
 
 //查询职位

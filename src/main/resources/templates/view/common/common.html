@@ -145,8 +145,8 @@
         <!-- 用户信息 -->
         <div class="tpl-sidebar-user-panel">
             <div class="tpl-user-panel-slide-toggleable">
-                <div class="tpl-user-panel-profile-picture">
-                    <img th:src="@{/assets/img/02.jpg}" alt="">
+                <div class="tpl-user-panel-profile-picture" onclick="javascript:window.location.href='/projectoa/userinfo/userinfo'">
+                    <img alt="" id="headImageDIV">
                 </div>
                 <span class="user-panel-logged-in-text">
               <i class="am-icon-circle-o am-text-success tpl-user-panel-status-icon"></i>
@@ -245,6 +245,26 @@
             <div class="am-modal-footer">
                 <span id="promptCancel" class="am-modal-btn" data-am-modal-cancel></span>
                 <span id="promptOK" class="am-modal-btn" data-am-modal-confirm></span>
+            </div>
+        </div>
+    </div>
+    <!-- 选择图片 -->
+    <div class="am-modal am-modal-no-btn" tabindex="-1" id="changeImageModal">
+        <div class="am-modal-dialog">
+            <div class="am-modal-bd">
+                <table>
+                    <tr>
+                        <th style="padding: 3px" onclick="changeImage(1)"><img th:src="@{/assets/img/01.jpg}" style="width: 120px"></th>
+                        <th style="padding: 3px" onclick="changeImage(2)"><img th:src="@{/assets/img/02.jpg}" style="width: 120px"></th>
+                        <th style="padding: 3px" onclick="changeImage(3)"><img th:src="@{/assets/img/03.jpg}" style="width: 120px"></th>
+                    </tr>
+                    <tr>
+                        <th style="padding: 3px" onclick="changeImage(4)"><img th:src="@{/assets/img/04.jpg}" style="width: 120px"></th>
+                        <th style="padding: 3px" onclick="changeImage(5)"><img th:src="@{/assets/img/05.jpg}" style="width: 120px"></th>
+                        <th style="padding: 3px" onclick="changeImage(6)"><img th:src="@{/assets/img/06.jpg}" style="width: 120px"></th>
+                    </tr>
+                </table>
+                <input type="text" id="hidden" style="display: none">
             </div>
         </div>
     </div>

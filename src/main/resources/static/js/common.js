@@ -11,9 +11,13 @@ var vm_common = new Vue({
 function getInit() {
     getUnReadMessages();
     getUnReadNotices();
+    setHeadImage('headImageDIV');
+
 }
 
-//护眼模式
+/**
+ * 护眼模式
+ */
 function changeTheme() {
     //这里toggleClass的意思是如果 有就删掉 没有就加上
     //按钮切换
@@ -25,6 +29,16 @@ function changeTheme() {
     //保存到浏览器缓存 这个暂时不需要 先注着
     saveSelectColor.Color = $('body').attr('class');
     storageSave(saveSelectColor);
+}
+
+/**
+ * 更换头像
+ */
+function changeImage(num){
+    var path = contextPath + "/assets/img/0"+num+".jpg";
+    $('#headImage').attr('src',path);
+    $('#hidden').val(num);
+    $('#changeImageModal').modal('close');
 }
 
 //退出登录
@@ -200,4 +214,18 @@ function changenums(spanID) {
     } else {
         $('#' + spanID).text(num - 1)
     }
+}
+
+function setHeadImage(imgID) {
+    $.ajax({
+        type: "POST",
+        url: contextPath + "/userinfo/getHeadImageNumByID",
+        dataType: "json",
+        success: function (result) {
+            if(result.code == 000){
+                var path = contextPath+"/assets/img/0"+result.value+".jpg";
+                $('#'+imgID).attr("src",path);
+            }
+        }
+    });
 }

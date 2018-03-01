@@ -23,8 +23,9 @@
                         <form class="am-form tpl-form-line-form">
                             <div class="am-form-group">
                                 <label class="am-u-sm-3 am-form-label">头像</label>
-                                <div class="am-u-sm-6" data-am-modal="">
-                                    <img th:src="@{/assets/img/01.jpg}" style="width: 75px">
+                                <div class="am-u-sm-6" style="cursor:pointer"
+                                     data-am-modal="{target: '#changeImageModal', closeViaDimmer: 0, width: 400, height: 280}">
+                                    <img style="width: 75px" id="headImage">
                                     <small>点击此处更换</small>
                                 </div>
 
@@ -162,6 +163,7 @@
 <script>
     $(document).ready(function () {
         $('#userinfoA').attr('class', 'active');
+        setHeadImage('headImage');
     });
 </script>
 </div>

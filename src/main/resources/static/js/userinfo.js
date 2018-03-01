@@ -80,7 +80,7 @@ function getUserinfo() {
 function saveUserinfo() {
     var sex = $("input[name='sex']:checked").val();
     var birthday = $('#birthday').val() == '' ? undefined : $('#birthday').val();
-
+    var headImage = $('#hidden').val() == ''?1:$('#hidden').val();
     var age = $('#age').val();
     var identity_card = $('#idcard').val();
     var email = $('#email').val();
@@ -98,6 +98,7 @@ function saveUserinfo() {
     data.wechat = wechat;
     data.weibo = weibo;
     data.phone = phone;
+    data.headImage = headImage;
     $.ajax({
         type : "POST",
         url : contextPath + "/userinfo/saveUserinfo",
@@ -107,6 +108,9 @@ function saveUserinfo() {
             if (result.code == 000){
                 //成功
                 showAlert('保存成功');
+                setTimeout(function(){
+                    window.location.href="/projectoa/userinfo/userinfo"
+                },2000);
             }else {
                 //失败
                 showAlert(result.message);

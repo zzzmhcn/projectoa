@@ -194,3 +194,16 @@ function getLastNotice() {
         }
     });
 }
+
+function getBestImageNum() {
+    $.ajax({
+        type: "POST",
+        url: contextPath + "/userinfo/getBestImageNum",
+        dataType: "json",
+        success: function (result) {
+            if(result.code == 000){
+                setHeadImage('');
+            }
+        }
+    });
+}

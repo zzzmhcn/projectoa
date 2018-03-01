@@ -33,7 +33,7 @@
     <logger name="java.sql.PreparedStatement" level="DEBUG"/>
 
     <!-- 日志输出级别 默认WARN -->
-    <root level="TRACE">
+    <root level="WARN">
         <appender-ref ref="STDOUT" />
         <appender-ref ref="FILE" />
     </root>

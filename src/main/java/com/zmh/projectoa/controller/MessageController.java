@@ -168,7 +168,6 @@ public class MessageController {
     @ResponseBody
     public ReturnDto getLastMessage(HttpServletRequest request) {
         Integer id = (Integer) request.getSession().getAttribute("userID");
-        System.out.println(messageService.getLastMessage(id));
         return ReturnDto.buildSuccessReturnDto(messageService.getLastMessage(id));
     }
 }

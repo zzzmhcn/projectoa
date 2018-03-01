@@ -113,7 +113,7 @@
                     <div class="tpl-user-card-title">
                         月度最佳员工
                     </div>
-                    <img class="achievement-image" src="assets/img/04.jpg" alt="">
+                    <img class="achievement-image" src="" alt="" id="bestImg">
                     <div class="achievement-subheading">
                         CEO
                     </div>
@@ -170,6 +170,7 @@
         });
         $("#today").text(getCurrentDateTime() + " 农历 " + showCal());
 
+        getBestImageNum();
         getLastMessage();
         getLastNotice();
     });
