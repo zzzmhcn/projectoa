@@ -10,6 +10,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class IndexController {
     /**
+     * 登陆跳转
+     */
+    @RequestMapping(value = "/")
+    public String in(){
+        return "login";
+    }
+    /**
      * 主页
      */
     @RequestMapping(value = "/index")

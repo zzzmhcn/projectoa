@@ -152,7 +152,6 @@ public class NoticeController {
     @RequestMapping(value = "/getLastNotice")
     @ResponseBody
     public ReturnDto getLastMessage() {
-        System.out.println(noticeService.getLastNotice());
         return ReturnDto.buildSuccessReturnDto(noticeService.getLastNotice());
     }
 

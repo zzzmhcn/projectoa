@@ -98,17 +98,23 @@ public class ShiroConfiguration {
     private void loadShiroFilterChain(ShiroFilterFactoryBean factoryBean) {
         /**下面这些规则配置最好配置到配置文件中*/
         Map<String, String> filterChainMap = new LinkedHashMap<String, String>();
-        /** authc：该过滤器下的页面必须验证后才能访问，它是Shiro内置的一个拦截器  
+        Map<String, String> filterChainMapTemp = new LinkedHashMap<String, String>();
+        /** authc：该过滤器下的页面必须验证后才能访问，它是Shiro内置的一个拦截器
          * org.apache.shiro.web.filter.authc.FormAuthenticationFilter */
         // anon：它对应的过滤器里面是空的,什么都没做,可以理解为不拦截  
         //authc:所有url都必须认证通过才可以访问; anon:所有url都都可以匿名访问
+        //暂时没有好的办法解决shiro和sba冲突问题， 暂时使用新的shiro配置方案
+
         filterChainMap.put("/login", "anon");
         filterChainMap.put("/login/check", "anon");
         filterChainMap.put("/403", "anon");
         filterChainMap.put("/assets/**", "anon");
         filterChainMap.put("/js/**", "anon");
         filterChainMap.put("/prism/**", "anon");
-
+        //给SpringBootAdmin开启权限
+        filterChainMap.put("/monitor/**", "anon");
+        filterChainMap.put("/api/**", "anon");
+        filterChainMap.put("/health/**", "anon");
         //权限分配
         filterChainMap.put("/admin/**", "authc,roles[admin]");
         filterChainMap.put("/user/**", "authc,roles[user]");
@@ -121,7 +127,29 @@ public class ShiroConfiguration {
         filterChainMap.put("/logout", "logout");
 
         filterChainMap.put("/**", "authc");
-        factoryBean.setFilterChainDefinitionMap(filterChainMap);
+
+
+        /**
+         * 为了放行Spring Boot Admin
+         * 这里启用临时方案 PlanB
+         * 将shiro倒过来使用
+         * 所有使用到的页面都加密成需要登陆才能访问
+         * 其余所有一律采取不拦截
+         */
+        filterChainMapTemp.put("/notice/notice_create", "authc,perms[notice]");
+        filterChainMapTemp.put("/notice/notice_send", "authc,perms[notice]");
+        filterChainMapTemp.put("/js/**", "authc");
+        filterChainMapTemp.put("/index/**", "authc");
+        filterChainMapTemp.put("/user/**", "authc,roles[user]");
+        filterChainMapTemp.put("/userinfo/**", "authc");
+        filterChainMapTemp.put("/calendar/**", "authc");
+        filterChainMapTemp.put("/admin/**", "authc,roles[admin]");
+        filterChainMapTemp.put("/message/**", "authc");
+        filterChainMapTemp.put("/notice/**", "authc");
+        filterChainMapTemp.put("/logout", "logout");
+
+        filterChainMapTemp.put("/**","anon");
+        factoryBean.setFilterChainDefinitionMap(filterChainMapTemp);
     }  
   
     /*1.LifecycleBeanPostProcessor，这是个DestructionAwareBeanPostProcessor的子类，负责org.apache.shiro.util.Initializable类型bean的生命周期的，初始化和销毁。主要是AuthorizingRealm类的子类，以及EhCacheManager类。  
