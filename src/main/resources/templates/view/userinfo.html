@@ -22,6 +22,14 @@
 
                         <form class="am-form tpl-form-line-form">
                             <div class="am-form-group">
+                                <label class="am-u-sm-3 am-form-label">头像</label>
+                                <div class="am-u-sm-6" data-am-modal="">
+                                    <img th:src="@{/assets/img/01.jpg}" style="width: 75px">
+                                    <small>点击此处更换</small>
+                                </div>
+
+                            </div>
+                            <div class="am-form-group">
                                 <label for="username" class="am-u-sm-3 am-form-label">用户名</label>
                                 <div class="am-u-sm-6">
                                     <input type="text" class="tpl-form-input" id="username" v-bind:value="user.username" readonly="readonly">
