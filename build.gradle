@@ -45,7 +45,8 @@ dependencies {
     compile('de.codecentric:spring-boot-admin-server:1.5.7')
     compile('de.codecentric:spring-boot-admin-server-ui:1.5.7')
     compile('de.codecentric:spring-boot-admin-starter-client:1.5.7')
-	compile('com.github.pagehelper:pagehelper:5.1.2')
+	//pagehelper
+	compile group: 'com.github.pagehelper', name: 'pagehelper-spring-boot-starter', version: '1.2.3'
     //使用的是shiro-spring 而非shiro
     compile('org.apache.shiro:shiro-spring:1.4.0')
 	compile('com.github.theborakompanioni:thymeleaf-extras-shiro:1.2.1')

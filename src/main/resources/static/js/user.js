@@ -4,6 +4,8 @@ var vm = new Vue({
         departments : [],
         positions : [],
         userList : [],
+        pageInfo : {},
+        pageNum : 0
     },
     methods : {
         getPosition : getPosition,
@@ -20,7 +22,7 @@ var vm = new Vue({
 function getInit() {
     getDepartment();
     getPosition();
-    getUser();
+    getUser(1);
 }
 
 function setBest() {
@@ -73,7 +75,7 @@ function getDepartment() {
 }
 
 //查询员工
-function getUser() {
+function getUser(pageNum) {
 
     var departmentId = $('#department').val() == 0 ? null : $('#department').val();
     var positionId = $('#position').val() == 0 ? null : $('#position').val();
@@ -82,13 +84,25 @@ function getUser() {
     data.departmentId = departmentId;
     data.positionId = positionId;
     data.realname = realname;
+
+
     $.ajax({
         type : "POST",
         url : "/projectoa/user/userList",
-        data : data,
+        data : {
+            data : data,
+            pageNum : pageNum
+        },
         dataType : "json",
         success : function (result) {
             vm.userList = result.value.list;
+            vm.pageInfo.pageNum = result.value.pageNum;
+            vm.pageInfo.pages = result.value.pages;
+            vm.pageInfo.prePage = result.value.prePage;
+            vm.pageInfo.nextPage = result.value.nextPage;
+            vm.pageInfo.isFirstPage = result.value.isFirstPage;
+            vm.pageInfo.isLastPage = result.value.isLastPage;
+            vm.pageNum = result.value.pageNum;
         }
     })
 }

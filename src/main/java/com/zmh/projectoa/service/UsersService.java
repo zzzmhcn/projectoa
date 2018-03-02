@@ -74,10 +74,10 @@ public class UsersService {
      * @param userDto
      * @return
      */
-    public PageInfo userList(Users userDto){
+    public PageInfo userList(Users userDto, Integer pageNum){
         userDto.setIsDel("0");
 
-        PageHelper.startPage(1, 10);
+        PageHelper.startPage(pageNum, 10);
         List<Users> list = usersMapper.queryBySelective(userDto);
         PageInfo page = new PageInfo(list);
 
