@@ -120,14 +120,24 @@
 
                                 <div class="am-fr">
                                     <ul class="am-pagination tpl-pagination">
-                                        <li><a v-on:click="getUser(1)" v-if="!pageInfo.isFirstPage">首页</a></li>
-                                        <li><a v-on:click="getUser(pageInfo.prePage)" v-if="!pageInfo.isFirstPage">«</a></li>
+
+                                        <li><a v-on:click="getUser(1)" >首页</a></li>
+
+                                        <li >
+                                            <a v-on:click="getUser(pageInfo.prePage)" v-if="!pageInfo.isFirstPage">«</a>
+                                            <a v-else>«</a>
+                                        </li>
+
                                         <!--<li class="am-active"><a href="#">1</a></li>-->
                                         <li v-for="n in pageInfo.pages" v-if="pageNum != n"><a v-on:click="getUser(n)">{{n}}</a></li>
                                         <li class="am-active" v-else><a v-on:click="getUser(n)">{{n}}</a></li>
 
-                                        <li><a v-on:click="getUser(pageInfo.nextPage)" v-if="!pageInfo.isLastPage">»</a></li>
-                                        <li><a v-on:click="getUser(pageInfo.pages)" v-if="!pageInfo.isLastPage">尾页</a></li>
+                                        <li >
+                                            <a v-on:click="getUser(pageInfo.nextPage)" v-if="!pageInfo.isLastPage">»</a>
+                                            <a v-else>»</a>
+                                        </li>
+
+                                        <li><a v-on:click="getUser(pageInfo.pages)" >尾页</a></li>
                                     </ul>
                                 </div>
                             </div>

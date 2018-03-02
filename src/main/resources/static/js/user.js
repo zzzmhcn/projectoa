@@ -85,6 +85,9 @@ function getUser(pageNum) {
     data.positionId = positionId;
     data.realname = realname;
 
+    if (pageNum == 0){
+        pageNum = 1;
+    }
 
     $.ajax({
         type : "POST",
