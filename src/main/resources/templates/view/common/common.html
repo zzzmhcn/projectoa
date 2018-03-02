@@ -20,6 +20,9 @@
     <link rel="stylesheet" th:href="@{/assets/css/fullcalendar.print.css}" media='print'/>
     <link rel="stylesheet" th:href="@{/assets/css/app.css}">
     <link rel="stylesheet" th:href="@{/assets/css/flipclock.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/calculator.css}">
+    <script th:src="@{/assets/js/calculator.js}"></script>
+    <link rel="stylesheet" th:href="@{/assets/css/todomvc.css}">
     <script th:src="@{/assets/js/jquery.min.js}"></script>
     <script th:src="@{/assets/js/vue.js}"></script>
     <script>var contextPath = "/projectoa";</script>
@@ -31,7 +34,7 @@
     <header id="header">
         <!-- logo -->
         <div class="am-fl tpl-header-logo">
-            <a href="javascript:;"><img th:src="@{/assets/img/logo.png}" alt=""></a>
+            <a href="index"><img th:src="@{/assets/img/logo.png}" alt=""></a>
         </div>
         <!-- 右侧内容 -->
         <div class="tpl-header-fluid">
@@ -39,7 +42,8 @@
             <div class="am-fl tpl-header-switch-button am-icon-list" id="listSwitchButton">
             </div>
             <!-- 天气插件 http://tianqi.2345.com/plugin/setting.htm?style=classicBig2day -->
-            <iframe style="margin-top: 15px" allowtransparency="true" frameborder="0" width="200" height="55" scrolling="no"
+            <iframe style="margin-top: 15px" allowtransparency="true" frameborder="0" width="200" height="55"
+                    scrolling="no"
                     src="//tianqi.2345.com/plugin/widget/index.htm?s=3&z=1&t=1&v=0&d=1&bd=0&k=000000&f=0080c0&ltf=009944&htf=cc0000&q=1&e=0&a=1&c=58362&w=200&h=55&align=left"></iframe>
             <!-- 其它功能-->
             <div class="am-fr tpl-header-navbar">
@@ -69,7 +73,8 @@
                                 </a>
                             </li>
                             <li class="tpl-dropdown-menu-messages" v-else v-for="message in messageList">
-                                <a :href="'/projectoa/message/message_dtl/'+message.id" class="tpl-dropdown-menu-messages-item am-cf">
+                                <a :href="'/projectoa/message/message_dtl/'+message.id"
+                                   class="tpl-dropdown-menu-messages-item am-cf">
                                     <div class="menu-messages-content">
                                         <span class="am-text-truncate">{{message.realname}}&nbsp;:&nbsp;{{message.title}}</span>
                                         <span class="menu-messages-content-time" style="float:right">{{message.create_time}}</span>
@@ -91,7 +96,7 @@
                             <i class="am-icon-bell"></i>
                             <span class="am-badge am-badge-warning am-round item-feed-badge"
                                   v-if="noticeList.length != 0" v-cloak
-                                  id="noticeUnReadNum" >{{noticeList.length}}</span>
+                                  id="noticeUnReadNum">{{noticeList.length}}</span>
                         </a>
 
                         <!-- 弹出列表 -->
@@ -106,7 +111,8 @@
                                 </a>
                             </li>
                             <li class="tpl-dropdown-menu-messages" v-else v-for="notice in noticeList">
-                                <a :href="'/projectoa/notice/notice_dtl/'+notice.id" class="tpl-dropdown-menu-messages-item am-cf">
+                                <a :href="'/projectoa/notice/notice_dtl/'+notice.id"
+                                   class="tpl-dropdown-menu-messages-item am-cf">
                                     <div class="menu-messages-content">
                                         <span class="am-text-truncate">{{notice.realname}}&nbsp;:&nbsp;{{notice.title}}</span>
                                         <span class="menu-messages-content-time" style="float:right">{{notice.create_time}}</span>
@@ -145,7 +151,8 @@
         <!-- 用户信息 -->
         <div class="tpl-sidebar-user-panel">
             <div class="tpl-user-panel-slide-toggleable">
-                <div class="tpl-user-panel-profile-picture" onclick="javascript:window.location.href='/projectoa/userinfo/userinfo'">
+                <div class="tpl-user-panel-profile-picture"
+                     onclick="javascript:window.location.href='/projectoa/userinfo/userinfo'">
                     <img alt="" id="headImageDIV">
                 </div>
                 <span class="user-panel-logged-in-text">
@@ -165,11 +172,11 @@
                 </a>
             </li>
             <shiro:hasRole name="user">
-            <li class="sidebar-nav-link">
-                <a href="user/user" id="userA">
-                    <i class="am-icon-table sidebar-nav-link-logo"></i> 人员信息
-                </a>
-            </li>
+                <li class="sidebar-nav-link">
+                    <a href="user/user" id="userA">
+                        <i class="am-icon-table sidebar-nav-link-logo"></i> 人员信息
+                    </a>
+                </li>
             </shiro:hasRole>
             <li class="sidebar-nav-link">
                 <a href="userinfo/userinfo" id="userinfoA">
@@ -182,16 +189,16 @@
                 </a>
             </li>
             <shiro:hasRole name="admin">
-            <li class="sidebar-nav-link">
-                <a href="admin/springbootadmin" id="springbootadminA">
-                    <i class="am-icon-heartbeat sidebar-nav-link-logo"></i> 系统监控
-                </a>
-            </li>
-            <li class="sidebar-nav-link">
-                <a href="admin/logs" id="logs">
-                    <i class="am-icon-list-alt sidebar-nav-link-logo"></i> 系统日志
-                </a>
-            </li>
+                <li class="sidebar-nav-link">
+                    <a href="admin/springbootadmin" id="springbootadminA">
+                        <i class="am-icon-heartbeat sidebar-nav-link-logo"></i> 系统监控
+                    </a>
+                </li>
+                <li class="sidebar-nav-link">
+                    <a href="admin/logs" id="logs">
+                        <i class="am-icon-list-alt sidebar-nav-link-logo"></i> 系统日志
+                    </a>
+                </li>
             </shiro:hasRole>
             <li class="sidebar-nav-link">
                 <a href="message/message" id="messageA">
@@ -251,58 +258,189 @@
     <!-- 选择图片 -->
     <div class="am-modal am-modal-no-btn" tabindex="-1" id="changeImageModal">
         <div class="am-modal-dialog">
+            <div class="am-modal-hd">
+                <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
+            </div>
             <div class="am-modal-bd">
                 <table>
                     <tr>
-                        <th style="padding: 3px" onclick="changeImage(1)"><img th:src="@{/assets/img/01.jpg}" style="width: 120px"></th>
-                        <th style="padding: 3px" onclick="changeImage(2)"><img th:src="@{/assets/img/02.jpg}" style="width: 120px"></th>
-                        <th style="padding: 3px" onclick="changeImage(3)"><img th:src="@{/assets/img/03.jpg}" style="width: 120px"></th>
+                        <th style="padding: 3px" onclick="changeImage(1)"><img th:src="@{/assets/img/01.jpg}"
+                                                                               style="width: 120px;cursor:pointer"></th>
+                        <th style="padding: 3px" onclick="changeImage(2)"><img th:src="@{/assets/img/02.jpg}"
+                                                                               style="width: 120px;cursor:pointer"></th>
+                        <th style="padding: 3px" onclick="changeImage(3)"><img th:src="@{/assets/img/03.jpg}"
+                                                                               style="width: 120px;cursor:pointer"></th>
                     </tr>
                     <tr>
-                        <th style="padding: 3px" onclick="changeImage(4)"><img th:src="@{/assets/img/04.jpg}" style="width: 120px"></th>
-                        <th style="padding: 3px" onclick="changeImage(5)"><img th:src="@{/assets/img/05.jpg}" style="width: 120px"></th>
-                        <th style="padding: 3px" onclick="changeImage(6)"><img th:src="@{/assets/img/06.jpg}" style="width: 120px"></th>
+                        <th style="padding: 3px" onclick="changeImage(4)"><img th:src="@{/assets/img/04.jpg}"
+                                                                               style="width: 120px;cursor:pointer"></th>
+                        <th style="padding: 3px" onclick="changeImage(5)"><img th:src="@{/assets/img/05.jpg}"
+                                                                               style="width: 120px;cursor:pointer"></th>
+                        <th style="padding: 3px" onclick="changeImage(6)"><img th:src="@{/assets/img/06.jpg}"
+                                                                               style="width: 120px;cursor:pointer"></th>
+                    </tr>
+                    <tr>
+                        <th style="padding: 3px" onclick="changeImage(7)"><img th:src="@{/assets/img/07.jpg}"
+                                                                               style="width: 120px;cursor:pointer"></th>
+                        <th style="padding: 3px" onclick="changeImage(8)"><img th:src="@{/assets/img/08.jpg}"
+                                                                               style="width: 120px;cursor:pointer"></th>
+                        <th style="padding: 3px" onclick="changeImage(9)"><img th:src="@{/assets/img/09.jpg}"
+                                                                               style="width: 120px;cursor:pointer"></th>
                     </tr>
                 </table>
                 <input type="text" id="hidden" style="display: none">
             </div>
         </div>
     </div>
-</div>
-</div>
-<script th:src="@{/assets/js/amazeui.min.js}"></script>
-<script th:src="@{/assets/js/amazeui.datatables.min.js}"></script>
-<script th:src="@{/assets/js/dataTables.responsive.min.js}"></script>
-<script th:src="@{/assets/js/app.js}"></script>
-<script th:src="@{/assets/js/moment.js}"></script>
-<script th:src="@{/assets/js/fullcalendar.min.js}"></script>
-<script th:src="@{/assets/js/flipclock.min.js}"></script>
-<script th:src="@{/js/common.js}"></script>
-<script>
-    $(document).ready(function () {
-        //获取护眼模式开关状态
-        getThemeToggle();
-        // 护眼模式
-        $('#eyeshield').on('click', function () {
-            changeTheme();
-        })
-        // 退出按钮
-        $('#exit').on('click', function () {
-            exit();
-        })
-        // 左边栏的隐藏按钮
-        $('#listSwitchButton').on('click', function () {
-            leftSidebar();
-        });
-        //所有a标签纠正
-        $('a').each(function(){
-            if($(this).attr('href') && $(this).attr('href').indexOf('javascript') < 0
-                && $(this).attr('href') && $(this).attr('href').indexOf('projectoa') < 0
-                && $(this).attr('href') != '#')
+    <div class="am-modal am-modal-no-btn" tabindex="-1" id="weatherModal">
+        <div class="am-modal-dialog">
+            <div class="am-modal-hd">
+                <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
+                一周天气情况
+            </div>
+            <div class="am-modal-bd">
+                <iframe allowtransparency="true" frameborder="0" width="875" height="98" scrolling="no"
+                        src="//tianqi.2345.com/plugin/widget/index.htm?s=2&z=3&t=1&v=0&d=5&bd=0&k=&f=0080c0&ltf=009944&htf=cc0000&q=1&e=1&a=1&c=58362&w=875&h=98&align=center"></iframe>
+            </div>
+        </div>
+    </div>
+    <div class="am-modal am-modal-no-btn" tabindex="-1" id="calculatorModal">
+        <div class="am-modal-dialog">
+            <div class="am-modal-hd" style="text-align: center">
+                <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
+                简易计算器
+            </div>
+            <div class="am-modal-bd">
+                <br/>
+                <div id="calcuator">
+                    <input type="text" id="input-box" value="0" size="21" maxlength="21" readonly="readonly"/>
+                    <div id="btn-list">
+                        <div onclick="operator('clear')" class=" btn-30 btn-radius color-red clear-marginleft">C</div>
+                        <div onclick="operator('opposite')" class=" btn-30 btn-radius color-blue">+/-</div>
+                        <div onclick="operator('percent')" class=" btn-30 btn-radius color-blue">%</div>
+                        <div onclick="operator('backspace')" class=" btn-70 btn-radius color-red font-14">←</div>
+                        <div onclick="typetoinput('7')" class=" btn-30 btn-radius clear-marginleft">7</div>
+                        <div onclick="typetoinput('8')" class=" btn-30 btn-radius">8</div>
+                        <div onclick="typetoinput('9')" class=" btn-30 btn-radius">9</div>
+                        <div onclick="operator('plus')" class=" btn-30 btn-radius color-blue font-14">+</div>
+                        <div onclick="operator('minus')" class=" btn-30 btn-radius color-blue font-14">-</div>
+                        <div onclick="typetoinput('4')" class=" btn-30 btn-radius clear-marginleft">4</div>
+                        <div onclick="typetoinput('5')" class=" btn-30 btn-radius">5</div>
+                        <div onclick="typetoinput('6')" class=" btn-30 btn-radius">6</div>
+                        <div onclick="operator('multiply')" class=" btn-30 btn-radius color-blue font-14">×</div>
+                        <div onclick="operator('divide')" class=" btn-30 btn-radius color-blue font-12">÷</div>
+                        <div onclick="typetoinput('1')" class=" btn-30 btn-radius clear-marginleft">1</div>
+                        <div onclick="typetoinput('2')" class=" btn-30 btn-radius">2</div>
+                        <div onclick="typetoinput('3')" class=" btn-30 btn-radius">3</div>
+                        <div onclick="operator('pow')" class=" btn-30 btn-radius color-blue font-14">×²</div>
+                        <div onclick="operator('sqrt')" class=" btn-30 btn-radius color-blue font-12">√</div>
+                        <div onclick="typetoinput('0')" class=" btn-70 btn-radius clear-marginleft">0</div>
+                        <div onclick="typetoinput('.')" class=" btn-30 btn-radius">.</div>
+                        <div onclick="operator('result')" class=" btn-70 btn-radius color-red font-14">=</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 备忘录 -->
+    <div class="am-modal am-modal-no-btn" tabindex="-1" id="todomvcModal">
+        <div class="am-modal-dialog">
+            <div class="am-modal-hd">
+                <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
+            </div>
+            <div class="am-modal-bd">
+                <div id="todomvc">
+                    <section class="todoapp">
+                        <header class="header">
+                            <h1 style="margin-top: 60px">备忘录</h1>
+                            <input class="new-todo"
+                                   autofocus autocomplete="off"
+                                   placeholder="想要记录一件什么事?"
+                                   v-model="newTodo"
+                                   @keyup.enter="addTodo">
+                        </header>
+                        <section class="main" v-show="todos.length" v-cloak>
+                            <input class="toggle-all" type="checkbox" v-model="allDone">
+                            <ul class="todo-list">
+                                <li v-for="todo in filteredTodos"
+                                    class="todo"
+                                    :key="todo.id"
+                                    :class="{ completed: todo.completed, editing: todo == editedTodo }">
+                                    <div class="view">
+                                        <input class="toggle" type="checkbox" v-model="todo.completed"
+                                               style="left: 5px;">
+                                        <label @dblclick="editTodo(todo)">{{ todo.title }}</label>
+                                        <button class="destroy" @click="removeTodo(todo)"></button>
+                                    </div>
+                                    <input class="edit" type="text"
+                                           v-model="todo.title"
+                                           v-todo-focus="todo == editedTodo"
+                                           @blur="doneEdit(todo)"
+                                           @keyup.enter="doneEdit(todo)"
+                                           @keyup.esc="cancelEdit(todo)">
+                                </li>
+                            </ul>
+                        </section>
+                        <footer class="footer" v-show="todos.length" v-cloak>
+                            <!--<span class="todo-count">-->
+                              <!--<strong>{{ remaining }}</strong> {{ remaining | pluralize }} 剩余的事-->
+                            <!--</span>-->
+                            <!--<ul class="filters" style="bottom: 0px;" >-->
+                                <!--<li><a href="#/all" :class="{ selected: visibility == 'all' }">全部</a></li>-->
+                                <!--<li><a href="#/active" :class="{ selected: visibility == 'active' }">进行中</a></li>-->
+                                <!--<li><a href="#/completed" :class="{ selected: visibility == 'completed' }">已完成</a>-->
+                                <!--</li>-->
+                            <!--</ul>-->
+                            <button class="clear-completed" style="bottom: 10px;" @click="removeCompleted" v-show="todos.length > remaining">
+                                清除所有已完成的
+                            </button>
+                        </footer>
+                    </section>
+                    <footer class="info">
+                        <p>双击一行可以编辑</p>
+                    </footer>
+                    <div>
 
-                $(this).attr('href',contextPath + "/" + $(this).attr('href'));
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script th:src="@{/assets/js/amazeui.min.js}"></script>
+    <script th:src="@{/assets/js/amazeui.datatables.min.js}"></script>
+    <script th:src="@{/assets/js/dataTables.responsive.min.js}"></script>
+    <script th:src="@{/assets/js/app.js}"></script>
+    <script th:src="@{/assets/js/moment.js}"></script>
+    <script th:src="@{/assets/js/fullcalendar.min.js}"></script>
+    <script th:src="@{/assets/js/flipclock.min.js}"></script>
+    <script th:src="@{/js/common.js}"></script>
+    <script th:src="@{/assets/js/todomvc.js}"></script>
+    <script>
+        $(document).ready(function () {
+            //获取护眼模式开关状态
+            getThemeToggle();
+            // 护眼模式
+            $('#eyeshield').on('click', function () {
+                changeTheme();
+            })
+            // 退出按钮
+            $('#exit').on('click', function () {
+                exit();
+            })
+            // 左边栏的隐藏按钮
+            $('#listSwitchButton').on('click', function () {
+                leftSidebar();
+            });
+            //所有a标签纠正
+            $('a').each(function () {
+                if ($(this).attr('href') && $(this).attr('href').indexOf('javascript') < 0
+                    && $(this).attr('href') && $(this).attr('href').indexOf('projectoa') < 0
+                    && $(this).attr('href') != '#')
+
+                    $(this).attr('href', contextPath + "/" + $(this).attr('href'));
+            });
         });
-    });
-</script>
+    </script>
 </body>
 </html>

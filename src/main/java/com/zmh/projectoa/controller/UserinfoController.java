@@ -36,13 +36,16 @@ public class UserinfoController {
     RedisService redisService;
 
     /**
+     * 默认头像
+     */
+    public static final Integer defaultHeadImage = 9;
+    /**
      * 个人
      */
     @RequestMapping(value = "/userinfo")
-    public String userinfo(){
+    public String userinfo() {
         return "userinfo";
     }
-
 
 
     @RequestMapping(value = "/getUserinfo")
@@ -61,7 +64,7 @@ public class UserinfoController {
         Integer id = (Integer) request.getSession().getAttribute("userID");
         userinfo.setUserId(id);
         //头像保存到redis
-        redisService.setValue("headImage_"+id,String.valueOf(userinfo.getHeadImage()));
+        redisService.setValue("headImage_" + id, String.valueOf(userinfo.getHeadImage()));
         int result = userinfoService.saveUserinfo(userinfo);
         if (result == 1) {
             return ReturnDto.buildSuccessReturnDto("保存成功");
@@ -86,32 +89,32 @@ public class UserinfoController {
 
     @RequestMapping(value = "/setNewPassWord")
     @ResponseBody
-    public ReturnDto setPassWord(@RequestParam("oldpassword")String oldpassword,
-        @RequestParam("newpassword")String newpassword,
-        @RequestParam("repeatpassword")String repeatpassword,
-        HttpServletRequest request) {
+    public ReturnDto setPassWord(@RequestParam("oldpassword") String oldpassword,
+                                 @RequestParam("newpassword") String newpassword,
+                                 @RequestParam("repeatpassword") String repeatpassword,
+                                 HttpServletRequest request) {
         //用户id从session中取，是user表中的id
         Integer id = (Integer) request.getSession().getAttribute("userID");
         //验证旧密码是否正确环节
         Users user = usersService.detailUser(id);
-        if(!user.getPassword().equals(MD5Util.string2MD5(oldpassword))){
+        if (!user.getPassword().equals(MD5Util.string2MD5(oldpassword))) {
             logger.error("旧密码不正确");
             return ReturnDto.buildFailedReturnDto("旧密码不正确");
         }
-        System.out.println(newpassword+"\t"+repeatpassword);
+        System.out.println(newpassword + "\t" + repeatpassword);
         //验证新密码是否合法环节 首先防止null或者空字符串蒙混过关 并且再次确认两次输入一致
-        if(newpassword != null && !"".equals(newpassword) && newpassword.equals(repeatpassword)){
+        if (newpassword != null && !"".equals(newpassword) && newpassword.equals(repeatpassword)) {
             //验证新密码是否合法
-            if(!newpassword.matches(".*[a-zA-Z0-9]+.*") || newpassword.length() > 20 || newpassword.length() < 6){
+            if (!newpassword.matches(".*[a-zA-Z0-9]+.*") || newpassword.length() > 20 || newpassword.length() < 6) {
                 logger.error("新密码不合法");
                 return ReturnDto.buildFailedReturnDto("新密码不合法");
             }
             //更新新密码
             Users temp = new Users();
             temp.setPassword(MD5Util.string2MD5(newpassword));
-            int i = usersService.editUser(id,temp);
-            System.out.println(i+" "+MD5Util.string2MD5(newpassword));
-            if(i > 0){
+            int i = usersService.editUser(id, temp);
+            System.out.println(i + " " + MD5Util.string2MD5(newpassword));
+            if (i > 0) {
                 //返回修改成功
                 return ReturnDto.buildSuccessReturnDto("success");
             }
@@ -126,23 +129,52 @@ public class UserinfoController {
      */
     @RequestMapping(value = "/getHeadImageNumByID")
     @ResponseBody
-    public ReturnDto getHeadImageNumByID(HttpServletRequest request){
+    public ReturnDto getHeadImageNumByID(HttpServletRequest request) {
         Integer id = (Integer) request.getSession().getAttribute("userID");
-        String num = redisService.getValue("headImage_"+id);
-        Integer result = 1;//先给个默认值
-        try { result = Integer.parseInt(num); } catch (NumberFormatException e) {}
+        String num = redisService.getValue("headImage_" + id);
+        Integer result = defaultHeadImage;//先给个默认值
+        try {
+            result = Integer.parseInt(num);
+        } catch (NumberFormatException e) {
+        }
         return ReturnDto.buildSuccessReturnDto(result);
     }
 
     /**
      * 根据 id 返回头像num
+     * 这里先获取redis中best的ID，是最佳员工的userID
+     * 再获取这个人的头像
+     * 那么这个人如果没设置过头像 redis的headImage_+他的ID是没有内容的
+     * 这样的情况下给默认值1 就是用默认的头像01.jpg
      */
     @RequestMapping(value = "/getBestImageNum")
     @ResponseBody
-    public ReturnDto getBestImageNum(HttpServletRequest request){
-        String num = redisService.getValue("headImage_"+redisService.getValue("best"));
-        Integer result = 1;//先给个默认值
-        try { result = Integer.parseInt(num); } catch (NumberFormatException e) {}
+    public ReturnDto getBestImageNum() {
+        String num = redisService.getValue("headImage_" + redisService.getValue("best"));
+        Integer result = defaultHeadImage;//先给个默认值
+        try {
+            if(num != null && !"".equals(num))
+                result = Integer.parseInt(num);
+        } catch (NumberFormatException e) {
+        }
         return ReturnDto.buildSuccessReturnDto(result);
     }
+
+    /**
+     *  获取最佳员工姓名
+     */
+    @RequestMapping(value = "/getBestUserName")
+    @ResponseBody
+    public ReturnDto getBestUserName() {
+        String result = "暂无";
+        try {
+            String num = redisService.getValue("best");
+            if(num != null && !"".equals(num))
+                result = usersService.detailUser(Integer.parseInt(num)).getRealname();
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+        }
+        return ReturnDto.buildSuccessReturnDto(result);
+    }
+
 }

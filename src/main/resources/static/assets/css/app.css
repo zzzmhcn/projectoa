@@ -1912,3 +1912,7 @@ ul.tpl-dropdown-content .tpl-dropdown-menu-messages-item .menu-messages-content 
 }
 
 [v-cloak] { display: none }
+
+th{
+  text-align: center;
+}

@@ -195,6 +195,9 @@ function getLastNotice() {
     });
 }
 
+/**
+ * 获取最佳员工
+ */
 function getBestImageNum() {
     $.ajax({
         type: "POST",
@@ -202,7 +205,26 @@ function getBestImageNum() {
         dataType: "json",
         success: function (result) {
             if(result.code == 000){
-                setHeadImage('');
+                //这里返回的是最佳员工的头像的图片数字1~6 默认1
+                var path = contextPath+"/assets/img/0"+result.value+".jpg";
+                $('#bestImg').attr("src",path);
+            }
+        }
+    });
+}
+
+/**
+ * 设置首页上的最佳员工名字
+ */
+function getBestUserName() {
+    $.ajax({
+        type: "POST",
+        url: contextPath + "/userinfo/getBestUserName",
+        dataType: "json",
+        success: function (result) {
+            if(result.code == 000){
+                //这里返回的是最佳员工的头像的图片数字1~6 默认1
+                $('#bestName').text(result.value);
             }
         }
     });

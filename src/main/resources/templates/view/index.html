@@ -9,74 +9,6 @@
 <!-- 内容区域 -->
 <div class="tpl-content-wrapper">
     <div class="row-content am-cf">
-        <!---
-        <div class="row  am-cf">
-
-            <div class="am-u-sm-12 am-u-md-12 am-u-lg-4">
-                <div class="widget am-cf">
-                    <div class="widget-head am-cf">
-                        <div class="widget-title am-fl">月度财务收支计划</div>
-                        <div class="widget-function am-fr">
-                            <a href="javascript:;" class="am-icon-cog"></a>
-                        </div>
-                    </div>
-                    <div class="widget-body am-fr">
-                        <div class="am-fl">
-                            <div class="widget-fluctuation-period-text">
-                                ￥61746.45
-                                <button class="widget-fluctuation-tpl-btn">
-                                    <i class="am-icon-calendar"></i>
-                                    更多月份
-                                </button>
-                            </div>
-                        </div>
-                        <div class="am-fr am-cf">
-                            <div class="widget-fluctuation-description-amount text-success" am-cf>
-                                +￥30420.56
-
-                            </div>
-                            <div class="widget-fluctuation-description-text am-text-right">
-                                8月份收入
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-            <div class="am-u-sm-12 am-u-md-6 am-u-lg-4">
-                <div class="widget widget-primary am-cf">
-                    <div class="widget-statistic-header">
-                        本季度利润
-                    </div>
-                    <div class="widget-statistic-body">
-                        <div class="widget-statistic-value">
-                            ￥27,294
-                        </div>
-                        <div class="widget-statistic-description">
-                            本季度比去年多收入 <strong>2593元</strong> 人民币
-                        </div>
-                        <span class="widget-statistic-icon am-icon-credit-card-alt"></span>
-                    </div>
-                </div>
-            </div>
-            <div class="am-u-sm-12 am-u-md-6 am-u-lg-4">
-                <div class="widget widget-purple am-cf">
-                    <div class="widget-statistic-header">
-                        本季度利润
-                    </div>
-                    <div class="widget-statistic-body">
-                        <div class="widget-statistic-value">
-                            ￥27,294
-                        </div>
-                        <div class="widget-statistic-description">
-                            本季度比去年多收入 <strong>2593元</strong> 人民币
-                        </div>
-                        <span class="widget-statistic-icon am-icon-support"></span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        -->
         <div class="row am-cf">
             <div class="am-u-sm-12 am-u-md-8">
                 <div class="widget am-cf am-text-center">
@@ -94,13 +26,36 @@
             <div class="am-u-sm-12 am-u-md-4">
                 <div class="widget am-cf am-text-center">
                     <div class="widget-head am-cf">
-                        <div class="widget-title am-fl">天气情况</div>
+                        <div class="widget-title am-fl">工具箱</div>
                     </div>
                     <div class="widget-body widget-body-md am-fr">
-                        <!-- 2345天气http://tianqi.2345.com/plugin/setting.htm?style=classicBig2day -->
-                        <iframe style="margin-top: 20px" allowtransparency="true" frameborder="0" width="290"
-                                height="96" scrolling="no"
-                                src="//tianqi.2345.com/plugin/widget/index.htm?s=2&z=1&t=0&v=0&d=2&bd=0&k=&f=0080c0&ltf=009944&htf=cc0000&q=1&e=0&a=1&c=58362&w=290&h=96&align=left"></iframe>
+                        <table style="width: 100%;height: 100%;text-align: center;">
+                            <tr>
+                                <th>
+                                    <div style="cursor:pointer" data-am-modal="{target: '#calculatorModal', closeViaDimmer: 0, width: 300, height: 360}">
+                                        <img th:src="@{/assets/icon/calculator.png}" style="width: 60px">
+                                    </div>
+                                    <small>计算器</small>
+                                </th>
+                                <th>
+                                    <div style="cursor:pointer" data-am-modal="{target: '#weatherModal', closeViaDimmer: 0, width: 900, height: 225}">
+                                        <img th:src="@{/assets/icon/weather.png}" style="width: 60px">
+                                    </div>
+                                    <small>天气</small>
+                                </th>
+                                <th>
+                                    <div style="cursor:pointer" data-am-modal="{target: '#todomvcModal', closeViaDimmer: 0, width: 800, height: 600}">
+                                        <img th:src="@{/assets/icon/notepad.png}" style="width: 60px">
+                                    </div>
+                                    <small>要做的事</small>
+                                </th>
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -114,8 +69,8 @@
                         月度最佳员工
                     </div>
                     <img class="achievement-image" src="" alt="" id="bestImg">
-                    <div class="achievement-subheading">
-                        CEO
+                    <div class="achievement-subheading" id="bestName">
+
                     </div>
                     <div class="achievement-description">
                         再接再厉，勇创新高！
@@ -169,8 +124,10 @@
             clockFace: 'TwentyFourHourClock'
         });
         $("#today").text(getCurrentDateTime() + " 农历 " + showCal());
-
+        //最佳员工
         getBestImageNum();
+        getBestUserName();
+        //最后一条信息和公告
         getLastMessage();
         getLastNotice();
     });

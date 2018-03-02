@@ -190,6 +190,9 @@ function getUnReadMessages() {
     });
 }
 
+/**
+ * 获取未读公告
+ */
 function getUnReadNotices() {
     $.ajax({
         type: "POST",
@@ -216,6 +219,10 @@ function changenums(spanID) {
     }
 }
 
+/**
+ * 设置本人头像
+ * 传入需要显示头像的img标签的id
+ */
 function setHeadImage(imgID) {
     $.ajax({
         type: "POST",
