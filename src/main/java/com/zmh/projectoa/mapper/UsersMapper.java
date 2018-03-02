@@ -34,7 +34,7 @@ public interface UsersMapper {
 
     Users queryUserByUsername (@Param("username") String username);
 
-    List<Users> queryBySelective(Users users);
+    List<Users> queryBySelective(Map<String, Object> map);
 
     List<Map<String,String>> queryAll(Integer id);
 

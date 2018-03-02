@@ -74,11 +74,12 @@ public class UsersService {
      * @param userDto
      * @return
      */
-    public PageInfo userList(Users userDto, Integer pageNum){
-        userDto.setIsDel("0");
+    public PageInfo userList(Map<String, Object> map, Integer pageNum){
+
+        map.put("isDel", "0");
 
         PageHelper.startPage(pageNum, 10);
-        List<Users> list = usersMapper.queryBySelective(userDto);
+        List<Users> list = usersMapper.queryBySelective(map);
         PageInfo page = new PageInfo(list);
 
         return page;

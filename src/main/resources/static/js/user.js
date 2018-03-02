@@ -76,26 +76,24 @@ function getDepartment() {
 
 //查询员工
 function getUser(pageNum) {
-
-    var departmentId = $('#department').val() == 0 ? null : $('#department').val();
-    var positionId = $('#position').val() == 0 ? null : $('#position').val();
-    var realname = $('#realname').val() == '' ? null : $('#realname').val();
-    var data = {};
-    data.departmentId = departmentId;
-    data.positionId = positionId;
-    data.realname = realname;
-
     if (pageNum == 0){
         pageNum = 1;
     }
 
+    var departmentId = $('#department').val() == 0 ? null : $('#department').val();
+    var positionId = $('#position').val() == 0 ? null : $('#position').val();
+    var realname = $('#realname').val() == '' ? null : $('#realname').val();
+    var users = {};
+    users.departmentId = departmentId;
+    users.positionId = positionId;
+    users.realname = realname;
+    users.pageNum = pageNum;
+
+
     $.ajax({
         type : "POST",
         url : "/projectoa/user/userList",
-        data : {
-            data : data,
-            pageNum : pageNum
-        },
+        data : users,
         dataType : "json",
         success : function (result) {
             vm.userList = result.value.list;
