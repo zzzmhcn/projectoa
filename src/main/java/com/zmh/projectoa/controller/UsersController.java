@@ -7,6 +7,7 @@ import com.zmh.projectoa.model.Users;
 import com.zmh.projectoa.service.RedisService;
 import com.zmh.projectoa.service.UserinfoService;
 import com.zmh.projectoa.service.UsersService;
+import com.zmh.projectoa.util.ParameterUtil;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.websocket.server.PathParam;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 /**
@@ -93,11 +95,16 @@ public class UsersController {
      */
     @RequestMapping(value = "/userList")
     @ResponseBody
-    public ReturnDto userList(Users users,@RequestParam(value = "pageNum", required = false) Integer pageNum){
-        if (pageNum == null){
+    public ReturnDto userList(HttpServletRequest request){
+        Map<String, Object> map = ParameterUtil.getParameterMap(request);
+        Integer pageNum = 0;
+        if (map.containsKey("pageNum")){
+            pageNum = Integer.parseInt(map.get("pageNum").toString());
+        }else {
             pageNum = 1;
         }
-        PageInfo list = usersService.userList(users, pageNum);
+
+        PageInfo list = usersService.userList(map, pageNum);
         return ReturnDto.buildSuccessReturnDto(list);
     }
 
