@@ -109,8 +109,8 @@ public class NoticeController {
      */
     @RequestMapping(value = "/getNotices")
     @ResponseBody
-    public ReturnDto getNotices(HttpServletRequest request) {
-        return ReturnDto.buildSuccessReturnDto(noticeService.getAllNotices());
+    public ReturnDto getNotices(@RequestParam(value = "pageNum") Integer pageNum) {
+        return ReturnDto.buildSuccessReturnDto(noticeService.getAllNotices(pageNum));
     }
 
     /**

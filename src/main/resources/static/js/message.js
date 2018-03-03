@@ -2,6 +2,8 @@ var vm_message = new Vue({
     el: '#message',
     data: {
         messages: [],
+        pageInfo : {},
+        pageNum : 0
     },
     methods: {
         getMessages: getMessages,
@@ -126,14 +128,27 @@ function sendMessage() {
 /**
  * 获取所有未读信息(本人的)
  */
-function getMessages() {
+function getMessages(pageNum) {
+    if (pageNum == 0){
+        pageNum = 1;
+    }
     $.ajax({
         type: "POST",
         url: contextPath + "/message/getMessages",
+        data:{
+            "pageNum" : pageNum
+        },
         dataType: "json",
         success: function (result) {
             if (result.code == 000) {
-                vm_message.messages = result.value;
+                vm_message.messages = result.value.list;
+                vm_message.pageInfo.pageNum = result.value.pageNum;
+                vm_message.pageInfo.pages = result.value.pages;
+                vm_message.pageInfo.prePage = result.value.prePage;
+                vm_message.pageInfo.nextPage = result.value.nextPage;
+                vm_message.pageInfo.isFirstPage = result.value.isFirstPage;
+                vm_message.pageInfo.isLastPage = result.value.isLastPage;
+                vm_message.pageNum = result.value.pageNum;
             } else {
                 showAlert("获取站内信异常!")
             }

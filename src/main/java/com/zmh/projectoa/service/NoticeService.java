@@ -1,6 +1,8 @@
 package com.zmh.projectoa.service;
 
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.zmh.projectoa.mapper.NoticesMapper;
 import com.zmh.projectoa.model.Notices;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,8 +36,11 @@ public class NoticeService {
      * 获取本人所有公告
      * 这个功能不分人 大家都收到一样
      */
-    public List<Map<String,String>> getAllNotices(){
-        return noticesMapper.selectAllNotice();
+    public PageInfo getAllNotices(Integer pageNum){
+        PageHelper.startPage(pageNum, 10);
+        List<Map<String, String>> result = noticesMapper.selectAllNotice();
+        PageInfo pageInfo = new PageInfo(result);
+        return pageInfo;
     }
 
     /**

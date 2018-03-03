@@ -1,5 +1,7 @@
 package com.zmh.projectoa.service;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.zmh.projectoa.mapper.MessagesMapper;
 import com.zmh.projectoa.model.Messages;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,8 +33,11 @@ public class MessageService {
     /**
      * 传入接受者ID 返回所有此人的信息 (Mysql中)
      */
-    public List<Map<String,String>> selectByreceiveID(Integer ID){
-        return messagesMapper.selectByreceiveID(ID);
+    public PageInfo selectByreceiveID(Integer ID, Integer pageNum){
+        PageHelper.startPage(pageNum, 10);
+        List<Map<String, String>> list = messagesMapper.selectByreceiveID(ID);
+        PageInfo pageInfo = new PageInfo(list);
+        return pageInfo;
     }
 
     public Messages selectByID(Integer id){

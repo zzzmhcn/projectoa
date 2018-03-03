@@ -133,7 +133,14 @@ public class MessageController {
     @ResponseBody
     public ReturnDto getMessages(HttpServletRequest request) {
         Integer id = (Integer) request.getSession().getAttribute("userID");
-        return ReturnDto.buildSuccessReturnDto(messageService.selectByreceiveID(id));
+        Integer pageNum;
+        try {
+            pageNum = Integer.parseInt(request.getParameter("pageNum"));
+        }catch (Exception e){
+            pageNum = 1;
+        }
+
+        return ReturnDto.buildSuccessReturnDto(messageService.selectByreceiveID(id, pageNum));
     }
 
     /**
