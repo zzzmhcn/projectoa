@@ -25,5 +25,7 @@
     开涛大神的《跟我学Shiro》系列
     http://jinnianshilongnian.iteye.com/blog/2018398
 感谢
-    本项目是我与云朵同学共同合作完成！！！
+    该项目是由 程衫耘朵 和 张明辉 共同完成！
     特别要感谢云朵同学的鼎力相助！！！
+    https://github.com/chsyd1028
+    https://github.com/18121259693

@@ -17,7 +17,6 @@
     <link rel="stylesheet" href="assets/css/amazeui.datatables.min.css"/>
     <link rel="stylesheet" href="assets/css/app.css">
     <script src="assets/js/jquery.min.js"></script>
-
 </head>
 
 <body data-type="login">
@@ -50,12 +49,27 @@
         </div>
     </div>
 </div>
+<!-- alert -->
+<div class="am-modal am-modal-alert" tabindex="-1" id="showAlertID">
+    <div class="am-modal-dialog">
+        <!-- 标题 -->
+        <div id="alertTitle" class="am-modal-hd">欢迎你</div>
+        <!-- 内容 -->
+        <div id="alertText" class="am-modal-bd">
+            欢迎来的我的线上环境预览OA项目 建议使用管理员账户预览<br/>账号:admin<br/>密码:123456
+        </div>
+        <div class="am-modal-footer">
+            <span class="am-modal-btn">确定</span>
+        </div>
+    </div>
+</div>
 <script src="assets/js/amazeui.min.js"></script>
 <script src="assets/js/app.js"></script>
 <script>
     $(document).ready(function () {
         //获取护眼模式开关状态
         getThemeToggle();
+        $("#showAlertID").modal();
     });
 </script>
 </body>
