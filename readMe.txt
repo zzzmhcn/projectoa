@@ -42,3 +42,4 @@
     spring.datasource.*** 配置MySql
     spring.redis.***      配置redis(如果是本机就不用配)
     logback.filepath      配置输出日志路径
+    首次使用需要向数据库导入projectoa\database\dboa.sql文件
