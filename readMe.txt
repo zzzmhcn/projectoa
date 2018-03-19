@@ -29,3 +29,16 @@
     特别要感谢云朵同学的鼎力相助！！！
     https://github.com/chsyd1028
     https://github.com/18121259693
+
+改善空间
+    1、calculator.js中存在监控键盘事件方法，会影响文字输入时候，按退格无效的情况。目前只在首页引入calculator.js，但还是影响了todoList备忘录的输入的删除
+    2、shiro和springbootadmin冲突问题，目前只通过反过来配置shiro解决，使用起来差别不大，但不完美。
+    3、手机端部分组件兼容性不强，例如表格在手机显示不理想。
+    4、shiro未使用盐值加密。
+    5、redis命名方式和存读方式还有优化空间。
+
+注意
+    初次使用修改配置文件projectoa\src\main\resources\application.properties
+    spring.datasource.*** 配置MySql
+    spring.redis.***      配置redis(如果是本机就不用配)
+    logback.filepath      配置输出日志路径
