@@ -13,9 +13,7 @@
     <link rel="icon" type="image/png" th:href="@{/assets/i/favicon.png}">
     <link rel="apple-touch-icon-precomposed" th:href="@{/assets/i/app-icon72x72@2x.png}">
     <meta name="apple-mobile-web-app-title" content="Amaze UI"/>
-    <script th:src="@{/assets/js/echarts.min.js}"></script>
-    <script th:src="@{/assets/js/jquery.min.js}"></script>
-    <script th:src="@{/assets/js/vue.js}"></script>
+
     <link rel="stylesheet" th:href="@{/assets/css/amazeui.min.css}"/>
     <link rel="stylesheet" th:href="@{/assets/css/amazeui.datatables.min.css}"/>
     <link rel="stylesheet" th:href="@{/assets/css/fullcalendar.min.css}"/>
@@ -23,7 +21,14 @@
     <link rel="stylesheet" th:href="@{/assets/css/app.css}">
     <link rel="stylesheet" th:href="@{/assets/css/flipclock.css}">
     <link rel="stylesheet" th:href="@{/assets/css/todomvc.css}">
-    <script>var contextPath = "/projectoa";</script>
+    <link rel="stylesheet" th:href="@{/assets/css/calculator.css}">
+
+    <script th:src="@{/assets/js/echarts.min.js}"></script>
+    <script th:src="@{/assets/js/jquery.min.js}"></script>
+    <script th:src="@{/assets/js/vue.js}"></script>
+    <script th:src="@{/assets/js/amazeui.min.js}"></script>
+
+    <script>var contextPath = "/projectoa";var calculatorIsOpen = false;</script>
 </head>
 <body data-type="index">
 <script th:src="@{/assets/js/theme.js}"></script>
@@ -404,7 +409,7 @@
             </div>
         </div>
     </div>
-    <script th:src="@{/assets/js/amazeui.min.js}"></script>
+
     <script th:src="@{/assets/js/amazeui.datatables.min.js}"></script>
     <script th:src="@{/assets/js/dataTables.responsive.min.js}"></script>
     <script th:src="@{/assets/js/app.js}"></script>
@@ -413,6 +418,7 @@
     <script th:src="@{/assets/js/flipclock.min.js}"></script>
     <script th:src="@{/js/common.js}"></script>
     <script th:src="@{/assets/js/todomvc.js}"></script>
+    <script th:src="@{/assets/js/calculator.js}"></script>
     <script>
         $(document).ready(function () {
             //获取护眼模式开关状态
@@ -436,6 +442,14 @@
                     && $(this).attr('href') != '#')
 
                     $(this).attr('href', contextPath + "/" + $(this).attr('href'));
+            });
+
+            //计算器的JS会监听键盘时间 导致其他组件无法使用退格 故使用以下特殊处理解决
+            $('#calculatorModal').on('open.modal.amui', function(){
+                calculatorIsOpen = true;
+            });
+            $('#calculatorModal').on('close.modal.amui', function(){
+                calculatorIsOpen = false;
             });
         });
     </script>

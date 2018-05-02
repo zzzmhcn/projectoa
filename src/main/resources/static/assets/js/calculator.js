@@ -177,7 +177,7 @@ function checknum(inputvalue)
 window.document.onkeydown = disableRefresh;
 function disableRefresh(evt){
 evt = (evt) ? evt : window.event
-if (evt.keyCode) 
+if (evt.keyCode && calculatorIsOpen)
 {
    if(evt.keyCode == 13){operator('result')}
    else if(evt.keyCode == 8){input.focus();window.event.returnValue = false;operator('backspace')}
