@@ -1,5 +1,14 @@
-个人主页，欢迎留言
-    http://zhangminghui.iok.la/
+个人主页
+    https://zzzmh.cn/
+    
+友情链接
+    http://csyd.xyz/
+    
+关于本项目简介
+    https://zzzmh.cn/single.jsp?id=2
+    
+线上预览地址
+    https://zzzmh.cn/projectoa/index 测试账号 admin 测试密码 123456
 
 笔记
     DB具体设计笔记地址
