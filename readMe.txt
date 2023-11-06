@@ -2,7 +2,7 @@
     https://zzzmh.cn/
     
 友情链接
-    http://csyd.xyz/
+    https://yunduo250.com/
     
 关于本项目简介
     https://zzzmh.cn/single.jsp?id=2
